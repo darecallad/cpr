@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"; 
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -10,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <LanguageProvider>
+          <LanguageProvider>    
             <Header />
             <main>{children}</main>
           </LanguageProvider>
