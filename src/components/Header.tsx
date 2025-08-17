@@ -14,7 +14,7 @@ export function Header() {
     pathname === path ? "text-blue-600 font-bold" : "text-gray-700";
 
   return (
-    <header className="flex items-center justify-between px-8 md:px-16 lg:px-32 py-2 border-b bg-[#E4F4EC] h-[100px]">
+    <header className="flex items-center justify-between px-8 md:px-16 lg:px-32 py-2 border-b bg-[#F0F9F7] h-[100px]">
      
       <Link href="/" className="flex items-center">
         <div className="relative h-[80px] w-auto">

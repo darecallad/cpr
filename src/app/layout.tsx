@@ -9,7 +9,7 @@ export const metadata = { title: "CPR Teacher Site" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="bg-[#e6f4f1] min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <LanguageProvider>    
             <Header />
