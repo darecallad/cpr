@@ -5,9 +5,26 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation"; 
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Header() {
   const pathname = usePathname(); 
+  const { locale } = useLanguage();
+
+  const copy = {
+    en: {
+      home: "Home",
+      courses: "Courses",
+      booking: "Booking",
+      contact: "Contact",
+    },
+    zh: {
+      home: "首頁",
+      courses: "課程介紹",
+      booking: "預約報名",
+      contact: "聯絡我們",
+    },
+  } as const;
 
 
   const isActive = (path: string) =>
@@ -31,16 +48,16 @@ export function Header() {
 
       <nav className="flex items-center space-x-8">
         <Link href="/" className={`${isActive("/")} hover:text-blue-600 transition-colors`}>
-          Home
+          {copy[locale].home}
         </Link>
         <Link href="/courses" className={`${isActive("/courses")} hover:text-blue-600 transition-colors`}>
-          Courses
+          {copy[locale].courses}
         </Link>
         <Link href="/booking" className={`${isActive("/booking")} hover:text-blue-600 transition-colors`}>
-          Booking
+          {copy[locale].booking}
         </Link>
         <Link href="/contact" className={`${isActive("/contact")} hover:text-blue-600 transition-colors`}>
-          Contact
+          {copy[locale].contact}
         </Link>
 
         <LanguageToggle />

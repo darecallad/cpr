@@ -2,17 +2,102 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function BookingPage() {
+  const { locale } = useLanguage();
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date(2024, 2)); // March 2024
-  
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  
-  const weekDays = ["M", "T", "W", "T", "F", "S", "S"];
+
+  const monthNames = {
+    en: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    zh: [
+      "1 月",
+      "2 月",
+      "3 月",
+      "4 月",
+      "5 月",
+      "6 月",
+      "7 月",
+      "8 月",
+      "9 月",
+      "10 月",
+      "11 月",
+      "12 月",
+    ],
+  } as const;
+
+  const weekDays = {
+    en: ["M", "T", "W", "T", "F", "S", "S"],
+    zh: ["一", "二", "三", "四", "五", "六", "日"],
+  } as const;
+
+  const copy = {
+    en: {
+      title: "Booking",
+      intro: [
+        "Please fill out the form below to book a course.",
+        "We will confirm the date and send payment details as soon as possible.",
+      ],
+      fields: {
+        name: "Name (required)",
+        phone: "Phone (required)",
+        email: "Email Address (required)",
+        organization: "Organization",
+        preferredDate: "Preferred Date",
+        notes: "Additional Requests",
+        attendees: "Number of Attendees",
+        attendeesPlaceholder: "Enter number of participants",
+        calendar: "Select a Date",
+      },
+      submit: "SUBMIT",
+      paymentNote:
+        "We accept credit card payment through our secure online system. Your information is protected by encryption.",
+      paymentFooter: "We accept →",
+    },
+    zh: {
+      title: "預約報名",
+      intro: [
+        "請填寫下列表單預約課程。",
+        "我們將儘快與您確認開課日期並提供付款資訊。",
+      ],
+      fields: {
+        name: "姓名（必填）",
+        phone: "聯絡電話（必填）",
+        email: "Email（必填）",
+        organization: "單位名稱",
+        preferredDate: "預約日期",
+        notes: "備註需求",
+        attendees: "參加人數",
+        attendeesPlaceholder: "請輸入預計人數",
+        calendar: "選擇日期",
+      },
+      submit: "送出",
+      paymentNote:
+        "本站提供安全的線上刷卡機制，所有交易資料皆經過加密保護。",
+      paymentFooter: "支援付款方式 →",
+    },
+  } as const;
+
+  const content = copy[locale];
+
+  const weekDayLabels = weekDays[locale];
+  const monthLabel = locale === "en"
+    ? `${monthNames[locale][currentMonth.getMonth()]} ${currentMonth.getFullYear()}`
+    : `${currentMonth.getFullYear()} 年 ${monthNames[locale][currentMonth.getMonth()]}`;
   
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -49,20 +134,25 @@ export default function BookingPage() {
     });
   };
 
+  const formattedDate = selectedDate
+    ? locale === "en"
+      ? `${currentMonth.getMonth() + 1}/${selectedDate}/${currentMonth.getFullYear()}`
+      : `${currentMonth.getFullYear()} 年 ${currentMonth.getMonth() + 1} 月 ${selectedDate} 日`
+    : "";
+
   return (
     <section className="bg-gray-50 px-8 py-16 min-h-screen">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-[#2C5F5A] text-center">Booking</h1>
-        <p className="text-center text-gray-700 mb-8">
-          Please fill out the form below to book a course. We will confirm<br />
-          the date and send payment details as soon as possible.
+        <h1 className="text-4xl font-bold mb-6 text-[#2C5F5A] text-center">{content.title}</h1>
+        <p className="text-center text-gray-700 mb-8 whitespace-pre-line">
+          {content.intro.join("\n")}
         </p>
 
         <form className="space-y-6">
           {/* Name Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Name (required)
+              {content.fields.name}
             </label>
             <input
               type="text"
@@ -74,7 +164,7 @@ export default function BookingPage() {
           {/* Phone Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Phone (required)
+              {content.fields.phone}
             </label>
             <input
               type="tel"
@@ -86,7 +176,7 @@ export default function BookingPage() {
           {/* Email Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email Address (required)
+              {content.fields.email}
             </label>
             <input
               type="email"
@@ -100,7 +190,7 @@ export default function BookingPage() {
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Organization
+                  {content.fields.organization}
                 </label>
                 <input
                   type="text"
@@ -110,19 +200,31 @@ export default function BookingPage() {
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Preferred Date
+                  {content.fields.attendees}
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  placeholder={content.fields.attendeesPlaceholder}
+                  className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {content.fields.preferredDate}
                 </label>
                 <input
                   type="text"
                   className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  value={selectedDate ? `${currentMonth.getMonth() + 1}/${selectedDate}/${currentMonth.getFullYear()}` : ''}
+                  value={formattedDate}
                   readOnly
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Additional Requests
+                  {content.fields.notes}
                 </label>
                 <textarea
                   rows={4}
@@ -133,7 +235,7 @@ export default function BookingPage() {
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Number of Attendees
+                {content.fields.calendar}
               </label>
               {/* Calendar Component */}
               <div className="border border-gray-300 rounded-md p-4 bg-white">
@@ -145,9 +247,7 @@ export default function BookingPage() {
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
-                  <h3 className="font-medium">
-                    {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
-                  </h3>
+                  <h3 className="font-medium">{monthLabel}</h3>
                   <button
                     type="button"
                     onClick={() => navigateMonth('next')}
@@ -158,8 +258,11 @@ export default function BookingPage() {
                 </div>
                 
                 <div className="grid grid-cols-7 gap-1 mb-2">
-                  {weekDays.map(day => (
-                    <div key={day} className="text-center text-xs font-medium text-gray-500 p-2">
+                  {weekDayLabels.map((day, index) => (
+                    <div
+                      key={`${day}-${index}`}
+                      className="text-center text-xs font-medium text-gray-500 p-2"
+                    >
                       {day}
                     </div>
                   ))}
@@ -194,17 +297,16 @@ export default function BookingPage() {
               type="submit"
               className="bg-[#4CAF50] text-white font-bold py-3 px-8 rounded-md hover:bg-[#45a049] transition-colors"
             >
-              SUBMIT
+              {content.submit}
             </button>
           </div>
 
           {/* Payment Info */}
           <div className="text-center mt-8">
             <p className="text-sm text-gray-600 mb-4">
-              We accept credit card payment through our secure online system.<br />
-              Your information is protected by encryption.
+              {content.paymentNote}
             </p>
-            
+
             {/* Space for Visa/Mastercard icons */}
             <div className="flex justify-center items-center space-x-4">
               <div className="w-12 h-8 bg-gray-200 rounded border flex items-center justify-center">
@@ -216,7 +318,7 @@ export default function BookingPage() {
             </div>
             
             <div className="mt-4 text-sm text-gray-500">
-              We're accept → [Payment Icons Space]
+              {content.paymentFooter} [Payment Icons Space]
             </div>
           </div>
         </form>

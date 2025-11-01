@@ -2,57 +2,79 @@
 "use client";
 
 import { GraduationCap, Clock, Baby, Users } from "lucide-react"; // 這些是 SVG 圖示
+import { useLanguage } from "@/context/LanguageContext";
 
 export function OurCoursesSection() {
+  const { locale } = useLanguage();
+
+  const copy = {
+    en: {
+      title: "Our Courses",
+      features: [
+        {
+          title: "EMSA Certification",
+          description:
+            "Our courses meet the standards of the California EMS Authority.",
+        },
+        {
+          title: "8-Hour Comprehensive Training",
+          description: "Complete CPR and first aid training in a single day.",
+        },
+        {
+          title: "Designed for Childcare Providers",
+          description: "Specialized instruction for daycare preschool staff.",
+        },
+        {
+          title: "Hands-On Small Group Classes",
+          description:
+            "Interactive, practical training with personalized attention.",
+        },
+      ],
+    },
+    zh: {
+      title: "課程特色",
+      features: [
+        {
+          title: "EMSA 官方認證",
+          description: "課程符合加州緊急醫療服務局 (EMSA) 標準，可取得認證。",
+        },
+        {
+          title: "8 小時完整訓練",
+          description: "一天完成 CPR 與急救技能，內容扎實完整。",
+        },
+        {
+          title: "幼兒照護量身打造",
+          description: "專為托育與幼教人員設計，解決實務情境需求。",
+        },
+        {
+          title: "小班實作互動",
+          description: "透過情境練習與講師指導，強化實際操作能力。",
+        },
+      ],
+    },
+  } as const;
+
+  const content = copy[locale];
+  const icons = [GraduationCap, Clock, Baby, Users] as const;
+
   return (
     <section className="bg-[#EAF6FB] py-16 mb-0">
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* 標題 */}
-        <h2 className="text-3xl font-bold mb-12">Our Courses</h2>
+        <h2 className="text-3xl font-bold mb-12">{content.title}</h2>
 
         {/* 四個卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* 1. EMSA Certification */}
-          <div className="flex flex-col items-center text-center">
-            <GraduationCap className="w-12 h-12 text-blue-600 mb-4" />
-            <h3 className="font-semibold text-lg mb-2">EMSA Certification</h3>
-            <p className="text-gray-600 text-sm">
-              Our courses meet the standards of the California EMS Authority.
-            </p>
-          </div>
-
-          {/* 2. 8-Hour Comprehensive Training */}
-          <div className="flex flex-col items-center text-center">
-            <Clock className="w-12 h-12 text-blue-600 mb-4" />
-            <h3 className="font-semibold text-lg mb-2">
-              8-Hour Comprehensive Training
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Complete CPR and first aid training in a single day.
-            </p>
-          </div>
-
-          {/* 3. Designed-for Childcare Providers */}
-          <div className="flex flex-col items-center text-center">
-            <Baby className="w-12 h-12 text-blue-600 mb-4" />
-            <h3 className="font-semibold text-lg mb-2">
-              Designed-for Childcare Providers
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Specialized instruction for daycare preschool staff.
-            </p>
-          </div>
-
-          {/* 4. Hands-On Small Group Classes */}
-          <div className="flex flex-col items-center text-center">
-            <Users className="w-12 h-12 text-blue-600 mb-4" />
-            <h3 className="font-semibold text-lg mb-2">
-              Hands-On Small Group Classes
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Interactive, practical training with personalized attention.
-            </p>
-          </div>
+          {content.features.map((feature, index) => {
+            const Icon = icons[index];
+            return (
+              <div key={feature.title} className="flex flex-col items-center text-center">
+                <Icon className="w-12 h-12 text-blue-600 mb-4" />
+                <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
+                <p className="text-gray-600 text-sm">{feature.description}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,34 +1,59 @@
 // src/components/TestimonialsSection.tsx
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export function TestimonialsSection() {
+  const { locale } = useLanguage();
+
+  const copy = {
+    en: [
+      {
+        quote:
+          "The course was very practical and informative. I feel much more confident in handling emergencies.",
+        name: "Preschool Lead Teacher",
+      },
+      {
+        quote:
+          "Great hands-on training! The instructor was knowledgeable and supportive throughout the day.",
+        name: "Daycare Program Director",
+      },
+      {
+        quote:
+          "The instructor was patient and engaging. Our staff left feeling empowered to respond to emergencies.",
+        name: "Childcare Staff Member",
+      },
+    ],
+    zh: [
+      {
+        quote:
+          "課程內容非常實用，講師細心又有耐心。我現在處理幼兒突發狀況更有信心了！",
+        name: "某幼兒園老師",
+      },
+      {
+        quote:
+          "生動有趣的教學讓我們在輕鬆氣氛中學到 CPR 和急救知識，非常值得！",
+        name: "托育中心園長",
+      },
+      {
+        quote:
+          "講師一步步帶著我們演練，我們的團隊現在更知道如何守護孩子安全。",
+        name: "幼兒照護人員",
+      },
+    ],
+  } as const;
+
+  const testimonials = copy[locale];
+
   return (
-   <section className="bg-[#E4F4EC] py-12 mt-0">
+    <section className="bg-[#E4F4EC] py-12 mt-0">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        
-        {/* Testimonial 1 */}
-        <div>
-          <p className="text-gray-700 italic mb-4">
-            "The course was very practical and informative. I feel much more confident in handling emergencies."
-          </p>
-          <p className="font-semibold text-gray-900">Waymaker Teacher</p>
-        </div>
-
-        {/* Testimonial 2 */}
-        <div>
-          <p className="text-gray-700 italic mb-4">
-            "Great hands-on training! The instructor was knowledgeable."
-          </p>
-          <p className="font-semibold text-gray-900">Daycare Teacher</p>
-        </div>
-
-        {/* Testimonial 3 */}
-        <div>
-          <p className="text-gray-700 italic mb-4">
-            "The instructor was patient and very engaging throughout the session."
-          </p>
-          <p className="font-semibold text-gray-900">Childcare Staff</p>
-        </div>
+        {testimonials.map((item) => (
+          <div key={item.quote}>
+            <p className="text-gray-700 italic mb-4">“{item.quote}”</p>
+            <p className="font-semibold text-gray-900">{item.name}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
