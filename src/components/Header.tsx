@@ -36,13 +36,13 @@ export function Header() {
   <header className="flex items-center justify-between px-8 md:px-16 lg:px-32 py-2 border-b border-[#CDE6E0] bg-gradient-to-r from-[#A8D5BA] via-[#D2EFE5] to-[#73BBD1] h-[100px]">
      
       <Link href="/" className="flex items-center">
-        <div className="relative h-[80px] w-auto">
+        <div className="relative h-[72px] w-[240px]">
           <Image
-            src="/logo.png"
-            alt="Waymaker Logo"
-            width={300}
-            height={80}
-            className="h-full w-auto object-contain"
+            src="/logo.svg"
+            alt="Waymaker CPR"
+            fill
+            sizes="240px"
+            className="object-contain"
             priority
           />
         </div>
