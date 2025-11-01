@@ -27,11 +27,13 @@ export function Header() {
   } as const;
 
 
+  const labels = copy[locale] ?? copy.en;
+
   const isActive = (path: string) =>
-    pathname === path ? "text-blue-600 font-bold" : "text-gray-700";
+    pathname === path ? "text-[#0F6C8C] font-bold" : "text-[#2F4858]";
 
   return (
-    <header className="flex items-center justify-between px-8 md:px-16 lg:px-32 py-2 border-b bg-[#F0F9F7] h-[100px]">
+  <header className="flex items-center justify-between px-8 md:px-16 lg:px-32 py-2 border-b border-[#CDE6E0] bg-gradient-to-r from-[#A8D5BA] via-[#D2EFE5] to-[#73BBD1] h-[100px]">
      
       <Link href="/" className="flex items-center">
         <div className="relative h-[80px] w-auto">
@@ -47,17 +49,17 @@ export function Header() {
       </Link>
 
       <nav className="flex items-center space-x-8">
-        <Link href="/" className={`${isActive("/")} hover:text-blue-600 transition-colors`}>
-          {copy[locale].home}
+        <Link href="/" className={`${isActive("/")} hover:text-[#0F6C8C] transition-colors`}>
+          {labels.home}
         </Link>
-        <Link href="/courses" className={`${isActive("/courses")} hover:text-blue-600 transition-colors`}>
-          {copy[locale].courses}
+        <Link href="/courses" className={`${isActive("/courses")} hover:text-[#0F6C8C] transition-colors`}>
+          {labels.courses}
         </Link>
-        <Link href="/booking" className={`${isActive("/booking")} hover:text-blue-600 transition-colors`}>
-          {copy[locale].booking}
+        <Link href="/booking" className={`${isActive("/booking")} hover:text-[#0F6C8C] transition-colors`}>
+          {labels.booking}
         </Link>
-        <Link href="/contact" className={`${isActive("/contact")} hover:text-blue-600 transition-colors`}>
-          {copy[locale].contact}
+        <Link href="/contact" className={`${isActive("/contact")} hover:text-[#0F6C8C] transition-colors`}>
+          {labels.contact}
         </Link>
 
         <LanguageToggle />

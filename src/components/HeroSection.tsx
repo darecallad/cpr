@@ -50,7 +50,7 @@ export function HeroSection() {
           <Link href="/booking">
             <Button
               size="hero"
-              className="mt-6 bg-[#41d3a0] hover:bg-[#39be91] text-white font-semibold text-base shadow-sm"
+              className="mt-6 bg-[#FF8A5B] hover:bg-[#F57643] text-white font-semibold text-base shadow-md"
             >
               {content.cta}
             </Button>

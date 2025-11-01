@@ -44,24 +44,24 @@ export default function ContactPage() {
   const content = copy[locale];
 
   return (
-  <section className="bg-[#e6f4f1] px-8 py-16 min-h-screen">
+  <section className="bg-[#F0FBF6] px-8 py-16 min-h-screen">
     <div className="max-w-5xl mx-auto">
 
-      <h1 className="text-4xl font-bold mb-10 text-primary">{content.title}</h1>
+      <h1 className="text-4xl font-bold mb-10 text-[#0F6C8C]">{content.title}</h1>
 
       <div className="grid md:grid-cols-2 gap-10">
         {/* Left: Info */}
-        <div className="space-y-6 text-base text-gray-800">
+        <div className="space-y-6 text-base text-[#2F4858]">
           <div className="flex items-start gap-4">
-            <Phone className="text-primary mt-1" />
-            <a href="tel:1234567990" className="hover:underline">
+            <Phone className="text-[#2F7FA3] mt-1" />
+            <a href="tel:1234567990" className="hover:text-[#0F6C8C] transition-colors">
               {content.phone}
             </a>
           </div>
 
           <div className="flex items-start gap-4">
-            <Mail className="text-primary mt-1" />
-            <a href="mailto:info@waymaker.com" className="hover:underline">
+            <Mail className="text-[#2F7FA3] mt-1" />
+            <a href="mailto:info@waymaker.com" className="hover:text-[#0F6C8C] transition-colors">
               {content.email}
             </a>
           </div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
           </div>
 
           <div className="flex items-start gap-4">
-            <MapPin className="text-primary mt-1" />
+            <MapPin className="text-[#2F7FA3] mt-1" />
             <span>
               {content.address[0]}<br />
               {content.address[1]}
@@ -96,36 +96,36 @@ export default function ContactPage() {
       </div>
 
       {/* Contact Form */}
-      <div className="mt-16 bg-white p-8 rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold mb-6 text-primary">{content.formTitle}</h2>
+      <div className="mt-16 bg-white/80 backdrop-blur p-8 rounded-2xl shadow-sm">
+        <h2 className="text-2xl font-semibold mb-6 text-[#0F6C8C]">{content.formTitle}</h2>
 
         <form className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <input
               type="text"
               placeholder={content.placeholders.name}
-              className="border border-gray-300 rounded-md p-3 w-full"
+              className="border border-[#CCE6DE] rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#73BBD1]"
             />
             <input
               type="email"
               placeholder={content.placeholders.email}
-              className="border border-gray-300 rounded-md p-3 w-full"
+              className="border border-[#CCE6DE] rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#73BBD1]"
             />
           </div>
           <input
             type="text"
             placeholder={content.placeholders.subject}
-            className="border border-gray-300 rounded-md p-3 w-full"
+            className="border border-[#CCE6DE] rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#73BBD1]"
           />
           <textarea
             placeholder={content.placeholders.message}
             rows={5}
-            className="border border-gray-300 rounded-md p-3 w-full"
+            className="border border-[#CCE6DE] rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#73BBD1]"
           />
 
           <button
             type="submit"
-            className="bg-green-600 text-white font-bold py-3 px-6 rounded-md hover:bg-green-700 transition"
+            className="bg-[#FF8A5B] text-white font-bold py-3 px-6 rounded-md shadow-sm hover:bg-[#F57643] transition"
           >
             {content.button}
           </button>

@@ -58,18 +58,18 @@ export function OurCoursesSection() {
   const icons = [GraduationCap, Clock, Baby, Users] as const;
 
   return (
-    <section className="bg-[#EAF6FB] py-16 mb-0">
+    <section className="bg-[#E6F3F9] py-16 mb-0">
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* 標題 */}
-        <h2 className="text-3xl font-bold mb-12">{content.title}</h2>
+        <h2 className="text-3xl font-bold mb-12 text-[#0F6C8C]">{content.title}</h2>
 
         {/* 四個卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {content.features.map((feature, index) => {
             const Icon = icons[index];
             return (
-              <div key={feature.title} className="flex flex-col items-center text-center">
-                <Icon className="w-12 h-12 text-blue-600 mb-4" />
+              <div key={feature.title} className="flex flex-col items-center text-center bg-white/60 backdrop-blur rounded-xl shadow-sm p-6">
+                <Icon className="w-12 h-12 text-[#2F7FA3] mb-4" />
                 <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
                 <p className="text-gray-600 text-sm">{feature.description}</p>
               </div>

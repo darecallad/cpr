@@ -46,12 +46,12 @@ export function TestimonialsSection() {
   const testimonials = copy[locale];
 
   return (
-    <section className="bg-[#E4F4EC] py-12 mt-0">
+    <section className="bg-[#F1FAF4] py-12 mt-0">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
         {testimonials.map((item) => (
-          <div key={item.quote}>
-            <p className="text-gray-700 italic mb-4">“{item.quote}”</p>
-            <p className="font-semibold text-gray-900">{item.name}</p>
+          <div key={item.quote} className="bg-white/70 backdrop-blur-sm rounded-xl shadow-sm p-6">
+            <p className="text-[#2F4858] italic mb-4">“{item.quote}”</p>
+            <p className="font-semibold text-[#0F6C8C]">{item.name}</p>
           </div>
         ))}
       </div>

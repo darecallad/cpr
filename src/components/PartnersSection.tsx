@@ -23,8 +23,8 @@ export function PartnersSection() {
   return (
     <section className="bg-white py-10">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-3">{content.title}</h2>
-        <p className="text-gray-700 text-lg mb-8">{content.description}</p>
+  <h2 className="text-2xl font-semibold text-[#0F6C8C] mb-3">{content.title}</h2>
+  <p className="text-[#2F4858] text-lg mb-8">{content.description}</p>
         <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
           <Image src="/partners/kidspace.png" alt="Kidspace" width={120} height={40} />
           <Image src="/partners/sunnydaycare.png" alt="Sunny Day Care" width={140} height={40} />

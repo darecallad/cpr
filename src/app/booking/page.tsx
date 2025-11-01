@@ -141,46 +141,46 @@ export default function BookingPage() {
     : "";
 
   return (
-    <section className="bg-gray-50 px-8 py-16 min-h-screen">
+    <section className="bg-[#F6FBF9] px-8 py-16 min-h-screen">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-[#2C5F5A] text-center">{content.title}</h1>
-        <p className="text-center text-gray-700 mb-8 whitespace-pre-line">
+        <h1 className="text-4xl font-bold mb-6 text-[#0F6C8C] text-center">{content.title}</h1>
+        <p className="text-center text-[#2F4858] mb-8 whitespace-pre-line">
           {content.intro.join("\n")}
         </p>
 
         <form className="space-y-6">
           {/* Name Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#2F4858] mb-2">
               {content.fields.name}
             </label>
             <input
               type="text"
-              className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
               required
             />
           </div>
 
           {/* Phone Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#2F4858] mb-2">
               {content.fields.phone}
             </label>
             <input
               type="tel"
-              className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
               required
             />
           </div>
 
           {/* Email Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#2F4858] mb-2">
               {content.fields.email}
             </label>
             <input
               type="email"
-              className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
               required
             />
           </div>
@@ -189,56 +189,56 @@ export default function BookingPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#2F4858] mb-2">
                   {content.fields.organization}
                 </label>
                 <input
                   type="text"
-                  className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#2F4858] mb-2">
                   {content.fields.attendees}
                 </label>
                 <input
                   type="number"
                   min={1}
                   placeholder={content.fields.attendeesPlaceholder}
-                  className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#2F4858] mb-2">
                   {content.fields.preferredDate}
                 </label>
                 <input
                   type="text"
-                  className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
                   value={formattedDate}
                   readOnly
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#2F4858] mb-2">
                   {content.fields.notes}
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
                 />
               </div>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#2F4858] mb-2">
                 {content.fields.calendar}
               </label>
               {/* Calendar Component */}
-              <div className="border border-gray-300 rounded-md p-4 bg-white">
+              <div className="border border-[#C5E1DB] rounded-md p-4 bg-white shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <button
                     type="button"
@@ -278,8 +278,8 @@ export default function BookingPage() {
                         day === null 
                           ? 'invisible' 
                           : selectedDate === day 
-                            ? 'bg-green-500 text-white hover:bg-green-600' 
-                            : 'text-gray-700'
+                            ? 'bg-[#73BBD1] text-white hover:bg-[#5FA5BD]' 
+                            : 'text-[#2F4858] hover:bg-[#EEF7FA]'
                       }`}
                       disabled={day === null}
                     >
@@ -295,7 +295,7 @@ export default function BookingPage() {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-[#4CAF50] text-white font-bold py-3 px-8 rounded-md hover:bg-[#45a049] transition-colors"
+              className="bg-[#FF8A5B] text-white font-bold py-3 px-8 rounded-md shadow-sm hover:bg-[#F57643] transition-colors"
             >
               {content.submit}
             </button>
@@ -303,21 +303,21 @@ export default function BookingPage() {
 
           {/* Payment Info */}
           <div className="text-center mt-8">
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-[#2F4858] mb-4">
               {content.paymentNote}
             </p>
 
             {/* Space for Visa/Mastercard icons */}
             <div className="flex justify-center items-center space-x-4">
-              <div className="w-12 h-8 bg-gray-200 rounded border flex items-center justify-center">
-                <span className="text-xs text-gray-500">VISA</span>
+              <div className="w-12 h-8 bg-white rounded border border-[#CCE6DE] flex items-center justify-center">
+                <span className="text-xs text-[#2F4858]">VISA</span>
               </div>
-              <div className="w-12 h-8 bg-gray-200 rounded border flex items-center justify-center">
-                <span className="text-xs text-gray-500">MC</span>
+              <div className="w-12 h-8 bg-white rounded border border-[#CCE6DE] flex items-center justify-center">
+                <span className="text-xs text-[#2F4858]">MC</span>
               </div>
             </div>
             
-            <div className="mt-4 text-sm text-gray-500">
+            <div className="mt-4 text-sm text-[#2F4858]">
               {content.paymentFooter} [Payment Icons Space]
             </div>
           </div>

@@ -34,14 +34,19 @@ export default function CoursesPage() {
 
   return (
     <section className="px-8 py-16 max-w-5xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6">{content.title}</h1>
-      <p className="text-lg leading-relaxed mb-8">{content.intro}</p>
+      <div className="bg-white/80 backdrop-blur rounded-2xl shadow-sm p-10">
+        <h1 className="text-4xl font-bold mb-6 text-[#0F6C8C]">{content.title}</h1>
+        <p className="text-lg leading-relaxed mb-8 text-[#2F4858]">{content.intro}</p>
 
-      <ul className="list-disc pl-6 space-y-2">
-        {content.bullets.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+        <ul className="space-y-2 text-[#2F4858]">
+          {content.bullets.map((item) => (
+            <li key={item} className="flex items-start gap-2">
+              <span className="mt-1 h-2 w-2 flex-none rounded-full bg-[#73BBD1]"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
