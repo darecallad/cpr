@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Waymaker CPR Training Site
 
-## Getting Started
+Marketing and booking site for Waymaker’s CPR and first-aid training programs. Built with the Next.js App Router, bilingual support (English & Traditional Chinese), and shadcn-inspired UI components tailored to the brand palette.
 
-First, run the development server:
+## ✨ Features
+- **Next.js 15 + React 19** with App Router, strict TypeScript, and Tailwind CSS v4.
+- **Bilingual copy** powered by a lightweight `LanguageProvider` plus a locale toggle in the header.
+- **shadcn UI primitives** (button, card, input, toggle, textarea, label) themed for Waymaker’s colors.
+- **Booking and contact forms** with calendar selection, payment notes, and embedded Google Maps.
+- **Modular sections** for the marketing homepage: hero, courses, testimonials, partners.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🧰 Tech Stack
+- Next.js 15.3 (App Router)
+- React 19 + TypeScript 5
+- Tailwind CSS 4, tw-animate-css
+- shadcn UI + Radix primitives
+- ESLint (flat config) + Tailwind-friendly class merging
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18.18+ (or 20+) and npm.
+
+### Install dependencies
+```powershell
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run the development server
+```powershell
+npm run dev
+```
+Open http://localhost:3000 to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Additional scripts
+- `npm run lint` – ESLint with Next.js rules.
+- `npm run build` – Production build.
+- `npm start` – Serve the production build locally.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🗂️ Project Structure
+A feature-first layout keeps routes slim and reusable code centralized. See `docs/project-structure.md` for the full blueprint and naming conventions.
 
-## Learn More
+```
+src/
+  app/                # App Router pages & layouts
+  components/
+    layout/           # Global layout pieces (Header, future Footer)
+    common/           # Shared atoms and section shells
+    ui/               # shadcn primitives (button, card, input, ...)
+  features/           # (planned) feature modules: home, booking, contact
+  providers/          # Context providers (language, theme)
+  lib/                # Helpers & utilities
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 UI Toolkit
+- shadcn UI components live in `src/components/ui`.
+- Current primitives: `button`, `card`, `input`, `textarea`, `label`, `toggle`, `toggle-group`.
+- Add new pieces with `npx shadcn@latest add <component>` and align styling with existing utilities.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 Localization
+- Locale state is managed by `LanguageProvider` (`src/providers/language-provider.tsx`).
+- Components consume localized copy objects; add both `en` and `zh` entries when introducing new content.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📚 Documentation
+- [Project Structure](docs/project-structure.md)
+- [Folder Migration Checklist](docs/migration-checklist.md)
 
-## Deploy on Vercel
+## 🚢 Deployment
+Deploy on [Vercel](https://vercel.com/) or your preferred platform. Run `npm run build` to verify the app before pushing.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
