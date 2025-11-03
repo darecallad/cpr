@@ -25,13 +25,40 @@ export function PartnersSection() {
       <div className="max-w-6xl mx-auto px-6 text-center">
   <h2 className="text-2xl font-semibold text-[#0F6C8C] mb-3">{content.title}</h2>
   <p className="text-[#2F4858] text-lg mb-8">{content.description}</p>
-        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-          <Image src="/partners/kidspace.png" alt="Kidspace" width={120} height={40} />
-          <Image src="/partners/sunnydaycare.png" alt="Sunny Day Care" width={140} height={40} />
-          <Image src="/partners/littlesprouts.png" alt="Little Sprouts" width={140} height={40} />
-          <Image src="/partners/abcchildcare.png" alt="ABC Childcare" width={140} height={40} />
-          <Image src="/partners/emsa.png" alt="EMSA" width={120} height={40} />
-          <Image src="/partners/cdss.png" alt="CDSS" width={120} height={40} />
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-2 items-center justify-items-center gap-10 sm:grid-cols-3 lg:grid-cols-6">
+          {[
+            { src: "/partners/kidspace.png", alt: "Kidspace", width: 260, height: 84 },
+            {
+              src: "/partners/sunnydaycare.png",
+              alt: "Sunny Day Care",
+              width: 260,
+              height: 84,
+            },
+            {
+              src: "/partners/littlesprouts.png",
+              alt: "Little Sprouts",
+              width: 260,
+              height: 84,
+            },
+            {
+              src: "/partners/abcchildcare.png",
+              alt: "ABC Childcare",
+              width: 260,
+              height: 84,
+            },
+            { src: "/partners/emsa.png", alt: "EMSA", width: 240, height: 80 },
+            { src: "/partners/cdss.png", alt: "CDSS", width: 240, height: 80 },
+          ].map((logo) => (
+            <Image
+              key={logo.src}
+              src={logo.src}
+              alt={logo.alt}
+              width={logo.width}
+              height={logo.height}
+              className="h-14 w-auto object-contain opacity-80 transition-opacity hover:opacity-100"
+              style={{ width: "auto" }}
+            />
+          ))}
         </div>
       </div>
     </section>

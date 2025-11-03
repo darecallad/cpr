@@ -32,6 +32,7 @@ export function HeroSection() {
         alt="CPR Training Class"
         fill
         priority
+        sizes="100vw"
         className="object-cover object-center"
       />
 
