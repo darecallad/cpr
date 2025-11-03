@@ -382,7 +382,7 @@ export default function CoursesPage() {
             </div>
             <div className="relative h-[240px] w-full overflow-hidden rounded-2xl bg-[#E6F3F9] sm:h-[280px] lg:h-[320px] lg:w-[420px]">
               <Image
-                src="/hero.png"
+                src="/cpr2.png"
                 alt="Waymaker CPR class practicing with pediatric manikins"
                 fill
                 className="object-cover"
@@ -413,7 +413,7 @@ export default function CoursesPage() {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <div className="space-y-6" id="schedule">
-              <h2 className="text-3xl font-bold text-[#0F6C8C]">
+              <h2 className="text-3xl font-bold text-[#0F6C8C] lg:flex lg:min-h-[4.5rem] lg:items-end">
                 {content.schedule.title}
               </h2>
               <div className="space-y-4 rounded-2xl border border-[#CDE6E0] bg-[#F4FAF8] p-6 shadow-sm">
@@ -427,7 +427,7 @@ export default function CoursesPage() {
               <p className="text-sm text-[#2F4858]/80">{content.schedule.note}</p>
             </div>
             <div className="space-y-6" id="curriculum">
-              <h2 className="text-3xl font-bold text-[#0F6C8C]">
+              <h2 className="text-3xl font-bold text-[#0F6C8C] lg:flex lg:min-h-[4.5rem] lg:items-end">
                 {content.curriculum.title}
               </h2>
               <div className="space-y-6">
@@ -472,9 +472,9 @@ export default function CoursesPage() {
         </div>
       </section>
 
-  <section className="py-16" id="book">
+      <section className="py-16" id="book">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-[#0F6C8C]">
                 {content.pricing.title}
@@ -501,10 +501,10 @@ export default function CoursesPage() {
             </div>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-center">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
             <div className="relative hidden h-[320px] w-full overflow-hidden rounded-3xl bg-[#DDEFF5] lg:block">
               <Image
-                src="/hero.png"
+                src="/cpr1.png"
                 alt="Instructor coaching childcare staff during CPR training"
                 fill
                 className="object-cover"
@@ -523,8 +523,8 @@ export default function CoursesPage() {
         </div>
       </section>
 
-  <section className="bg-[#F1FAF4] py-16" id="faq">
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6">
+      <section className="bg-[#F1FAF4] py-16" id="faq">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6">
           <h2 className="text-3xl font-bold text-[#0F6C8C] text-center">
             {content.faq.title}
           </h2>
@@ -550,7 +550,7 @@ export default function CoursesPage() {
       </section>
 
       <section className="py-16">
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 rounded-3xl bg-[#0F3B4C] px-10 py-12 text-center text-white shadow-lg">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 rounded-3xl bg-[#0F3B4C] px-10 py-12 text-center text-white shadow-lg">
           <h2 className="text-3xl font-bold md:text-4xl">{content.cta.title}</h2>
           <p className="text-base leading-relaxed text-white/80 md:max-w-2xl">
             {content.cta.description}
