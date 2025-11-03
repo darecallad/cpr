@@ -62,6 +62,7 @@ src/
 - Components consume localized copy objects; add both `en` and `zh` entries when introducing new content.
 
 ## 📚 Documentation
+- [Brand Guidelines](docs/brand-guidelines.md)
 - [Project Structure](docs/project-structure.md)
 - [Folder Migration Checklist](docs/migration-checklist.md)
 
