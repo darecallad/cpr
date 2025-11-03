@@ -13,10 +13,11 @@ These guidelines keep product, marketing, and engineering output visually consis
 - **Primary logo:** `public/logo.svg`
   - Minimum width: 160 px on web, 45 mm in print.
   - Maintain at least the height of the orange heart icon as clear space on all sides.
+- **Tagline:** The default lockup contains only the icon and "WAYMAKER" wordmark. If a descriptor (e.g., "CPR • First Aid") is needed for marketing materials, typeset it separately using Geist Sans caps.
 - **Lockups:** For dark backgrounds, apply the logo at 100% with the background gradient or add a light outline around the typography.
 - **Do not:**
   - Alter colors, stretch, skew, rotate, or apply drop shadows.
-  - Remove the heart icon or change the "CPR • FIRST AID" wording.
+  - Remove the heart icon or substitute different lettering styles.
   - Place the logo on visually busy photography without a translucent overlay.
 - **Favicon / mark:** Extract the turquoise "W" and heart icon; export as a 512×512 PNG or SVG and add to `public/favicon.svg` when ready.
 
