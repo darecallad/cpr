@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/LanguageContext";
@@ -27,14 +27,15 @@ export function HeroSection() {
   return (
     <section className="relative m-0 flex h-[60vh] w-full items-center p-0">
       {/* 背景圖 */}
-      <Image
-        src="/hero.png"
-        alt="CPR Training Class"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center"
-      />
+      <picture className="absolute inset-0">
+        <source srcSet="/hero.webp" type="image/webp" />
+        <img
+          src="/hero.png"
+          alt="CPR Training Class"
+          loading="eager"
+          className="h-full w-full object-cover object-center"
+        />
+      </picture>
 
       {/* 遮罩 */}
       <div className="absolute inset-0 bg-black/40" />

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,7 @@ export default function CoursesPage() {
         description:
           "Waymaker brings accredited CPR and first aid instruction directly to preschool and daycare staff. Guided practice, bilingual coaching, and real-world drills ensure every educator is ready before paramedics arrive.",
         primaryCta: "Book your training",
-  secondaryCta: "See curriculum",
+        secondaryCta: "See curriculum",
       },
       summary: [
         {
@@ -191,7 +191,7 @@ export default function CoursesPage() {
         description:
           "Waymaker 將通過認證的 CPR 與急救教學帶到您的教室，結合雙語講解、實作演練與情境模擬，確保在救援人員抵達前，教師就能做出正確行動。",
         primaryCta: "預約課程",
-  secondaryCta: "查看課綱",
+        secondaryCta: "查看課綱",
       },
       summary: [
         { label: "適合對象", value: "幼兒園與托育團隊" },
@@ -346,8 +346,8 @@ export default function CoursesPage() {
     <main className="bg-[#F4FAF8]">
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-16">
         <div className="relative overflow-hidden rounded-3xl bg-white/90 p-10 shadow-lg">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
-            <div className="flex-1 space-y-6">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12">
+            <div className="flex-1 space-y-6 lg:space-y-8">
               <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#2F7FA3]">
                 {content.hero.eyebrow}
               </span>
@@ -380,15 +380,16 @@ export default function CoursesPage() {
                 </Button>
               </div>
             </div>
-            <div className="relative h-[240px] w-full overflow-hidden rounded-2xl bg-[#E6F3F9] sm:h-[280px] lg:h-[320px] lg:w-[420px]">
-              <Image
-                src="/cpr2.png"
-                alt="Waymaker CPR class practicing with pediatric manikins"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1023px) 100vw, 420px"
-                priority
-              />
+            <div className="relative h-[240px] w-full overflow-hidden rounded-2xl bg-[#E6F3F9] sm:h-[280px] lg:h-[320px] lg:w-[420px] lg:flex-none lg:mt-7">
+              <picture className="absolute inset-0 block h-full w-full">
+                <source srcSet="/cpr2.webp" type="image/webp" />
+                <img
+                  src="/cpr2.png"
+                  alt="Childcare educators working through hands-on pediatric CPR drills"
+                  loading="eager"
+                  className="h-full w-full object-cover"
+                />
+              </picture>
             </div>
           </div>
         </div>
@@ -411,23 +412,25 @@ export default function CoursesPage() {
 
       <section className="bg-white py-16">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-            <div className="space-y-6" id="schedule">
-              <h2 className="text-3xl font-bold text-[#0F6C8C] lg:flex lg:min-h-[4.5rem] lg:items-end">
+          <div className="grid gap-8 lg:grid-cols-[repeat(2,minmax(0,1fr))] lg:items-start">
+            <div className="space-y-6 lg:space-y-8" id="schedule">
+              <h2 className="text-3xl font-bold text-[#0F6C8C] leading-tight">
                 {content.schedule.title}
               </h2>
-              <div className="space-y-4 rounded-2xl border border-[#CDE6E0] bg-[#F4FAF8] p-6 shadow-sm">
-                {content.schedule.blocks.map((block) => (
-                  <div key={block.time} className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
-                    <p className="font-semibold text-[#2F7FA3]">{block.time}</p>
-                    <p className="text-[#2F4858]">{block.topic}</p>
-                  </div>
-                ))}
-              </div>
+              <Card className="border border-[#CDE6E0] bg-[#F4FAF8] shadow-sm">
+                <CardContent className="space-y-4 px-6 py-0">
+                  {content.schedule.blocks.map((block) => (
+                    <div key={block.time} className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+                      <p className="font-semibold text-[#2F7FA3]">{block.time}</p>
+                      <p className="text-[#2F4858]">{block.topic}</p>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
               <p className="text-sm text-[#2F4858]/80">{content.schedule.note}</p>
             </div>
-            <div className="space-y-6" id="curriculum">
-              <h2 className="text-3xl font-bold text-[#0F6C8C] lg:flex lg:min-h-[4.5rem] lg:items-end">
+            <div className="space-y-6 lg:space-y-8" id="curriculum">
+              <h2 className="text-3xl font-bold text-[#0F6C8C] leading-tight">
                 {content.curriculum.title}
               </h2>
               <div className="space-y-6">
@@ -474,7 +477,7 @@ export default function CoursesPage() {
 
       <section className="py-16" id="book">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-[#0F6C8C]">
                 {content.pricing.title}
@@ -501,15 +504,17 @@ export default function CoursesPage() {
             </div>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
             <div className="relative hidden h-[320px] w-full overflow-hidden rounded-3xl bg-[#DDEFF5] lg:block">
-              <Image
-                src="/cpr1.png"
-                alt="Instructor coaching childcare staff during CPR training"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1279px) 50vw, 520px"
-              />
+              <picture className="absolute inset-0 block h-full w-full">
+                <source srcSet="/cpr1.webp" type="image/webp" />
+                <img
+                  src="/cpr1.png"
+                  alt="Instructor coaching childcare staff during CPR training"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </picture>
             </div>
             <div className="space-y-4 rounded-3xl bg-white/85 p-8 shadow-sm">
               <h3 className="text-lg font-semibold uppercase tracking-[0.2em] text-[#2F7FA3]">
