@@ -4,7 +4,12 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Header } from "@/components/Header";
 
-export const metadata = { title: "CPR Teacher Site" };
+export const metadata = {
+  title: "CPR Teacher Site",
+  icons: {
+    icon: "/favicon.svg",
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
