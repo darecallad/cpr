@@ -11,7 +11,7 @@ import { PartnersSection } from "@/components/PartnersSection";
 import { SecondaryCTASection } from "@/components/SecondaryCTASection";
 export default function Page() {
   return (
-    <main className="space-y-16">
+    <main className="flex flex-col">
       <HeroSection />
       <WhyWaymakerSection />
       <BrandMissionSection />

@@ -1,7 +1,12 @@
 // src/components/OurCoursesSection.tsx
 "use client";
 
-import { GraduationCap, Clock, Baby, Users } from "lucide-react"; // 這些是 SVG 圖示
+import {
+  BadgeCheck,
+  Clock4,
+  Baby,
+  UsersRound,
+} from "lucide-react"; // 這些是 SVG 圖示
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -56,30 +61,34 @@ export function OurCoursesSection() {
   } as const;
 
   const content = copy[locale];
-  const icons = [GraduationCap, Clock, Baby, Users] as const;
+  const icons = [BadgeCheck, Clock4, Baby, UsersRound] as const;
 
   return (
     <section className="bg-[#E6F3F9] py-16 mb-0">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+      <div className="max-w-6xl mx-auto px-6">
         {/* 標題 */}
-        <h2 className="text-3xl font-bold mb-12 text-[#0F6C8C]">{content.title}</h2>
+        <h2 className="text-3xl font-bold mb-12 text-[#0F6C8C] text-center md:text-left">
+          {content.title}
+        </h2>
 
         {/* 四個卡片 */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {content.features.map((feature, index) => {
             const Icon = icons[index];
             return (
               <Card
                 key={feature.title}
-                className="bg-white/60 backdrop-blur text-center shadow-sm border-none"
+                className="bg-white/60 backdrop-blur shadow-sm border-none text-left h-full"
               >
-                <CardHeader className="items-center pb-0">
-                  <Icon className="w-12 h-12 text-[#2F7FA3]" />
-                  <CardTitle className="text-lg font-semibold text-[#1D3D4F]">
-                    {feature.title}
-                  </CardTitle>
+                <CardHeader className="pb-0 text-left">
+                  <div className="flex min-h-[176px] flex-col items-start gap-6">
+                    <Icon className="h-12 w-12 text-[#2F7FA3]" />
+                    <CardTitle className="text-lg font-semibold leading-snug text-[#1D3D4F] min-h-[60px]">
+                      {feature.title}
+                    </CardTitle>
+                  </div>
                 </CardHeader>
-                <CardContent className="pt-4 text-gray-600 text-sm">
+                <CardContent className="flex-1 pt-4 text-left text-sm leading-relaxed text-gray-600">
                   {feature.description}
                 </CardContent>
               </Card>

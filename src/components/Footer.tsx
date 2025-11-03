@@ -69,7 +69,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-20 bg-[#0F3B4C] text-white">
+    <footer className="relative bg-[#0F3B4C] text-white">
       <div
         className="absolute inset-0"
         style={{

@@ -48,15 +48,19 @@ export function TestimonialsSection() {
 
   return (
     <section className="bg-[#F1FAF4] py-12 mt-0">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 gap-8 text-center md:grid-cols-3">
         {testimonials.map((item) => (
           <Card
             key={item.quote}
-            className="bg-white/70 backdrop-blur-sm border-none shadow-sm"
+            className="bg-white/70 backdrop-blur-sm border-none shadow-sm h-full"
           >
-            <CardContent className="p-6 text-center space-y-4">
-              <p className="text-[#2F4858] italic">“{item.quote}”</p>
-              <p className="font-semibold text-[#0F6C8C]">{item.name}</p>
+            <CardContent className="flex h-full flex-col justify-between gap-6 p-6 text-center">
+              <p className="text-base font-medium leading-relaxed text-[#2F4858] italic">
+                “{item.quote}”
+              </p>
+              <p className="text-sm font-semibold text-[#0F6C8C]">
+                {item.name}
+              </p>
             </CardContent>
           </Card>
         ))}
