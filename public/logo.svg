@@ -7,7 +7,7 @@
     <circle cx="177" cy="32" r="23" fill="#FF8A5B"/>
   </g>
   <path d="M177 20C170.925 20 166 24.9253 166 31C166 39.25 177 48 177 48C177 48 188 39.25 188 31C188 24.9253 183.075 20 177 20ZM182.25 32.25H178.25V36.25H175.75V32.25H171.75V29.75H175.75V25.75H178.25V29.75H182.25V32.25Z" fill="white"/>
-  <text x="120" y="45" font-family="'Poppins', 'Segoe UI', sans-serif" font-size="24" font-weight="600" letter-spacing="0.04em" fill="#0F3B4C">WAYMAKER</text>
+  <text x="115" y="45" font-family="'Poppins', 'Segoe UI', sans-serif" font-size="24" font-weight="600" letter-spacing="0.02em" textLength="120" lengthAdjust="spacingAndGlyphs" fill="#0F3B4C">WAYMAKER</text>
   <defs>
     <linearGradient id="bgGradient" x1="0" y1="0" x2="240" y2="70" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#A8D5BA"/>

@@ -26,14 +26,18 @@ export function SecondaryCTASection() {
   const content = copy[locale];
 
   return (
-    <section className="relative overflow-hidden bg-[#0F3B4C] py-20">
-      <div className="absolute inset-0 opacity-20" style={{
-        background:
-          "radial-gradient(circle at top right, #FF8A5B, transparent 60%), radial-gradient(circle at bottom left, #2F7FA3, transparent 55%)",
-      }} />
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 px-6 text-center text-white">
+    <section className="relative overflow-hidden bg-[#E6F3F9] py-20">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at top right, rgba(255,138,91,0.3), transparent 60%), radial-gradient(circle at bottom left, rgba(47,127,163,0.35), transparent 55%)",
+          opacity: 1,
+        }}
+      />
+      <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 px-6 text-center text-[#0F3B4C]">
         <h2 className="text-3xl font-bold md:text-4xl">{content.title}</h2>
-        <p className="text-lg text-white/90 md:max-w-2xl">{content.description}</p>
+        <p className="text-lg text-[#2F4858] md:max-w-2xl">{content.description}</p>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button
             size="lg"
@@ -45,7 +49,7 @@ export function SecondaryCTASection() {
           <Button
             size="lg"
             variant="outline"
-            className="border-white/70 bg-transparent px-8 font-semibold text-white hover:bg-white/10"
+            className="border-[#0F3B4C] px-8 font-semibold text-[#0F3B4C] hover:bg-[#0F3B4C]/10"
             asChild
           >
             <Link href="/contact">{content.secondaryCta}</Link>
