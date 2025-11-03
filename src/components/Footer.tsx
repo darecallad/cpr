@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/LanguageContext";
 
 const copy = {
   en: {
-    brandHeading: "Waymaker",
+    brandHeading: "Waymaker CPR & First Aid",
     brandBody:
       "Guiding childcare teams with calm, credentialed CPR and first aid instruction tailored for California sites.",
     primaryCta: "Plan a training",
@@ -30,10 +29,7 @@ const copy = {
           { label: "Contact", href: "/contact" },
         ],
       },
-      compliance: {
-        title: "Accreditations",
-        note: "EMSA Pediatric First Aid & CPR · California Department of Social Services compliant",
-      },
+      compliance: null,
     },
     legal: "All rights reserved.",
   },
@@ -61,10 +57,7 @@ const copy = {
           { label: "聯絡我們", href: "/contact" },
         ],
       },
-      compliance: {
-        title: "專業認證",
-        note: "EMSA 兒童急救與 CPR 認證 · 符合加州社會服務局規範",
-      },
+      compliance: null,
     },
     legal: "保留所有權利。",
   },
@@ -142,29 +135,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-
-            <div className="mt-6 space-y-3">
-              <h4 className="text-sm font-semibold uppercase tracking-[0.25em] text-[#9BD2E3]">
-                {content.sections.compliance.title}
-              </h4>
-              <p className="text-xs text-white/70">{content.sections.compliance.note}</p>
-              <div className="flex items-center gap-6">
-                <Image
-                  src="/partners/emsa.png"
-                  alt="EMSA"
-                  width={90}
-                  height={28}
-                  className="h-8 w-auto"
-                />
-                <Image
-                  src="/partners/cdss.png"
-                  alt="CDSS"
-                  width={90}
-                  height={28}
-                  className="h-8 w-auto"
-                />
-              </div>
-            </div>
           </div>
         </div>
 

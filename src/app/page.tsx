@@ -4,7 +4,6 @@
 import { HeroSection } from "@/components/HeroSection";
 import { WhyWaymakerSection } from "@/components/WhyWaymakerSection";
 import { BrandMissionSection } from "@/components/BrandMissionSection";
-import { CertificationStrip } from "@/components/CertificationStrip";
 import { OurCoursesSection } from "@/components/OurCoursesSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
@@ -16,7 +15,6 @@ export default function Page() {
       <HeroSection />
       <WhyWaymakerSection />
       <BrandMissionSection />
-      <CertificationStrip />
       <OurCoursesSection />
       <ProcessSection />
       <TestimonialsSection />
