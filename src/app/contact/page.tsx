@@ -3,6 +3,11 @@
 
 import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ContactPage() {
@@ -44,94 +49,135 @@ export default function ContactPage() {
   const content = copy[locale];
 
   return (
-  <section className="bg-[#F0FBF6] px-8 py-16 min-h-screen">
-    <div className="max-w-5xl mx-auto">
-
-      <h1 className="text-4xl font-bold mb-10 text-[#0F6C8C]">{content.title}</h1>
-
-      <div className="grid md:grid-cols-2 gap-10">
-        {/* Left: Info */}
-        <div className="space-y-6 text-base text-[#2F4858]">
-          <div className="flex items-start gap-4">
-            <Phone className="text-[#2F7FA3] mt-1" />
-            <a href="tel:1234567990" className="hover:text-[#0F6C8C] transition-colors">
-              {content.phone}
-            </a>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <Mail className="text-[#2F7FA3] mt-1" />
-            <a href="mailto:info@waymaker.com" className="hover:text-[#0F6C8C] transition-colors">
-              {content.email}
-            </a>
-          </div>
-
-          <div className="flex items-start gap-4">
-            {/* 模擬 LINE icon */}
-            <Image src="/line-icon.png" alt="LINE" width={24} height={24} className="mt-1" />
-            <span>{content.line}</span>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <MapPin className="text-[#2F7FA3] mt-1" />
-            <span>
-              {content.address[0]}<br />
-              {content.address[1]}
-            </span>
-          </div>
+    <section className="bg-[#F0FBF6] px-8 py-16 min-h-screen">
+      <div className="max-w-5xl mx-auto space-y-12">
+        <h1 className="text-4xl font-bold text-[#0F6C8C]">{content.title}</h1>
+        <div className="grid gap-8 md:grid-cols-2">
+          <Card className="bg-white/85 backdrop-blur border-none shadow-sm">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-xl text-[#0F6C8C]">
+                {locale === "en" ? "Contact Details" : "聯絡資訊"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6 text-base text-[#2F4858]">
+              <div className="flex items-start gap-4">
+                <Phone className="text-[#2F7FA3] mt-1" />
+                <a
+                  href="tel:1234567990"
+                  className="transition-colors hover:text-[#0F6C8C]"
+                >
+                  {content.phone}
+                </a>
+              </div>
+              <div className="flex items-start gap-4">
+                <Mail className="text-[#2F7FA3] mt-1" />
+                <a
+                  href="mailto:info@waymaker.com"
+                  className="transition-colors hover:text-[#0F6C8C]"
+                >
+                  {content.email}
+                </a>
+              </div>
+              <div className="flex items-start gap-4">
+                <Image
+                  src="/line-icon.png"
+                  alt="LINE"
+                  width={24}
+                  height={24}
+                  className="mt-1"
+                />
+                <span>{content.line}</span>
+              </div>
+              <div className="flex items-start gap-4">
+                <MapPin className="text-[#2F7FA3] mt-1" />
+                <span>
+                  {content.address[0]}
+                  <br />
+                  {content.address[1]}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="overflow-hidden border-none shadow-sm">
+            <CardContent className="p-0">
+              <iframe
+                title="Google Map"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                style={{ border: 0, minHeight: 300 }}
+                src="https://www.google.com/maps?q=2586%20Seaboard%20Ave%2C%20San%20Jose%2C%20CA%2095131&output=embed"
+                allowFullScreen
+              />
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Right: Map */}
-        <div className="rounded-lg overflow-hidden shadow-md">
-          <iframe
-            title="Google Map"
-            width="100%"
-            height="300"
-            frameBorder="0"
-            style={{ border: 0 }}
-            src="https://www.google.com/maps?q=2586%20Seaboard%20Ave%2C%20San%20Jose%2C%20CA%2095131&output=embed"
-            allowFullScreen
-          />
-        </div>
+        <Card className="bg-white/85 backdrop-blur border-none shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl text-[#0F6C8C]">
+              {content.formTitle}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="contact-name" className="text-[#2F4858]">
+                    {content.placeholders.name}
+                  </Label>
+                  <Input
+                    id="contact-name"
+                    type="text"
+                    placeholder={content.placeholders.name}
+                    className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contact-email" className="text-[#2F4858]">
+                    {content.placeholders.email}
+                  </Label>
+                  <Input
+                    id="contact-email"
+                    type="email"
+                    placeholder={content.placeholders.email}
+                    className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="contact-subject" className="text-[#2F4858]">
+                  {content.placeholders.subject}
+                </Label>
+                <Input
+                  id="contact-subject"
+                  type="text"
+                  placeholder={content.placeholders.subject}
+                  className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="contact-message" className="text-[#2F4858]">
+                  {content.placeholders.message}
+                </Label>
+                <Textarea
+                  id="contact-message"
+                  rows={5}
+                  placeholder={content.placeholders.message}
+                  className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                />
+              </div>
+              <Button
+                type="submit"
+                size="lg"
+                className="bg-[#FF8A5B] text-white font-bold px-8 hover:bg-[#F57643]"
+              >
+                {content.button}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
       </div>
-
-      {/* Contact Form */}
-      <div className="mt-16 bg-white/80 backdrop-blur p-8 rounded-2xl shadow-sm">
-        <h2 className="text-2xl font-semibold mb-6 text-[#0F6C8C]">{content.formTitle}</h2>
-
-        <form className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <input
-              type="text"
-              placeholder={content.placeholders.name}
-              className="border border-[#CCE6DE] rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#73BBD1]"
-            />
-            <input
-              type="email"
-              placeholder={content.placeholders.email}
-              className="border border-[#CCE6DE] rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#73BBD1]"
-            />
-          </div>
-          <input
-            type="text"
-            placeholder={content.placeholders.subject}
-            className="border border-[#CCE6DE] rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#73BBD1]"
-          />
-          <textarea
-            placeholder={content.placeholders.message}
-            rows={5}
-            className="border border-[#CCE6DE] rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#73BBD1]"
-          />
-
-          <button
-            type="submit"
-            className="bg-[#FF8A5B] text-white font-bold py-3 px-6 rounded-md shadow-sm hover:bg-[#F57643] transition"
-          >
-            {content.button}
-          </button>
-        </form>
-      </div>
-    </div>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 "use client";
 
 import { GraduationCap, Clock, Baby, Users } from "lucide-react"; // 這些是 SVG 圖示
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function OurCoursesSection() {
@@ -68,11 +69,20 @@ export function OurCoursesSection() {
           {content.features.map((feature, index) => {
             const Icon = icons[index];
             return (
-              <div key={feature.title} className="flex flex-col items-center text-center bg-white/60 backdrop-blur rounded-xl shadow-sm p-6">
-                <Icon className="w-12 h-12 text-[#2F7FA3] mb-4" />
-                <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                <p className="text-gray-600 text-sm">{feature.description}</p>
-              </div>
+              <Card
+                key={feature.title}
+                className="bg-white/60 backdrop-blur text-center shadow-sm border-none"
+              >
+                <CardHeader className="items-center pb-0">
+                  <Icon className="w-12 h-12 text-[#2F7FA3]" />
+                  <CardTitle className="text-lg font-semibold text-[#1D3D4F]">
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-4 text-gray-600 text-sm">
+                  {feature.description}
+                </CardContent>
+              </Card>
             );
           })}
         </div>

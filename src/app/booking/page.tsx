@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function BookingPage() {
@@ -142,186 +147,183 @@ export default function BookingPage() {
 
   return (
     <section className="bg-[#F6FBF9] px-8 py-16 min-h-screen">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-[#0F6C8C] text-center">{content.title}</h1>
-        <p className="text-center text-[#2F4858] mb-8 whitespace-pre-line">
+      <div className="max-w-4xl mx-auto space-y-6">
+        <h1 className="text-4xl font-bold text-[#0F6C8C] text-center">
+          {content.title}
+        </h1>
+        <p className="text-center text-[#2F4858] whitespace-pre-line">
           {content.intro.join("\n")}
         </p>
-
-        <form className="space-y-6">
-          {/* Name Field */}
-          <div>
-            <label className="block text-sm font-medium text-[#2F4858] mb-2">
-              {content.fields.name}
-            </label>
-            <input
-              type="text"
-              className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
-              required
-            />
-          </div>
-
-          {/* Phone Field */}
-          <div>
-            <label className="block text-sm font-medium text-[#2F4858] mb-2">
-              {content.fields.phone}
-            </label>
-            <input
-              type="tel"
-              className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
-              required
-            />
-          </div>
-
-          {/* Email Field */}
-          <div>
-            <label className="block text-sm font-medium text-[#2F4858] mb-2">
-              {content.fields.email}
-            </label>
-            <input
-              type="email"
-              className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
-              required
-            />
-          </div>
-
-          {/* Organization and Calendar Row */}
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-[#2F4858] mb-2">
-                  {content.fields.organization}
-                </label>
-                <input
-                  type="text"
-                  className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-[#2F4858] mb-2">
-                  {content.fields.attendees}
-                </label>
-                <input
-                  type="number"
-                  min={1}
-                  placeholder={content.fields.attendeesPlaceholder}
-                  className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-[#2F4858] mb-2">
-                  {content.fields.preferredDate}
-                </label>
-                <input
-                  type="text"
-                  className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
-                  value={formattedDate}
-                  readOnly
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-[#2F4858] mb-2">
-                  {content.fields.notes}
-                </label>
-                <textarea
-                  rows={4}
-                  className="w-full border border-[#CCE6DE] rounded-md p-3 focus:ring-2 focus:ring-[#73BBD1] focus:border-transparent"
-                />
-              </div>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-[#2F4858] mb-2">
-                {content.fields.calendar}
-              </label>
-              {/* Calendar Component */}
-              <div className="border border-[#C5E1DB] rounded-md p-4 bg-white shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <button
-                    type="button"
-                    onClick={() => navigateMonth('prev')}
-                    className="p-1 hover:bg-gray-100 rounded"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <h3 className="font-medium">{monthLabel}</h3>
-                  <button
-                    type="button"
-                    onClick={() => navigateMonth('next')}
-                    className="p-1 hover:bg-gray-100 rounded"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
+        <Card className="bg-white/85 backdrop-blur shadow-sm border-none">
+          <CardContent className="space-y-10">
+            <form className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="block text-[#2F4858]">
+                      {content.fields.name}
+                    </Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      required
+                      className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="block text-[#2F4858]">
+                      {content.fields.phone}
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      required
+                      className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="block text-[#2F4858]">
+                      {content.fields.email}
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      required
+                      className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="organization" className="block text-[#2F4858]">
+                      {content.fields.organization}
+                    </Label>
+                    <Input
+                      id="organization"
+                      type="text"
+                      className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="attendees" className="block text-[#2F4858]">
+                      {content.fields.attendees}
+                    </Label>
+                    <Input
+                      id="attendees"
+                      type="number"
+                      min={1}
+                      placeholder={content.fields.attendeesPlaceholder}
+                      className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="preferredDate" className="block text-[#2F4858]">
+                      {content.fields.preferredDate}
+                    </Label>
+                    <Input
+                      id="preferredDate"
+                      type="text"
+                      value={formattedDate}
+                      readOnly
+                      className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="notes" className="block text-[#2F4858]">
+                      {content.fields.notes}
+                    </Label>
+                    <Textarea
+                      id="notes"
+                      rows={4}
+                      className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    />
+                  </div>
                 </div>
-                
-                <div className="grid grid-cols-7 gap-1 mb-2">
-                  {weekDayLabels.map((day, index) => (
-                    <div
-                      key={`${day}-${index}`}
-                      className="text-center text-xs font-medium text-gray-500 p-2"
-                    >
-                      {day}
-                    </div>
-                  ))}
+                <div className="space-y-4">
+                  <p className="text-sm font-medium text-[#2F4858]">
+                    {content.fields.calendar}
+                  </p>
+                  <Card className="border-[#C5E1DB] bg-white shadow-sm">
+                    <CardContent className="space-y-4 p-4">
+                      <div className="flex items-center justify-between">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 text-[#2F4858] hover:bg-[#EEF7FA]"
+                          onClick={() => navigateMonth('prev')}
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                        </Button>
+                        <h3 className="font-medium text-[#2F4858]">
+                          {monthLabel}
+                        </h3>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 text-[#2F4858] hover:bg-[#EEF7FA]"
+                          onClick={() => navigateMonth('next')}
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="grid grid-cols-7 gap-1 text-xs font-medium text-gray-500">
+                        {weekDayLabels.map((day, index) => (
+                          <div key={`${day}-${index}`} className="rounded p-2 text-center">
+                            {day}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="grid grid-cols-7 gap-1">
+                        {getDaysInMonth(currentMonth).map((day, index) => (
+                          <button
+                            key={index}
+                            type="button"
+                            onClick={() => day && setSelectedDate(day)}
+                            className={`p-2 text-sm rounded transition-colors ${
+                              day === null
+                                ? "invisible"
+                                : selectedDate === day
+                                  ? "bg-[#73BBD1] text-white hover:bg-[#5FA5BD]"
+                                  : "text-[#2F4858] hover:bg-[#EEF7FA]"
+                            }`}
+                            disabled={day === null}
+                          >
+                            {day}
+                          </button>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-                
-                <div className="grid grid-cols-7 gap-1">
-                  {getDaysInMonth(currentMonth).map((day, index) => (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => day && setSelectedDate(day)}
-                      className={`p-2 text-sm rounded hover:bg-gray-100 transition-colors ${
-                        day === null 
-                          ? 'invisible' 
-                          : selectedDate === day 
-                            ? 'bg-[#73BBD1] text-white hover:bg-[#5FA5BD]' 
-                            : 'text-[#2F4858] hover:bg-[#EEF7FA]'
-                      }`}
-                      disabled={day === null}
-                    >
-                      {day}
-                    </button>
-                  ))}
+              </div>
+
+              <div className="text-center">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="bg-[#FF8A5B] text-white font-bold px-10 hover:bg-[#F57643]"
+                >
+                  {content.submit}
+                </Button>
+              </div>
+
+              <div className="text-center space-y-4">
+                <p className="text-sm text-[#2F4858]">{content.paymentNote}</p>
+                <div className="flex justify-center items-center gap-4">
+                  <div className="w-12 h-8 rounded border border-[#CCE6DE] bg-white flex items-center justify-center">
+                    <span className="text-xs text-[#2F4858]">VISA</span>
+                  </div>
+                  <div className="w-12 h-8 rounded border border-[#CCE6DE] bg-white flex items-center justify-center">
+                    <span className="text-xs text-[#2F4858]">MC</span>
+                  </div>
+                </div>
+                <div className="text-sm text-[#2F4858]">
+                  {content.paymentFooter} [Payment Icons Space]
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <div className="text-center">
-            <button
-              type="submit"
-              className="bg-[#FF8A5B] text-white font-bold py-3 px-8 rounded-md shadow-sm hover:bg-[#F57643] transition-colors"
-            >
-              {content.submit}
-            </button>
-          </div>
-
-          {/* Payment Info */}
-          <div className="text-center mt-8">
-            <p className="text-sm text-[#2F4858] mb-4">
-              {content.paymentNote}
-            </p>
-
-            {/* Space for Visa/Mastercard icons */}
-            <div className="flex justify-center items-center space-x-4">
-              <div className="w-12 h-8 bg-white rounded border border-[#CCE6DE] flex items-center justify-center">
-                <span className="text-xs text-[#2F4858]">VISA</span>
-              </div>
-              <div className="w-12 h-8 bg-white rounded border border-[#CCE6DE] flex items-center justify-center">
-                <span className="text-xs text-[#2F4858]">MC</span>
-              </div>
-            </div>
-            
-            <div className="mt-4 text-sm text-[#2F4858]">
-              {content.paymentFooter} [Payment Icons Space]
-            </div>
-          </div>
-        </form>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );

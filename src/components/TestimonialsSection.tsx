@@ -1,6 +1,7 @@
 // src/components/TestimonialsSection.tsx
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function TestimonialsSection() {
@@ -49,10 +50,15 @@ export function TestimonialsSection() {
     <section className="bg-[#F1FAF4] py-12 mt-0">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
         {testimonials.map((item) => (
-          <div key={item.quote} className="bg-white/70 backdrop-blur-sm rounded-xl shadow-sm p-6">
-            <p className="text-[#2F4858] italic mb-4">“{item.quote}”</p>
-            <p className="font-semibold text-[#0F6C8C]">{item.name}</p>
-          </div>
+          <Card
+            key={item.quote}
+            className="bg-white/70 backdrop-blur-sm border-none shadow-sm"
+          >
+            <CardContent className="p-6 text-center space-y-4">
+              <p className="text-[#2F4858] italic">“{item.quote}”</p>
+              <p className="font-semibold text-[#0F6C8C]">{item.name}</p>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>
