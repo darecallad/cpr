@@ -1,5 +1,4 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import heroData from "@/data/home/hero.json";
