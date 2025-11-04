@@ -1,171 +1,392 @@
 // src/app/contact/page.tsx
 "use client";
 
-import { Mail, Phone, MapPin } from "lucide-react";
-import Image from "next/image";
+import type { ChangeEvent, FormEvent } from "react";
+import { useMemo, useState } from "react";
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import contactData from "@/data/contact.json";
+import { contactCopy, socialIcons } from "@/data/contact";
 import { useLanguage } from "@/context/LanguageContext";
 
-type Locale = "en" | "zh";
-
-interface ContactCopy {
-  title: string;
-  phone: string;
+type FormValues = {
+  name: string;
   email: string;
-  line: string;
-  address: string[];
-  formTitle: string;
-  placeholders: {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-  };
-  button: string;
-}
+  category: string;
+  message: string;
+};
 
-interface ContactData {
-  copy: Record<Locale, ContactCopy>;
-}
+type FormErrors = Partial<Record<keyof FormValues, string>>;
 
-const contactCopy: ContactData = contactData;
+const initialValues: FormValues = {
+  name: "",
+  email: "",
+  category: "",
+  message: "",
+};
 
 export default function ContactPage() {
   const { locale } = useLanguage();
+  const copy = contactCopy[locale];
 
-  const content = contactCopy.copy[locale];
+  const [values, setValues] = useState<FormValues>(initialValues);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  const handleFieldChange = <T extends keyof FormValues>(
+    field: T,
+    value: FormValues[T],
+  ) => {
+    setValues((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+
+    if (errors[field]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
+
+    if (status === "success") {
+      setStatus("idle");
+    }
+  };
+
+  const handleInputChange = <T extends keyof FormValues>(field: T) =>
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      handleFieldChange(field, event.target.value as FormValues[T]);
+    };
+
+  const validate = () => {
+    const nextErrors: FormErrors = {};
+
+    if (!values.name.trim()) {
+      nextErrors.name = copy.form.validation.name;
+    }
+
+    const email = values.email.trim();
+    if (!email) {
+      nextErrors.email = copy.form.validation.email;
+    } else {
+      const emailPattern = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+      if (!emailPattern.test(email)) {
+        nextErrors.email = copy.form.validation.email;
+      }
+    }
+
+    if (!values.category) {
+      nextErrors.category = copy.form.validation.category;
+    }
+
+    if (!values.message.trim()) {
+      nextErrors.message = copy.form.validation.message;
+    }
+
+    return nextErrors;
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const nextErrors = validate();
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      return;
+    }
+
+    setErrors({});
+    setStatus("submitting");
+
+    setTimeout(() => {
+      setStatus("success");
+      setValues(initialValues);
+    }, 700);
+  };
+
+  const detailItems = useMemo(
+    () => [
+      {
+        icon: Phone,
+        label: copy.details.phone.label,
+        value: copy.details.phone.value,
+        href: copy.details.phone.href,
+      },
+      {
+        icon: Mail,
+        label: copy.details.email.label,
+        value: copy.details.email.value,
+        href: copy.details.email.href,
+      },
+      {
+        icon: MessageCircle,
+        label: copy.details.line.label,
+        value: copy.details.line.value,
+        href: copy.details.line.href,
+        helper: copy.details.line.helper,
+      },
+      {
+        icon: MapPin,
+        label: copy.details.address.label,
+        value: copy.details.address.lines.join("\n"),
+        href: copy.details.address.href,
+        isAddress: true,
+      },
+    ],
+    [copy.details.address, copy.details.email, copy.details.line, copy.details.phone],
+  );
 
   return (
-    <section className="bg-[#F0FBF6] px-8 py-16 min-h-screen">
-      <div className="max-w-5xl mx-auto space-y-12">
-        <h1 className="text-4xl font-bold text-[#0F6C8C]">{content.title}</h1>
-        <div className="grid gap-8 md:grid-cols-2">
-          <Card className="bg-white/85 backdrop-blur border-none shadow-sm">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-xl text-[#0F6C8C]">
-                {locale === "en" ? "Contact Details" : "聯絡資訊"}
+    <section className="bg-[#F0FBF6] px-6 py-16 md:px-8">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
+        <div className="space-y-3 text-center md:text-left">
+          <h1 className="text-4xl font-bold text-[#0F6C8C] md:text-5xl">
+            {copy.hero.title}
+          </h1>
+          <p className="text-base text-[#2F4858] md:text-lg">
+            {copy.hero.description}
+          </p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <Card className="border-none bg-white/90 shadow-sm backdrop-blur">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl font-semibold text-[#0F3B4C]">
+                {locale === "en" ? "Contact details" : "聯絡資訊"}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6 text-base text-[#2F4858]">
-              <div className="flex items-start gap-4">
-                <Phone className="text-[#2F7FA3] mt-1" />
-                <a
-                  href="tel:1234567990"
-                  className="transition-colors hover:text-[#0F6C8C]"
-                >
-                  {content.phone}
-                </a>
+            <CardContent className="space-y-6 text-sm text-[#2F4858] md:text-base">
+              <div className="space-y-5">
+                {detailItems.map((item) => {
+                  const Icon = item.icon;
+                  const content = (
+                    <span className="block whitespace-pre-line text-[#0F3B4C]">
+                      {item.value}
+                    </span>
+                  );
+
+                  return (
+                    <div key={item.label} className="flex items-start gap-4">
+                      <Icon className="mt-1 h-5 w-5 flex-none text-[#2F7FA3]" />
+                      <div className="space-y-1">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FAFC2]">
+                          {item.label}
+                        </p>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            className="transition-colors hover:text-[#0F6C8C]"
+                          >
+                            {content}
+                          </a>
+                        ) : (
+                          content
+                        )}
+                        {item.helper && (
+                          <p className="text-xs text-[#2F4858]/80">{item.helper}</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              <div className="flex items-start gap-4">
-                <Mail className="text-[#2F7FA3] mt-1" />
-                <a
-                  href="mailto:info@waymaker.com"
-                  className="transition-colors hover:text-[#0F6C8C]"
-                >
-                  {content.email}
-                </a>
+
+              <div className="flex items-start gap-4 border-t border-[#E2F0EB] pt-5">
+                <Clock className="mt-1 h-5 w-5 flex-none text-[#2F7FA3]" />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FAFC2]">
+                    {copy.details.serviceHours.label}
+                  </p>
+                  <p className="text-[#0F3B4C]">{copy.details.serviceHours.value}</p>
+                </div>
               </div>
-              <div className="flex items-start gap-4">
-                <Image
-                  src="/line-icon.png"
-                  alt="LINE"
-                  width={24}
-                  height={24}
-                  className="mt-1"
-                />
-                <span>{content.line}</span>
+
+              <div className="rounded-2xl border border-[#CDE6E0] bg-[#F6FBF9] p-5 shadow-sm">
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-[#0F3B4C]">
+                      {copy.lineCta.title}
+                    </p>
+                    <p className="text-sm text-[#2F4858]">{copy.lineCta.body}</p>
+                  </div>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-[#0F6C8C] px-6 text-white hover:bg-[#0B4F67]"
+                  >
+                    <Link href={copy.lineCta.href} target="_blank" rel="noopener noreferrer">
+                      {copy.lineCta.button}
+                    </Link>
+                  </Button>
+                </div>
               </div>
-              <div className="flex items-start gap-4">
-                <MapPin className="text-[#2F7FA3] mt-1" />
-                <span>
-                  {content.address[0]}
-                  <br />
-                  {content.address[1]}
-                </span>
+
+              <div className="flex flex-wrap items-center gap-4 border-t border-[#E2F0EB] pt-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FAFC2]">
+                  {locale === "en" ? "Follow us" : "追蹤我們"}
+                </p>
+                {copy.social.map((social) => {
+                  const Icon = socialIcons[social.id];
+                  return (
+                    <Link
+                      key={social.id}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#CDE6E0] bg-white text-[#0F3B4C] transition-colors hover:border-[#0F6C8C] hover:text-[#0F6C8C]"
+                    >
+                      <Icon className="h-4 w-4" aria-hidden="true" />
+                      <span className="sr-only">{social.srLabel}</span>
+                    </Link>
+                  );
+                })}
               </div>
             </CardContent>
           </Card>
-          <Card className="overflow-hidden border-none shadow-sm">
-            <CardContent className="p-0">
+
+          <Card className="border-none bg-white/90 shadow-sm backdrop-blur">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl font-semibold text-[#0F3B4C]">
+                {copy.map.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="overflow-hidden rounded-2xl border border-[#CDE6E0]">
               <iframe
-                title="Google Map"
+                title={copy.map.title}
                 width="100%"
-                height="100%"
+                height="320"
                 frameBorder="0"
-                style={{ border: 0, minHeight: 300 }}
-                src="https://www.google.com/maps?q=2586%20Seaboard%20Ave%2C%20San%20Jose%2C%20CA%2095131&output=embed"
+                style={{ border: 0 }}
+                src={copy.map.iframeSrc}
                 allowFullScreen
               />
             </CardContent>
           </Card>
         </div>
 
-        <Card className="bg-white/85 backdrop-blur border-none shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-2xl text-[#0F6C8C]">
-              {content.formTitle}
+        <Card className="border-none bg-white/90 shadow-sm backdrop-blur">
+          <CardHeader className="space-y-2">
+            <CardTitle className="text-2xl font-semibold text-[#0F3B4C]">
+              {copy.form.title}
             </CardTitle>
+            <p className="text-sm text-[#2F4858] md:text-base">{copy.form.description}</p>
           </CardHeader>
-          <CardContent>
-            <form className="space-y-6">
+          <CardContent className="space-y-6">
+            {status === "success" && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="rounded-2xl border border-[#CDE6E0] bg-[#EFF9F4] p-6 text-center text-[#0F3B4C] shadow-sm"
+              >
+                <h2 className="text-xl font-semibold">{copy.form.success.title}</h2>
+                <p className="mt-2 text-sm md:text-base">{copy.form.success.body}</p>
+              </div>
+            )}
+
+            <form
+              className="space-y-6"
+              onSubmit={handleSubmit}
+              noValidate
+              aria-busy={status === "submitting"}
+            >
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="contact-name" className="text-[#2F4858]">
-                    {content.placeholders.name}
+                  <Label htmlFor="contact-name" className="flex items-center gap-2 text-[#2F4858]">
+                    <span>{copy.form.labels.name}</span>
+                    <span className="text-[#C65353]">*</span>
                   </Label>
                   <Input
                     id="contact-name"
                     type="text"
-                    placeholder={content.placeholders.name}
-                    className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    value={values.name}
+                    onChange={handleInputChange("name")}
+                    placeholder={copy.form.placeholders.name}
+                    aria-invalid={Boolean(errors.name)}
+                    className="border-[#CCE6DE] focus-visible:border-[#73BBD1] focus-visible:ring-[#73BBD1]/50"
                   />
+                  {errors.name && <p className="text-sm text-[#C65353]">{errors.name}</p>}
                 </div>
+
                 <div className="space-y-2">
-                  <Label htmlFor="contact-email" className="text-[#2F4858]">
-                    {content.placeholders.email}
+                  <Label htmlFor="contact-email" className="flex items-center gap-2 text-[#2F4858]">
+                    <span>{copy.form.labels.email}</span>
+                    <span className="text-[#C65353]">*</span>
                   </Label>
                   <Input
                     id="contact-email"
                     type="email"
-                    placeholder={content.placeholders.email}
-                    className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                    value={values.email}
+                    onChange={handleInputChange("email")}
+                    placeholder={copy.form.placeholders.email}
+                    aria-invalid={Boolean(errors.email)}
+                    className="border-[#CCE6DE] focus-visible:border-[#73BBD1] focus-visible:ring-[#73BBD1]/50"
                   />
+                  {errors.email && <p className="text-sm text-[#C65353]">{errors.email}</p>}
                 </div>
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="contact-subject" className="text-[#2F4858]">
-                  {content.placeholders.subject}
+                <Label htmlFor="contact-category" className="flex items-center gap-2 text-[#2F4858]">
+                  <span>{copy.form.labels.category}</span>
+                  <span className="text-[#C65353]">*</span>
                 </Label>
-                <Input
-                  id="contact-subject"
-                  type="text"
-                  placeholder={content.placeholders.subject}
-                  className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
-                />
+                <select
+                  id="contact-category"
+                  value={values.category}
+                  onChange={handleInputChange("category")}
+                  aria-invalid={Boolean(errors.category)}
+                  className="h-10 w-full rounded-md border border-[#CCE6DE] bg-white px-3 text-sm text-[#2F4858] shadow-xs outline-none transition focus:border-[#73BBD1] focus:ring-2 focus:ring-[#73BBD1]/40"
+                >
+                  <option value="" disabled>
+                    {copy.form.labels.category}
+                  </option>
+                  {copy.form.categories.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                {errors.category && <p className="text-sm text-[#C65353]">{errors.category}</p>}
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="contact-message" className="text-[#2F4858]">
-                  {content.placeholders.message}
+                <Label htmlFor="contact-message" className="flex items-center gap-2 text-[#2F4858]">
+                  <span>{copy.form.labels.message}</span>
+                  <span className="text-[#C65353]">*</span>
                 </Label>
                 <Textarea
                   id="contact-message"
                   rows={5}
-                  placeholder={content.placeholders.message}
-                  className="border-[#CCE6DE] focus-visible:ring-[#73BBD1]/50 focus-visible:border-[#73BBD1]"
+                  value={values.message}
+                  onChange={handleInputChange("message")}
+                  placeholder={copy.form.placeholders.message}
+                  aria-invalid={Boolean(errors.message)}
+                  className="border-[#CCE6DE] focus-visible:border-[#73BBD1] focus-visible:ring-[#73BBD1]/50"
                 />
+                {errors.message && <p className="text-sm text-[#C65353]">{errors.message}</p>}
               </div>
-              <Button
-                type="submit"
-                size="lg"
-                className="bg-[#FF8A5B] text-white font-bold px-8 hover:bg-[#F57643]"
-              >
-                {content.button}
-              </Button>
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={status === "submitting"}
+                  className="w-full bg-[#FF8A5B] px-8 font-semibold text-white hover:bg-[#F57643] disabled:opacity-70 sm:w-auto"
+                >
+                  {status === "submitting" ? `${copy.form.submit}...` : copy.form.submit}
+                </Button>
+                <p className="text-xs text-[#2F4858]/80">
+                  {locale === "en"
+                    ? "Having trouble? Call us or message on LINE for instant help."
+                    : "需要協助？可直接來電或於 LINE 聯絡我們。"}
+                </p>
+              </div>
             </form>
           </CardContent>
         </Card>
