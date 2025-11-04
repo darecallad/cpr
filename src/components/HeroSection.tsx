@@ -1,27 +1,13 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import heroData from "@/data/home/hero.json";
+import { heroCopy } from "@/data/home/hero";
 import { useLanguage } from "@/context/LanguageContext";
-
-type Locale = "en" | "zh";
-
-interface HeroCopy {
-  title: string;
-  description: string;
-  cta: string;
-}
-
-interface HeroData {
-  copy: Record<Locale, HeroCopy>;
-}
-
-const heroCopy: HeroData = heroData;
 
 export function HeroSection() {
   const { locale } = useLanguage();
 
-  const content = heroCopy.copy[locale];
+  const content = heroCopy[locale];
 
   return (
     <section className="relative m-0 flex h-[60vh] w-full items-center p-0">

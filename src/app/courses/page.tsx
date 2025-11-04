@@ -1,6 +1,5 @@
 "use client";
 
-
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -10,111 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import coursesData from "@/data/courses.json";
+import { coursesCopy } from "@/data/courses";
 import { useLanguage } from "@/context/LanguageContext";
-
-type Locale = "en" | "zh";
-
-interface HeroCopy {
-  eyebrow: string;
-  title: string;
-  tagline: string;
-  description: string;
-  primaryCta: string;
-  secondaryCta: string;
-}
-
-interface SummaryItem {
-  label: string;
-  value: string;
-}
-
-interface ScheduleBlock {
-  time: string;
-  topic: string;
-}
-
-interface ScheduleCopy {
-  title: string;
-  blocks: ScheduleBlock[];
-  note: string;
-}
-
-interface CurriculumCategory {
-  name: string;
-  bullets: string[];
-}
-
-interface CurriculumCopy {
-  title: string;
-  categories: CurriculumCategory[];
-}
-
-interface DeliveryOption {
-  title: string;
-  description: string;
-  detail: string;
-}
-
-interface DeliveryCopy {
-  title: string;
-  options: DeliveryOption[];
-}
-
-interface PricingCopy {
-  title: string;
-  body: string;
-  bullets: string[];
-}
-
-interface CertificationCopy {
-  title: string;
-  body: string;
-}
-
-interface MediaCopy {
-  caption: string;
-}
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-interface FAQCopy {
-  title: string;
-  items: FAQItem[];
-}
-
-interface CTACopy {
-  title: string;
-  description: string;
-  button: string;
-}
-
-interface CoursesLocaleCopy {
-  hero: HeroCopy;
-  summary: SummaryItem[];
-  schedule: ScheduleCopy;
-  curriculum: CurriculumCopy;
-  delivery: DeliveryCopy;
-  pricing: PricingCopy;
-  certification: CertificationCopy;
-  media: MediaCopy;
-  faq: FAQCopy;
-  cta: CTACopy;
-}
-
-interface CoursesCopy {
-  copy: Record<Locale, CoursesLocaleCopy>;
-}
-
-const coursesCopy: CoursesCopy = coursesData;
 
 export default function CoursesPage() {
   const { locale } = useLanguage();
 
-  const content = coursesCopy.copy[locale];
+  const content = coursesCopy[locale];
 
   return (
     <main className="bg-[#F4FAF8]">

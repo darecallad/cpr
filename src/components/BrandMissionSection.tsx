@@ -3,46 +3,22 @@
 import { ShieldCheck, HeartHandshake, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import brandMissionData from "@/data/home/brand-mission.json";
+import {
+  brandMissionCopy,
+  type BrandMissionIconId,
+  type BrandMissionValue,
+} from "@/data/home/brand-mission";
 import { useLanguage } from "@/context/LanguageContext";
 
-type Locale = "en" | "zh";
-
-type BrandMissionIcon = "ShieldCheck" | "HeartHandshake" | "Sparkles";
-
-interface BrandMissionValue {
-  title: string;
-  description: string;
-  icon: BrandMissionIcon;
-}
-
-interface BrandMissionCopy {
-  heading: string;
-  tagline: string;
-  intro: string;
-  description: string;
-  valuesHeading: string;
-  values: BrandMissionValue[];
-  ctaLabel: string;
-  ctaHref: string;
-  ctaQuote: string;
-}
-
-interface BrandMissionData {
-  copy: Record<Locale, BrandMissionCopy>;
-}
-
-const iconMap: Record<BrandMissionIcon, typeof ShieldCheck> = {
+const iconMap: Record<BrandMissionIconId, typeof ShieldCheck> = {
   ShieldCheck,
   HeartHandshake,
   Sparkles,
 };
 
-const brandMissionCopy = brandMissionData as BrandMissionData;
-
 export function BrandMissionSection() {
   const { locale } = useLanguage();
-  const content = brandMissionCopy.copy[locale];
+  const content = brandMissionCopy[locale];
 
   return (
     <section className="bg-white py-16">
@@ -84,7 +60,7 @@ export function BrandMissionSection() {
             {content.valuesHeading}
           </h3>
           <div className="grid gap-6 md:grid-cols-3">
-            {content.values.map((value) => {
+            {content.values.map((value: BrandMissionValue) => {
               const Icon = iconMap[value.icon];
               return (
                 <Card
