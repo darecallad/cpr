@@ -1,0 +1,40 @@
+{
+  "copy": {
+    "en": {
+      "title": "Contact Us",
+      "phone": "(123) 456-7990",
+      "email": "info@waymaker.com",
+      "line": "@waymaker",
+      "address": [
+        "25386 Seaboard Ave",
+        "San Jose, CA 95131"
+      ],
+      "formTitle": "Get In Touch",
+      "placeholders": {
+        "name": "Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Message"
+      },
+      "button": "SEND MESSAGE"
+    },
+    "zh": {
+      "title": "聯絡我們",
+      "phone": "(123) 456-7990",
+      "email": "info@waymaker.com",
+      "line": "@waymaker",
+      "address": [
+        "25386 Seaboard Ave",
+        "San Jose, CA 95131"
+      ],
+      "formTitle": "留下訊息",
+      "placeholders": {
+        "name": "姓名",
+        "email": "Email",
+        "subject": "主旨",
+        "message": "訊息內容"
+      },
+      "button": "送出訊息"
+    }
+  }
+}

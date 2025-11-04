@@ -8,45 +8,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import contactData from "@/data/contact.json";
 import { useLanguage } from "@/context/LanguageContext";
+
+type Locale = "en" | "zh";
+
+interface ContactCopy {
+  title: string;
+  phone: string;
+  email: string;
+  line: string;
+  address: string[];
+  formTitle: string;
+  placeholders: {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  };
+  button: string;
+}
+
+interface ContactData {
+  copy: Record<Locale, ContactCopy>;
+}
+
+const contactCopy: ContactData = contactData;
 
 export default function ContactPage() {
   const { locale } = useLanguage();
 
-  const copy = {
-    en: {
-      title: "Contact Us",
-      phone: "(123) 456-7990",
-      email: "info@waymaker.com",
-      line: "@waymaker",
-      address: ["25386 Seaboard Ave", "San Jose, CA 95131"],
-      formTitle: "Get In Touch",
-      placeholders: {
-        name: "Name",
-        email: "Email",
-        subject: "Subject",
-        message: "Message",
-      },
-      button: "SEND MESSAGE",
-    },
-    zh: {
-      title: "聯絡我們",
-      phone: "(123) 456-7990",
-      email: "info@waymaker.com",
-      line: "@waymaker",
-      address: ["25386 Seaboard Ave", "San Jose, CA 95131"],
-      formTitle: "留下訊息",
-      placeholders: {
-        name: "姓名",
-        email: "Email",
-        subject: "主旨",
-        message: "訊息內容",
-      },
-      button: "送出訊息",
-    },
-  } as const;
-
-  const content = copy[locale];
+  const content = contactCopy.copy[locale];
 
   return (
     <section className="bg-[#F0FBF6] px-8 py-16 min-h-screen">

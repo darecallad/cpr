@@ -2,27 +2,27 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import heroData from "@/data/home/hero.json";
 import { useLanguage } from "@/context/LanguageContext";
+
+type Locale = "en" | "zh";
+
+interface HeroCopy {
+  title: string;
+  description: string;
+  cta: string;
+}
+
+interface HeroData {
+  copy: Record<Locale, HeroCopy>;
+}
+
+const heroCopy: HeroData = heroData;
 
 export function HeroSection() {
   const { locale } = useLanguage();
 
-  const copy = {
-    en: {
-      title: "Professional Training\nCaring Support",
-      description:
-        "Waymaker provides professional and compassionate CPR and first aid training for daycare and childcare facilities. Our engaging courses equip educators.",
-      cta: "BOOK NOW",
-    },
-    zh: {
-      title: "專業守護\n安心相伴",
-      description:
-        "Waymaker 致力於為幼兒園與托育機構提供專業且貼心的 CPR 與急救培訓，幫助每位教育者成為孩子的生命守護者。",
-      cta: "立即預約",
-    },
-  } as const;
-
-  const content = copy[locale];
+  const content = heroCopy.copy[locale];
 
   return (
     <section className="relative m-0 flex h-[60vh] w-full items-center p-0">

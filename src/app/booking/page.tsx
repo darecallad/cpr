@@ -7,102 +7,51 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import bookingData from "@/data/booking.json";
 import { useLanguage } from "@/context/LanguageContext";
+
+type Locale = "en" | "zh";
+
+interface BookingFields {
+  name: string;
+  phone: string;
+  email: string;
+  organization: string;
+  preferredDate: string;
+  notes: string;
+  attendees: string;
+  attendeesPlaceholder: string;
+  calendar: string;
+}
+
+interface BookingLocaleContent {
+  title: string;
+  intro: string[];
+  fields: BookingFields;
+  submit: string;
+  paymentNote: string;
+  paymentFooter: string;
+}
+
+interface BookingCopy {
+  monthNames: Record<Locale, string[]>;
+  weekDays: Record<Locale, string[]>;
+  copy: Record<Locale, BookingLocaleContent>;
+}
+
+const bookingCopy: BookingCopy = bookingData;
 
 export default function BookingPage() {
   const { locale } = useLanguage();
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date(2024, 2)); // March 2024
 
-  const monthNames = {
-    en: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
-    zh: [
-      "1 月",
-      "2 月",
-      "3 月",
-      "4 月",
-      "5 月",
-      "6 月",
-      "7 月",
-      "8 月",
-      "9 月",
-      "10 月",
-      "11 月",
-      "12 月",
-    ],
-  } as const;
-
-  const weekDays = {
-    en: ["M", "T", "W", "T", "F", "S", "S"],
-    zh: ["一", "二", "三", "四", "五", "六", "日"],
-  } as const;
-
-  const copy = {
-    en: {
-      title: "Booking",
-      intro: [
-        "Please fill out the form below to book a course.",
-        "We will confirm the date and send payment details as soon as possible.",
-      ],
-      fields: {
-        name: "Name (required)",
-        phone: "Phone (required)",
-        email: "Email Address (required)",
-        organization: "Organization",
-        preferredDate: "Preferred Date",
-        notes: "Additional Requests",
-        attendees: "Number of Attendees",
-        attendeesPlaceholder: "Enter number of participants",
-        calendar: "Select a Date",
-      },
-      submit: "SUBMIT",
-      paymentNote:
-        "We accept credit card payment through our secure online system. Your information is protected by encryption.",
-      paymentFooter: "We accept →",
-    },
-    zh: {
-      title: "預約報名",
-      intro: [
-        "請填寫下列表單預約課程。",
-        "我們將儘快與您確認開課日期並提供付款資訊。",
-      ],
-      fields: {
-        name: "姓名（必填）",
-        phone: "聯絡電話（必填）",
-        email: "Email（必填）",
-        organization: "單位名稱",
-        preferredDate: "預約日期",
-        notes: "備註需求",
-        attendees: "參加人數",
-        attendeesPlaceholder: "請輸入預計人數",
-        calendar: "選擇日期",
-      },
-      submit: "送出",
-      paymentNote:
-        "本站提供安全的線上刷卡機制，所有交易資料皆經過加密保護。",
-      paymentFooter: "支援付款方式 →",
-    },
-  } as const;
-
-  const content = copy[locale];
-
-  const weekDayLabels = weekDays[locale];
+  const weekDayLabels = bookingCopy.weekDays[locale];
   const monthLabel = locale === "en"
-    ? `${monthNames[locale][currentMonth.getMonth()]} ${currentMonth.getFullYear()}`
-    : `${currentMonth.getFullYear()} 年 ${monthNames[locale][currentMonth.getMonth()]}`;
+    ? `${bookingCopy.monthNames[locale][currentMonth.getMonth()]} ${currentMonth.getFullYear()}`
+    : `${currentMonth.getFullYear()} 年 ${bookingCopy.monthNames[locale][currentMonth.getMonth()]}`;
+
+  const content = bookingCopy.copy[locale];
   
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
