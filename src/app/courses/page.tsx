@@ -414,9 +414,11 @@ export default function CoursesPage() {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6">
           <div className="grid gap-8 lg:grid-cols-[repeat(2,minmax(0,1fr))] lg:items-start">
             <div className="space-y-6 lg:space-y-8" id="schedule">
-              <h2 className="text-3xl font-bold text-[#0F6C8C] leading-tight">
-                {content.schedule.title}
-              </h2>
+              <div className="lg:flex lg:h-[7.5rem] lg:items-start">
+                <h2 className="text-3xl font-bold text-[#0F6C8C] leading-tight">
+                  {content.schedule.title}
+                </h2>
+              </div>
               <Card className="border border-[#CDE6E0] bg-[#F4FAF8] shadow-sm">
                 <CardContent className="space-y-4 px-6 py-0">
                   {content.schedule.blocks.map((block) => (
@@ -430,9 +432,11 @@ export default function CoursesPage() {
               <p className="text-sm text-[#2F4858]/80">{content.schedule.note}</p>
             </div>
             <div className="space-y-6 lg:space-y-8" id="curriculum">
-              <h2 className="text-3xl font-bold text-[#0F6C8C] leading-tight">
-                {content.curriculum.title}
-              </h2>
+              <div className="lg:flex lg:h-[7.5rem] lg:items-start">
+                <h2 className="text-3xl font-bold text-[#0F6C8C] leading-tight">
+                  {content.curriculum.title}
+                </h2>
+              </div>
               <div className="space-y-6">
                 {content.curriculum.categories.map((category) => (
                   <Card key={category.name} className="border-none bg-[#F8FCFB] shadow-sm">
