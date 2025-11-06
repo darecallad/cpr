@@ -249,7 +249,9 @@ export default function ContactPage() {
                   </Label>
                   <Input
                     id="contact-name"
+                    name="name"
                     type="text"
+                    autoComplete="name"
                     value={values.name}
                     onChange={handleInputChange("name")}
                     placeholder={copy.form.placeholders.name}
@@ -266,7 +268,9 @@ export default function ContactPage() {
                   </Label>
                   <Input
                     id="contact-email"
+                    name="email"
                     type="email"
+                    autoComplete="email"
                     value={values.email}
                     onChange={handleInputChange("email")}
                     placeholder={copy.form.placeholders.email}

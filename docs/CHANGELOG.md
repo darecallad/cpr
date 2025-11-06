@@ -103,6 +103,13 @@ All notable changes to the Waymaker CPR Training Platform project will be docume
 - **PWA icons** - Removed references to non-existent icon files from manifest
 - **Manifest reference** - Removed manifest link from layout (not needed without icons)
 
+### Fixed
+- **Form autocomplete attributes** - Added proper `autocomplete` and `name` attributes to all form inputs
+  - Booking form: name, phone, email, organization (autocomplete enabled)
+  - Contact form: name, email (autocomplete enabled)
+  - Custom date field: autocomplete disabled
+  - Improves browser autofill functionality and accessibility
+
 ---
 
 ## Format Guidelines

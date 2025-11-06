@@ -182,7 +182,9 @@ export default function BookingPage() {
                     </Label>
                     <Input
                       id="name"
+                      name="name"
                       type="text"
+                      autoComplete="name"
                       value={values.name}
                       onChange={handleInputChange("name")}
                       aria-invalid={Boolean(errors.name)}
@@ -201,7 +203,9 @@ export default function BookingPage() {
                     </Label>
                     <Input
                       id="phone"
+                      name="phone"
                       type="tel"
+                      autoComplete="tel"
                       value={values.phone}
                       onChange={handleInputChange("phone")}
                       aria-invalid={Boolean(errors.phone)}
@@ -220,7 +224,9 @@ export default function BookingPage() {
                     </Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
+                      autoComplete="email"
                       value={values.email}
                       onChange={handleInputChange("email")}
                       aria-invalid={Boolean(errors.email)}
@@ -238,7 +244,9 @@ export default function BookingPage() {
                     </Label>
                     <Input
                       id="organization"
+                      name="organization"
                       type="text"
+                      autoComplete="organization"
                       value={values.organization}
                       onChange={handleInputChange("organization")}
                       className="border-[#CCE6DE] focus-visible:border-[#73BBD1] focus-visible:ring-[#73BBD1]/50"
@@ -286,7 +294,9 @@ export default function BookingPage() {
                       </Label>
                       <Input
                         id="customDate"
+                        name="customDate"
                         type="text"
+                        autoComplete="off"
                         value={values.customDate}
                         onChange={handleInputChange("customDate")}
                         aria-invalid={Boolean(errors.customDate)}
