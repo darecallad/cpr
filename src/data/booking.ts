@@ -94,7 +94,7 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
     },
     submit: "Submit registration",
     assistance:
-      "Need help with your booking? Call +1 (424) 555-0198 or add LINE: @waymaker and we will assist you right away.",
+      "Need help with your booking? Email us at info@waymakerbiz.com and we will assist you right away.",
     confirmation: {
       title: "Registration received",
       body:
@@ -151,7 +151,7 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
     },
     submit: "提交報名",
     assistance:
-      "需要協助嗎？歡迎撥打 +1 (424) 555-0198 或加入 LINE：@waymaker，我們將盡速協助您。",
+      "需要協助嗎？歡迎來信 info@waymakerbiz.com，我們將盡速協助您。",
     confirmation: {
       title: "已收到您的預約",
       body:

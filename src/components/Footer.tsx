@@ -13,12 +13,10 @@ const copy = {
     sections: {
       contact: {
         title: "Contact",
-        phoneLabel: "Phone",
-        phoneValue: "+1 (424) 555-0198",
         emailLabel: "Email",
-        emailValue: "hello@waymakercpr.com",
+        emailValue: "info@waymakerbiz.com",
         serviceLabel: "Service area",
-        serviceValue: "Greater Los Angeles & Orange County",
+        serviceValue: "San Jose, CA",
       },
       links: {
         title: "Quick links",
@@ -41,12 +39,10 @@ const copy = {
     sections: {
       contact: {
         title: "聯絡方式",
-        phoneLabel: "電話",
-        phoneValue: "+1 (424) 555-0198",
         emailLabel: "電子郵件",
-        emailValue: "hello@waymakercpr.com",
+        emailValue: "info@waymakerbiz.com",
         serviceLabel: "服務範圍",
-        serviceValue: "大洛杉磯與橙縣地區",
+        serviceValue: "加州聖荷西地區",
       },
       links: {
         title: "快速連結",
@@ -100,17 +96,9 @@ export function Footer() {
             </h3>
             <dl className="space-y-2 text-sm text-white/85">
               <div>
-                <dt className="text-white/60">{content.sections.contact.phoneLabel}</dt>
-                <dd>
-                  <a href="tel:+14245550198" className="hover:text-white">
-                    {content.sections.contact.phoneValue}
-                  </a>
-                </dd>
-              </div>
-              <div>
                 <dt className="text-white/60">{content.sections.contact.emailLabel}</dt>
                 <dd>
-                  <a href="mailto:hello@waymakercpr.com" className="hover:text-white">
+                  <a href="mailto:info@waymakerbiz.com" className="hover:text-white">
                     {content.sections.contact.emailValue}
                   </a>
                 </dd>

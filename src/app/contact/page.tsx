@@ -3,14 +3,14 @@
 
 import type { ChangeEvent, FormEvent } from "react";
 import { useMemo, useState } from "react";
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { contactCopy, socialIcons } from "@/data/contact";
+import { contactCopy } from "@/data/contact";
 import { useLanguage } from "@/context/LanguageContext";
 
 type FormValues = {
@@ -113,23 +113,10 @@ export default function ContactPage() {
   const detailItems = useMemo(
     () => [
       {
-        icon: Phone,
-        label: copy.details.phone.label,
-        value: copy.details.phone.value,
-        href: copy.details.phone.href,
-      },
-      {
         icon: Mail,
         label: copy.details.email.label,
         value: copy.details.email.value,
         href: copy.details.email.href,
-      },
-      {
-        icon: MessageCircle,
-        label: copy.details.line.label,
-        value: copy.details.line.value,
-        href: copy.details.line.href,
-        helper: copy.details.line.helper,
       },
       {
         icon: MapPin,
@@ -139,7 +126,7 @@ export default function ContactPage() {
         isAddress: true,
       },
     ],
-    [copy.details.address, copy.details.email, copy.details.line, copy.details.phone],
+    [copy.details.address, copy.details.email],
   );
 
   return (
@@ -188,9 +175,6 @@ export default function ContactPage() {
                         ) : (
                           content
                         )}
-                        {item.helper && (
-                          <p className="text-xs text-[#2F4858]/80">{item.helper}</p>
-                        )}
                       </div>
                     </div>
                   );
@@ -205,47 +189,6 @@ export default function ContactPage() {
                   </p>
                   <p className="text-[#0F3B4C]">{copy.details.serviceHours.value}</p>
                 </div>
-              </div>
-
-              <div className="rounded-2xl border border-[#CDE6E0] bg-[#F6FBF9] p-5 shadow-sm">
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                  <div className="space-y-1">
-                    <p className="text-sm font-semibold text-[#0F3B4C]">
-                      {copy.lineCta.title}
-                    </p>
-                    <p className="text-sm text-[#2F4858]">{copy.lineCta.body}</p>
-                  </div>
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-[#0F6C8C] px-6 text-white hover:bg-[#0B4F67]"
-                  >
-                    <Link href={copy.lineCta.href} target="_blank" rel="noopener noreferrer">
-                      {copy.lineCta.button}
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4 border-t border-[#E2F0EB] pt-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FAFC2]">
-                  {locale === "en" ? "Follow us" : "追蹤我們"}
-                </p>
-                {copy.social.map((social) => {
-                  const Icon = socialIcons[social.id];
-                  return (
-                    <Link
-                      key={social.id}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#CDE6E0] bg-white text-[#0F3B4C] transition-colors hover:border-[#0F6C8C] hover:text-[#0F6C8C]"
-                    >
-                      <Icon className="h-4 w-4" aria-hidden="true" />
-                      <span className="sr-only">{social.srLabel}</span>
-                    </Link>
-                  );
-                })}
               </div>
             </CardContent>
           </Card>

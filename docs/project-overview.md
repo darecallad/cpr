@@ -23,7 +23,7 @@ Waymaker CPR is a specialized training platform designed to serve childcare and 
 ### Target Audience
 - **Primary:** Preschool and daycare facility administrators and staff
 - **Secondary:** Individual educators seeking certification
-- **Geographic focus:** Greater Los Angeles and Orange County areas
+- **Geographic focus:** San Jose, California area
 - **Languages:** Bilingual support for English and Traditional Chinese speakers
 
 ### Core Value Proposition
@@ -34,6 +34,11 @@ Waymaker CPR is a specialized training platform designed to serve childcare and 
 - Specialized focus on pediatric emergency response
 
 ## Business Context
+
+### Contact Information
+- **Email:** info@waymakerbiz.com
+- **Address:** 2586 Seaboard Ave, San Jose, CA 95131
+- **Service Area:** San Jose, California
 
 ### Service Offerings
 1. **EMSA Pediatric CPR & First Aid Training**

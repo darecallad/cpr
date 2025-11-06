@@ -387,7 +387,7 @@ CMD ["npm", "start"]
 ```bash
 # .env.local (for local development)
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-CONTACT_EMAIL=hello@waymakercpr.com
+CONTACT_EMAIL=info@waymakerbiz.com
 
 # .env.production (for production)
 NEXT_PUBLIC_SITE_URL=https://yourdomain.com

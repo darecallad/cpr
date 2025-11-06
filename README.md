@@ -1,6 +1,11 @@
 # Waymaker CPR Training Site
 
-Marketing and booking site for Waymaker’s CPR and first-aid training programs. Built with the Next.js App Router, bilingual support (English & Traditional Chinese), and shadcn-inspired UI components tailored to the brand palette.
+Marketing and booking site for Waymaker's CPR and first-aid training programs serving the San Jose, California area. Built with the Next.js App Router, bilingual support (English & Traditional Chinese), and shadcn-inspired UI components tailored to the brand palette.
+
+## 📍 Contact Information
+- **Email:** info@waymakerbiz.com
+- **Location:** 2586 Seaboard Ave, San Jose, CA 95131
+- **Service Area:** San Jose, California
 
 ## ✨ Features
 - **Next.js 15 + React 19** with App Router, strict TypeScript, and Tailwind CSS v4.
