@@ -62,10 +62,21 @@ src/
 - Components consume localized copy objects; add both `en` and `zh` entries when introducing new content.
 
 ## 📚 Documentation
-- [Brand Guidelines](docs/brand-guidelines.md)
-- [Project Structure](docs/project-structure.md)
-- [Folder Migration Checklist](docs/migration-checklist.md)
+
+### Core Documentation
+- **[Project Overview](docs/project-overview.md)** - Complete project background, goals, and roadmap
+- **[Technical Architecture](docs/technical-architecture.md)** - System design, technology stack, and coding standards  
+- **[Development Guide](docs/development-guide.md)** - Setup, workflow, deployment, and troubleshooting
+- **[Content Management](docs/content-management.md)** - Managing bilingual content and internationalization
+
+### Reference Documentation
+- **[Brand Guidelines](docs/brand-guidelines.md)** - Visual identity, colors, typography, and usage guidelines
+- **[Project Structure](docs/project-structure.md)** - Planned folder organization and migration strategy
+- **[Migration Checklist](docs/migration-checklist.md)** - Step-by-step restructuring guide
+
+### Quick Start
+New to the project? Start with the [Project Overview](docs/project-overview.md) for context, then follow the [Development Guide](docs/development-guide.md) for setup instructions.
 
 ## 🚢 Deployment
-Deploy on [Vercel](https://vercel.com/) or your preferred platform. Run `npm run build` to verify the app before pushing.
+Deploy on [Vercel](https://vercel.com/) or your preferred platform. Run `npm run build` to verify the app before pushing. See the [Development Guide](docs/development-guide.md) for detailed deployment instructions and environment configuration.
 

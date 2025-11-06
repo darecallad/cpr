@@ -58,14 +58,154 @@ These guidelines keep product, marketing, and engineering output visually consis
 - Highlight certification credibility (EMSA, CDSS) at least once per page.
 - Reinforce calls to action—"立即預約" / "Book now"—after each major storytelling block.
 
-## 8. Asset Storage
-- **Logos:** `public/logo.svg` (full lockup). Future alternates should live in `public/brand/` with clear naming (`waymaker-logo-dark.svg`, etc.).
-- **Photography:** Store rights-cleared imagery under `public/images/`. Include a README in that directory noting source and usage rights.
-- **Docs:** File updates to this guide and other brand docs in `docs/` with semantic names (e.g., `color-palette-2026.md`).
+## 8. Digital Implementation
 
-## 9. Implementation Checklist
-- [ ] Reference these colors in Tailwind theme tokens (see `globals.css`).
-- [ ] Use `BrandMissionSection` on the homepage to surface the mission statement.
-- [ ] Update README when brand assets change (link back to this doc).
+### CSS Variables Implementation
+```css
+/* src/app/globals.css */
+:root {
+  --primary-teal: #0F6C8C;
+  --accent-teal: #2F7FA3;
+  --sky-teal: #73BBD1;
+  --light-mint: #A8D5BA;
+  --warm-orange: #FF8A5B;
+  --deep-navy: #0F3B4C;
+  --slate: #2F4858;
+  --neutral-bg: #F4FAF8;
+  --border-light: #CDE6E0;
+}
+```
 
-Maintaining coherency here ensures every new page, brochure, or slide echoes Waymaker’s promise to guide and protect. Reach out to the design lead before introducing new visual directions.
+### Component Styling Patterns
+```typescript
+// Consistent button styling
+const primaryButton = "bg-[#FF8A5B] hover:bg-[#F57643] text-white";
+const secondaryButton = "border-[#0F3B4C] text-[#0F3B4C] hover:bg-[#0F3B4C]/10";
+
+// Card styling with brand colors
+const brandCard = "border-[#E0F0F5] bg-[#F8FCFB] shadow-sm";
+
+// Section backgrounds
+const lightSection = "bg-white";
+const mintSection = "bg-[#F4FAF8]";
+const gradientSection = "bg-gradient-to-br from-[#A8D5BA] to-[#73BBD1]";
+```
+
+### Responsive Design Tokens
+```css
+/* Spacing scale aligned with brand principles */
+.section-padding { padding: 4rem 1.5rem; }     /* py-16 px-6 */
+.content-max-width { max-width: 72rem; }       /* max-w-6xl */
+.card-padding { padding: 1.5rem; }             /* p-6 */
+.content-gap { gap: 3rem; }                    /* gap-12 */
+
+/* Typography hierarchy */
+.display-xl { font-size: 3rem; line-height: 1.1; }      /* text-5xl */
+.display-lg { font-size: 2.25rem; line-height: 1.2; }   /* text-4xl */
+.display-md { font-size: 1.875rem; line-height: 1.3; }  /* text-3xl */
+.body-lg { font-size: 1.125rem; line-height: 1.6; }     /* text-lg */
+.body-base { font-size: 1rem; line-height: 1.6; }       /* text-base */
+```
+
+## 9. Asset Storage & Organization
+- **Logos:** `public/logo.svg` (primary lockup), `public/favicon.svg` (mark only)
+- **Brand Assets:** Future alternates in `public/brand/` with descriptive naming
+  - `waymaker-logo-dark.svg` (dark background version)
+  - `waymaker-mark-only.svg` (icon-only version)
+  - `waymaker-horizontal.svg` (horizontal layout)
+- **Photography:** `public/images/training/` for course photos, `public/images/team/` for staff photos
+- **Partners:** `public/partners/` for partner organization logos
+- **Documentation:** All brand docs in `docs/` with semantic versioning when updated
+
+### File Naming Conventions
+```
+Images:     kebab-case-descriptive.jpg     (cpr-training-session.jpg)
+Logos:      brand-name-variant.svg         (waymaker-logo-dark.svg)
+Icons:      icon-name-size.svg             (heart-icon-24.svg)
+Docs:       topic-date.md                  (brand-guidelines-2025.md)
+```
+
+## 10. Usage Examples
+
+### Homepage Hero Implementation
+```typescript
+// Correct brand application
+<section className="bg-gradient-to-br from-[#A8D5BA] to-[#73BBD1] py-16">
+  <div className="max-w-6xl mx-auto px-6">
+    <h1 className="text-4xl md:text-5xl font-bold text-[#0F6C8C] mb-6">
+      專業守護 安心相伴
+    </h1>
+    <p className="text-lg text-[#2F4858] max-w-3xl mb-8">
+      Waymaker 致力於為幼兒園與托育機構提供專業且貼心的 CPR 與急救培訓
+    </p>
+    <Button className="bg-[#FF8A5B] hover:bg-[#F57643] px-8 py-3">
+      立即預約
+    </Button>
+  </div>
+</section>
+```
+
+### Card Component Styling
+```typescript
+// Brand-consistent card design
+<Card className="border-[#E0F0F5] bg-[#F8FCFB] shadow-sm">
+  <CardHeader className="pb-2">
+    <CardTitle className="text-lg font-semibold text-[#0F3B4C]">
+      課程特色
+    </CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p className="text-[#2F4858] leading-relaxed">
+      專業認證講師，雙語教學環境
+    </p>
+  </CardContent>
+</Card>
+```
+
+## 11. Quality Assurance
+
+### Brand Compliance Checklist
+- [ ] Colors match exact hex values from palette
+- [ ] Typography uses Geist Sans with correct weights
+- [ ] Spacing follows 8px grid system (Tailwind spacing scale)
+- [ ] Buttons use orange (#FF8A5B) for primary actions
+- [ ] Cards use mint borders (#E0F0F5) and backgrounds (#F8FCFB)
+- [ ] Headlines use primary teal (#0F6C8C)
+- [ ] Body text uses slate (#2F4858)
+
+### Testing Procedures
+1. **Visual QA:** Compare against brand guidelines
+2. **Color Accuracy:** Use browser dev tools to verify hex values
+3. **Responsive Testing:** Ensure brand consistency across breakpoints
+4. **Accessibility:** Verify color contrast meets WCAG 2.1 AA standards
+5. **Cross-browser:** Test in Chrome, Firefox, Safari, Edge
+
+## 12. Implementation Checklist
+- [ ] Reference brand colors in Tailwind theme tokens (`globals.css`)
+- [ ] Use `BrandMissionSection` component to surface mission statement
+- [ ] Apply consistent spacing using Tailwind utilities
+- [ ] Implement proper typography hierarchy across all pages
+- [ ] Update README when brand assets change
+- [ ] Document any new brand applications in this guide
+- [ ] Review brand compliance during code reviews
+
+## 13. Maintenance & Updates
+
+### Regular Review Schedule
+- **Monthly:** Review new content for brand consistency
+- **Quarterly:** Audit all pages for brand compliance
+- **Annually:** Update brand guidelines with any changes
+- **As needed:** Document new patterns and components
+
+### Change Management
+1. Propose changes via GitHub issue with visual examples
+2. Review with stakeholders and design lead
+3. Update this documentation before implementation
+4. Test changes across all pages and components
+5. Update component library and examples
+
+---
+
+Maintaining visual and messaging coherency ensures every touchpoint—from homepage to email signature—reinforces Waymaker's promise to guide and protect. This systematic approach to brand implementation creates trust and recognition in our community of childcare professionals.
+
+For questions about brand application or to propose new patterns, reach out to the design lead or create an issue in the project repository.
