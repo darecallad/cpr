@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { contactCopy } from "@/data/contact";
 import { useLanguage } from "@/context/LanguageContext";
+import { SEOHead } from "@/components/SEOHead";
 
 type FormValues = {
   name: string;
@@ -130,6 +131,8 @@ export default function ContactPage() {
   );
 
   return (
+    <>
+      <SEOHead page="contact" />
     <section className="bg-[#F0FBF6] px-6 py-16 md:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
         <div className="space-y-3 text-center md:text-left">
@@ -335,5 +338,6 @@ export default function ContactPage() {
         </Card>
       </div>
     </section>
+    </>
   );
 }

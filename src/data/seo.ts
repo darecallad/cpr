@@ -1,0 +1,96 @@
+// src/data/seo.ts
+export const seoData = {
+  courses: {
+    en: {
+      title: "CPR Courses | EMSA Pediatric CPR & First Aid Training - Waymaker CPR",
+      description:
+        "EMSA-approved pediatric CPR and first aid courses for childcare providers in San Jose. Bilingual instruction, hands-on practice, 2-year certification. On-site and studio classes available.",
+      keywords: [
+        "EMSA pediatric CPR course",
+        "childcare first aid training",
+        "CPR certification San Jose",
+        "daycare CPR requirements",
+        "bilingual CPR instruction",
+        "on-site CPR training",
+        "California childcare certification",
+        "兒童心肺復甦術課程",
+      ],
+    },
+    zh: {
+      title: "CPR 課程 | EMSA 認證兒童心肺復甦術與急救訓練 - Waymaker CPR",
+      description:
+        "聖荷西地區 EMSA 認證的兒童心肺復甦術與急救課程，專為托育人員設計。提供中英文雙語教學、實作演練、2年有效證書。可到府或工作室上課。",
+      keywords: [
+        "EMSA 兒童 CPR 課程",
+        "托育急救訓練",
+        "聖荷西 CPR 證照",
+        "托兒所 CPR 要求",
+        "雙語 CPR 教學",
+        "到府 CPR 訓練",
+        "加州托育證照",
+        "pediatric CPR course",
+      ],
+    },
+  },
+  booking: {
+    en: {
+      title: "Book CPR Training | Schedule Your EMSA Certification - Waymaker CPR",
+      description:
+        "Book your EMSA-certified CPR and first aid training in San Jose. Choose from upcoming sessions or request custom on-site training for your childcare facility. Easy online booking.",
+      keywords: [
+        "book CPR training San Jose",
+        "schedule CPR class",
+        "EMSA certification booking",
+        "on-site CPR training",
+        "childcare CPR appointment",
+        "預約 CPR 課程",
+        "CPR 訓練預約",
+      ],
+    },
+    zh: {
+      title: "預約 CPR 訓練 | 預定 EMSA 認證課程 - Waymaker CPR",
+      description:
+        "在聖荷西預約您的 EMSA 認證心肺復甦術與急救訓練。選擇即將開課的場次，或要求客製化到府訓練。線上預約簡單方便。",
+      keywords: [
+        "預約聖荷西 CPR 訓練",
+        "安排 CPR 課程",
+        "EMSA 認證預約",
+        "到府 CPR 訓練",
+        "托育 CPR 預約",
+        "book CPR training",
+        "schedule CPR class",
+      ],
+    },
+  },
+  contact: {
+    en: {
+      title: "Contact Us | Waymaker CPR Training - San Jose, CA",
+      description:
+        "Contact Waymaker CPR Training in San Jose. Email us at info@waymakerbiz.com or visit us at 2586 Seaboard Ave. We offer bilingual support for all your CPR training needs.",
+      keywords: [
+        "contact CPR training San Jose",
+        "Waymaker CPR contact",
+        "CPR instructor email",
+        "San Jose CPR location",
+        "聯絡 CPR 訓練",
+        "心肺復甦術聯絡方式",
+      ],
+    },
+    zh: {
+      title: "聯絡我們 | Waymaker CPR 訓練 - 加州聖荷西",
+      description:
+        "聯絡聖荷西的 Waymaker CPR 訓練中心。透過 info@waymakerbiz.com 與我們聯繫，或前往 2586 Seaboard Ave。我們提供雙語支援，滿足您的 CPR 訓練需求。",
+      keywords: [
+        "聯絡聖荷西 CPR 訓練",
+        "Waymaker CPR 聯絡方式",
+        "CPR 教練電郵",
+        "聖荷西 CPR 位置",
+        "contact CPR training",
+        "CPR contact information",
+      ],
+    },
+  },
+} as const;
+
+export type SEOPage = keyof typeof seoData;
+export type SEOLocale = "en" | "zh";

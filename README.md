@@ -10,9 +10,11 @@ Marketing and booking site for Waymaker's CPR and first-aid training programs se
 ## ✨ Features
 - **Next.js 15 + React 19** with App Router, strict TypeScript, and Tailwind CSS v4.
 - **Bilingual copy** powered by a lightweight `LanguageProvider` plus a locale toggle in the header.
-- **shadcn UI primitives** (button, card, input, toggle, textarea, label) themed for Waymaker’s colors.
+- **shadcn UI primitives** (button, card, input, toggle, textarea, label) themed for Waymaker's colors.
 - **Booking and contact forms** with calendar selection, payment notes, and embedded Google Maps.
 - **Modular sections** for the marketing homepage: hero, courses, testimonials, partners.
+- **SEO Optimized** with comprehensive metadata, structured data, and sitemap.
+- **Mobile Responsive** with touch-friendly navigation and optimized layouts.
 
 ## 🧰 Tech Stack
 - Next.js 15.3 (App Router)
@@ -78,6 +80,7 @@ src/
 - **[Brand Guidelines](docs/brand-guidelines.md)** - Visual identity, colors, typography, and usage guidelines
 - **[Project Structure](docs/project-structure.md)** - Planned folder organization and migration strategy
 - **[Migration Checklist](docs/migration-checklist.md)** - Step-by-step restructuring guide
+- **[SEO & Mobile Optimization](docs/seo-mobile-optimization.md)** - Search engine optimization and responsive design implementation
 
 ### Quick Start
 New to the project? Start with the [Project Overview](docs/project-overview.md) for context, then follow the [Development Guide](docs/development-guide.md) for setup instructions.

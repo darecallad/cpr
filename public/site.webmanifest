@@ -1,0 +1,13 @@
+{
+  "name": "Waymaker CPR Training",
+  "short_name": "Waymaker CPR",
+  "description": "Professional EMSA-certified CPR and First Aid training in San Jose, CA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4FAF8",
+  "theme_color": "#0F6C8C",
+  "orientation": "portrait-primary",
+  "categories": ["education", "health", "business"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

@@ -14,6 +14,7 @@ import {
   upcomingSessions,
 } from "@/data/booking";
 import { useLanguage } from "@/context/LanguageContext";
+import { SEOHead } from "@/components/SEOHead";
 
 type FormValues = {
   name: string;
@@ -140,6 +141,8 @@ export default function BookingPage() {
   };
 
   return (
+    <>
+      <SEOHead page="booking" />
     <section className="bg-[#F6FBF9] px-6 py-16 md:px-8">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
         <div className="space-y-4 text-center">
@@ -372,5 +375,6 @@ export default function BookingPage() {
         </Card>
       </div>
     </section>
+    </>
   );
 }

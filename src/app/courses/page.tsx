@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { coursesCopy } from "@/data/courses";
 import { useLanguage } from "@/context/LanguageContext";
+import { SEOHead } from "@/components/SEOHead";
 
 export default function CoursesPage() {
   const { locale } = useLanguage();
@@ -18,6 +19,8 @@ export default function CoursesPage() {
   const content = coursesCopy[locale];
 
   return (
+    <>
+      <SEOHead page="courses" />
     <main className="bg-[#F4FAF8]">
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-16">
         <div className="relative overflow-hidden rounded-3xl bg-white/90 p-10 shadow-lg">
@@ -249,5 +252,6 @@ export default function CoursesPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

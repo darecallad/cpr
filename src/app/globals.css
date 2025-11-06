@@ -122,4 +122,34 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Mobile optimization */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Improve touch targets on mobile */
+  button, a {
+    @apply min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0;
+  }
+  
+  /* Prevent horizontal scrolling */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Smooth scrolling */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+/* Mobile-friendly focus states */
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
 }
