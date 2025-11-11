@@ -1,6 +1,6 @@
 # Waymaker CPR Training Platform - Documentation Index
 
-_Last updated: November 6, 2025_
+_Last updated: November 10, 2025_
 
 Welcome to the comprehensive documentation for the Waymaker CPR Training Platform. This index provides a roadmap for understanding, developing, and maintaining the platform.
 
@@ -19,8 +19,8 @@ Technical documentation for building and maintaining the platform:
 1. **[Technical Architecture](technical-architecture.md)** - System design and code standards
 2. **[Development Guide](development-guide.md)** - Workflow, testing, and deployment
 3. **[Content Management](content-management.md)** - Managing bilingual content
-4. **[Project Structure](project-structure.md)** - Planned code organization
-5. **[Migration Checklist](migration-checklist.md)** - Restructuring roadmap
+4. **[Email Setup Guide](email-quick-setup.md)** - Gmail SMTP configuration (5 min)
+5. **[SEO & Mobile Optimization](seo-mobile-optimization.md)** - Search engine and responsive design
 
 ### For Content Managers
 Documentation for managing and updating site content:
@@ -33,6 +33,7 @@ High-level project information and strategic context:
 
 1. **[Project Overview](project-overview.md)** - Business goals and technical overview
 2. **[Brand Guidelines](brand-guidelines.md)** - Brand identity and market positioning
+3. **[CHANGELOG](CHANGELOG.md)** - All project changes and updates
 
 ## 🎯 Quick Reference
 
@@ -64,70 +65,32 @@ npm run start        # Start production server
 ### [Project Overview](project-overview.md)
 Comprehensive project background covering business context, technical architecture, features, and future roadmap. Essential reading for understanding project goals and scope.
 
-**Key Sections:**
-- Business Context & Goals
-- Technical Overview
-- Features & Functionality
-- Current Status & Limitations
-- Future Development Roadmap
-
 ### [Technical Architecture](technical-architecture.md)
 Detailed technical documentation including system design, technology stack, coding standards, and performance guidelines.
-
-**Key Sections:**
-- System Architecture Diagrams
-- Technology Stack Details
-- Design System & Components
-- Code Standards & Patterns
-- Performance & Security Guidelines
 
 ### [Development Guide](development-guide.md)
 Complete developer workflow documentation from environment setup through deployment and maintenance.
 
-**Key Sections:**
-- Environment Setup
-- Development Workflow
-- Build & Testing Procedures
-- Deployment Instructions
-- Troubleshooting Guide
-
 ### [Content Management](content-management.md)
 Comprehensive guide for managing bilingual content, internationalization, and translation workflows.
-
-**Key Sections:**
-- Content Architecture
-- Internationalization System
-- Translation Workflow
-- Content Types & Structures
-- Best Practices
 
 ### [Brand Guidelines](brand-guidelines.md)
 Visual identity standards including colors, typography, logo usage, and implementation guidelines.
 
-**Key Sections:**
-- Brand Story & Voice
-- Color Palette & Usage
-- Typography Standards
-- Logo & Asset Guidelines
-- Implementation Examples
+### [Email Setup Guide](email-quick-setup.md)
+Quick 5-minute guide to configure Gmail SMTP for form submissions. Includes troubleshooting and Vercel deployment instructions.
 
-### [Project Structure](project-structure.md)
-Planned code organization and migration strategy for scaling the project architecture.
+### [Email Architecture](email-architecture.md)
+Detailed technical documentation of the email system architecture, data flow, and API specifications.
 
-**Key Sections:**
-- Proposed Folder Structure
-- Feature-Based Organization
-- Migration Strategy
-- Naming Conventions
+### [SEO & Mobile Optimization](seo-mobile-optimization.md)
+Complete guide to search engine optimization and mobile responsiveness implementation.
 
-### [Migration Checklist](migration-checklist.md)
-Step-by-step guide for restructuring the codebase according to the planned architecture.
+### [SEO Quick Reference](seo-quick-reference.md)
+Quick reference for SEO best practices, metadata management, and optimization checklist.
 
-**Key Sections:**
-- Pre-Migration Preparation
-- Step-by-Step Migration
-- Post-Migration Validation
-- Testing Procedures
+### [CHANGELOG](CHANGELOG.md)
+Chronological record of all project changes, features, fixes, and updates.
 
 ## 🔧 Common Tasks
 
@@ -138,12 +101,20 @@ Step-by-step guide for restructuring the codebase according to the planned archi
 4. Test both language versions
 5. Follow brand guidelines for styling
 
+### Setting Up Email Functionality
+1. Follow [Email Quick Setup](email-quick-setup.md) (5 minutes)
+2. Generate Gmail App Password
+3. Update `.env.local` with credentials
+4. Test with `node scripts/test-email.js`
+5. Add environment variables to Vercel before deployment
+
 ### Adding New Pages
 1. Create page in `src/app/[page-name]/page.tsx`
 2. Add navigation links in Header component
 3. Create content files in `src/data/`
-4. Implement responsive design
-5. Test accessibility and performance
+4. Add SEO metadata
+5. Implement responsive design
+6. Test accessibility and performance
 
 ### Updating Styles
 1. Reference [Brand Guidelines](brand-guidelines.md)
