@@ -126,12 +126,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-6 text-xs text-white/60 md:flex md:items-center md:justify-between">
+        <div className="border-t border-white/10 pt-6 text-xs text-white/60">
           <p>
             © {year} Waymaker CPR. {content.legal}
-          </p>
-          <p className="mt-2 md:mt-0">
-            EIN 12-3456789 · Privacy Policy available upon request
           </p>
         </div>
       </div>

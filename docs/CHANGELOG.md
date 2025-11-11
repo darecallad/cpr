@@ -44,11 +44,18 @@ All notable changes to the Waymaker CPR Training Platform project will be docume
   - Performance considerations
   - Future enhancement roadmap
 
+#### Payment Options
+- **Cash App payment method** - Added Cash App as a payment option
+  - English: "Fast and secure payments via Cash App for instant processing."
+  - 中文: "透過 Cash App 快速安全付款，即時處理."
+  - Icon: Wallet icon from Lucide React
+
 ### Changed
 #### Contact Information Update
 - **Email:** Changed from `hello@waymakercpr.com` to `info@waymakerbiz.com`
 - **Address:** Updated from `25386 Seaboard Ave` to `2586 Seaboard Ave, San Jose, CA 95131`
 - **Service Area:** Changed from "Greater Los Angeles & Orange County" to "San Jose, CA"
+- **Contact form help text:** Updated to email-only contact (removed phone/LINE references)
 
 #### Contact Methods Streamlined
 - **Removed:** Phone contact option (was: +1 (424) 555-0198)
@@ -102,6 +109,10 @@ All notable changes to the Waymaker CPR Training Platform project will be docume
 - **Apple touch icon** - Removed reference to non-existent `/apple-touch-icon.png`
 - **PWA icons** - Removed references to non-existent icon files from manifest
 - **Manifest reference** - Removed manifest link from layout (not needed without icons)
+- **Digital wallets payment option** - Removed Apple Pay and Google Pay from payment methods
+- **District/group invoices payment option** - Removed purchase orders and ACH payments option
+- **Payment method icons** - Removed unused Wallet and FileText icons from imports
+- **Footer EIN and Privacy Policy** - Removed placeholder EIN (12-3456789) and Privacy Policy text from footer
 
 ### Fixed
 - **Form autocomplete attributes** - Added proper `autocomplete` and `name` attributes to all form inputs

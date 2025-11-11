@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { CreditCard, FileText, Wallet } from "lucide-react";
+import { CreditCard, Wallet } from "lucide-react";
 
 export type BookingLocale = "en" | "zh";
 
@@ -43,7 +43,7 @@ export type BookingCopy = {
   };
 };
 
-export type PaymentMethodId = "cards" | "wallets" | "invoice";
+export type PaymentMethodId = "cards" | "cashapp";
 
 export type BookingSession = {
   id: string;
@@ -119,14 +119,9 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
           detail: "Visa, Mastercard, and American Express supported with instant receipts.",
         },
         {
-          id: "wallets",
-          label: "Digital wallets",
-          detail: "Apple Pay and Google Pay available for returning clients.",
-        },
-        {
-          id: "invoice",
-          label: "District or group invoices",
-          detail: "Purchase orders and ACH payments accepted for schools and agencies.",
+          id: "cashapp",
+          label: "Cash App",
+          detail: "Fast and secure payments via Cash App for instant processing.",
         },
       ],
     },
@@ -175,14 +170,9 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
           detail: "支援 Visa、Mastercard、American Express，付款完成立即寄發收據。",
         },
         {
-          id: "wallets",
-          label: "行動支付",
-          detail: "Apple Pay、Google Pay 等快速支付方式將陸續開放。",
-        },
-        {
-          id: "invoice",
-          label: "團體轉帳 / 匯款",
-          detail: "學校、機構可申請匯款或採購單付款，我們會提供帳戶與收據。",
+          id: "cashapp",
+          label: "Cash App",
+          detail: "透過 Cash App 快速安全付款，即時處理。",
         },
       ],
     },
@@ -191,6 +181,5 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
 
 export const paymentMethodIcons: Record<PaymentMethodId, LucideIcon> = {
   cards: CreditCard,
-  wallets: Wallet,
-  invoice: FileText,
+  cashapp: Wallet,
 };

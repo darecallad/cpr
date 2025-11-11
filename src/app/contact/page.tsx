@@ -333,8 +333,8 @@ export default function ContactPage() {
                 </Button>
                 <p className="text-xs text-[#2F4858]/80">
                   {locale === "en"
-                    ? "Having trouble? Call us or message on LINE for instant help."
-                    : "需要協助？可直接來電或於 LINE 聯絡我們。"}
+                    ? "Having trouble? Email us at info@waymakerbiz.com for assistance."
+                    : "需要協助？請來信 info@waymakerbiz.com 與我們聯繫。"}
                 </p>
               </div>
             </form>
