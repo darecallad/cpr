@@ -11,6 +11,7 @@ Marketing and booking site for Waymaker's CPR and first-aid training programs se
 - **Next.js 15 + React 19** with App Router, strict TypeScript, and Tailwind CSS v4.
 - **Bilingual copy** powered by a lightweight `LanguageProvider` plus a locale toggle in the header.
 - **shadcn UI primitives** (button, card, input, toggle, textarea, label) themed for Waymaker's colors.
+- **Email-enabled forms** with Gmail SMTP integration for booking and contact submissions.
 - **Booking and contact forms** with calendar selection, payment notes, and embedded Google Maps.
 - **Modular sections** for the marketing homepage: hero, courses, testimonials, partners.
 - **SEO Optimized** with comprehensive metadata, structured data, and sitemap.
@@ -33,11 +34,30 @@ Marketing and booking site for Waymaker's CPR and first-aid training programs se
 npm install
 ```
 
+### Email Configuration (Required for Forms)
+The booking and contact forms require Gmail SMTP configuration. See **[Email Setup Guide](docs/email-setup-guide.md)** for detailed instructions.
+
+Quick setup:
+1. Generate a Gmail App Password
+2. Copy `.env.example` to `.env.local`
+3. Fill in your credentials:
+   ```env
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASSWORD=your-app-password
+   EMAIL_TO=info@waymakerbiz.com
+   ```
+4. Restart the dev server
+
 ### Run the development server
 ```powershell
 npm run dev
 ```
 Open http://localhost:3000 to view the site.
+
+### Test email functionality (Optional)
+```powershell
+node scripts/test-email.js
+```
 
 ### Additional scripts
 - `npm run lint` – ESLint with Next.js rules.
@@ -81,6 +101,7 @@ src/
 - **[Project Structure](docs/project-structure.md)** - Planned folder organization and migration strategy
 - **[Migration Checklist](docs/migration-checklist.md)** - Step-by-step restructuring guide
 - **[SEO & Mobile Optimization](docs/seo-mobile-optimization.md)** - Search engine optimization and responsive design implementation
+- **[Email Setup Guide](docs/email-setup-guide.md)** - Gmail SMTP configuration for form submissions
 
 ### Quick Start
 New to the project? Start with the [Project Overview](docs/project-overview.md) for context, then follow the [Development Guide](docs/development-guide.md) for setup instructions.

@@ -122,7 +122,7 @@ export default function BookingPage() {
     return nextErrors;
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate();
 
@@ -134,10 +134,44 @@ export default function BookingPage() {
     setErrors({});
     setStatus("submitting");
 
-    setTimeout(() => {
+    try {
+      // 準備發送數據
+      const bookingData = {
+        fullName: values.name,
+        phone: values.phone,
+        email: values.email,
+        organization: values.organization || undefined,
+        courseType: selectedSession?.label || "Custom Date",
+        preferredDate: values.sessionId === "custom" ? values.customDate : selectedSession?.isoDate,
+        numberOfStudents: undefined, // 可以之後從表單添加此欄位
+        paymentMethod: "To be confirmed",
+        specialRequests: values.notes || undefined,
+        locale,
+      };
+
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send booking");
+      }
+
       setStatus("success");
       setValues(initialValues);
-    }, 700);
+    } catch (error) {
+      console.error("Error submitting booking:", error);
+      alert(
+        locale === "en"
+          ? "Failed to submit booking. Please try again or contact us directly."
+          : "提交失敗，請重試或直接聯絡我們。"
+      );
+      setStatus("idle");
+    }
   };
 
   return (

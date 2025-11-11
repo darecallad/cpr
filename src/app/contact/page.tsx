@@ -4,7 +4,6 @@
 import type { ChangeEvent, FormEvent } from "react";
 import { useMemo, useState } from "react";
 import { Clock, Mail, MapPin } from "lucide-react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -93,7 +92,7 @@ export default function ContactPage() {
     return nextErrors;
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate();
 
@@ -105,10 +104,37 @@ export default function ContactPage() {
     setErrors({});
     setStatus("submitting");
 
-    setTimeout(() => {
+    try {
+      const contactData = {
+        name: values.name,
+        email: values.email,
+        message: `[${values.category}]\n\n${values.message}`,
+        locale,
+      };
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
       setStatus("success");
       setValues(initialValues);
-    }, 700);
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      alert(
+        locale === "en"
+          ? "Failed to send message. Please try again or email us directly at info@waymakerbiz.com"
+          : "訊息發送失敗，請重試或直接來信 info@waymakerbiz.com"
+      );
+      setStatus("idle");
+    }
   };
 
   const detailItems = useMemo(

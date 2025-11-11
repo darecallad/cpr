@@ -2,7 +2,39 @@
 
 All notable changes to the Waymaker CPR Training Platform project will be documented in this file.
 
-## [Unreleased] - 2025-11-06
+## [Unreleased] - 2025-11-10
+
+### Added
+#### Email Integration
+- **Gmail SMTP Configuration:** 
+  - Created `src/lib/email.ts` with nodemailer transporter
+  - Environment variables setup (`.env.local`, `.env.example`)
+  - Email verification function
+- **API Routes:**
+  - `/api/booking` - Handles course booking submissions with formatted HTML emails
+  - `/api/contact` - Handles contact form submissions with formatted HTML emails
+- **Form Integration:**
+  - Updated `src/app/booking/page.tsx` to POST to `/api/booking`
+  - Updated `src/app/contact/page.tsx` to POST to `/api/contact`
+  - Added async form submission with error handling
+  - User-friendly error messages (bilingual)
+- **Email Templates:**
+  - Professional HTML email templates with brand colors
+  - Bilingual content (English + Traditional Chinese)
+  - Plain text fallback versions
+  - Reply-to functionality for direct customer responses
+- **Documentation:**
+  - Created `docs/email-setup-guide.md` with complete setup instructions
+  - Gmail App Password generation guide
+  - Testing procedures and troubleshooting tips
+- **Testing Script:**
+  - Created `scripts/test-email.js` for quick email configuration testing
+
+#### Dependencies
+- Added `nodemailer@^6.9.16` for email sending
+- Added `@types/nodemailer@^6.4.17` for TypeScript support
+
+## [Previous] - 2025-11-06
 
 ### Added
 #### SEO Optimization

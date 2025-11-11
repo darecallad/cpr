@@ -1,5 +1,3 @@
-import type { LucideIcon } from "lucide-react";
-
 type Locale = "en" | "zh";
 
 type ContactDetail = {
