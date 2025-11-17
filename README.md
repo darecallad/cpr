@@ -1,3 +1,5 @@
+﻿<div id="top"></div>
+
 # Waymaker CPR Training Platform
 
 <div align="center">
@@ -10,7 +12,7 @@
 
 **Professional CPR & First Aid Training Website** for Waymaker Business, serving the San Jose area with bilingual (English/中文) support.
 
-[Live Demo](#) • [Documentation](docs/README.md) • [Report Issue](https://github.com/darecallad/cpr/issues)
+[Documentation](docs/README.md) • [Report Issue](https://github.com/darecallad/cpr/issues)
 
 </div>
 
@@ -22,25 +24,25 @@
 <tr>
 <td width="25%" align="center">
 
-### 🎯 [核心功能](#-features)
+### 🎯 [核心功能](#features)
 **Core Features**
 
 </td>
 <td width="25%" align="center">
 
-### 🚀 [快速開始](#-getting-started)
+### 🚀 [快速開始](#getting-started)
 **Quick Start**
 
 </td>
 <td width="25%" align="center">
 
-### 📚 [文檔](#-documentation)
+### 📚 [文檔](#documentation)
 **Documentation**
 
 </td>
 <td width="25%" align="center">
 
-### 🛠️ [技術棧](#-tech-stack)
+### 🛠️ [技術棧](#tech-stack)
 **Tech Stack**
 
 </td>
@@ -66,7 +68,7 @@
 </td>
 <td width="25%" align="center">
 
-### ⭐ [項目相關](#-about)
+### ⭐ [項目相關](#about)
 **About Project**
 
 </td>
@@ -305,78 +307,47 @@ npm start
 
 ---
 
-## 📞 Contact Information
+## 📞 Contact
 
-### Waymaker Business
 - **Email**: info@waymakerbiz.com
 - **Phone**: Available on contact page
 - **Address**: 2586 Seaboard Ave, San Jose, CA 95131
 - **Service Area**: San Jose, California
-
-### Course Information
-- **Certification**: AHA Heartsaver® CPR + First Aid
-- **Group Discounts**: 8+ participants
-- **On-Site Training**: Available for San Jose area (8+ people)
 - **Languages**: English and Traditional Chinese sessions
 
 ---
 
 ## ⭐ About
 
-### Project Goals
-Waymaker CPR Training Platform is designed to:
-- Provide accessible CPR and first aid training information
-- Serve both English and Chinese-speaking communities
-- Simplify the booking and contact process
-- Maintain professional brand identity
-- Ensure mobile-friendly experience
+This platform provides accessible CPR and first aid training information for both English and Chinese-speaking communities in San Jose.
 
 ### Why Open Source?
-This project is open-sourced to:
 - **Share Knowledge**: Help others build bilingual Next.js applications
 - **Community Learning**: Demonstrate modern web development practices
 - **Portfolio Showcase**: Display professional web development capabilities
-- **Get Feedback**: Improve through community input
-
-**Note**: All business-sensitive information (emails, credentials) are managed through environment variables and not included in the repository.
 
 ### License
-This project is open source under the [MIT License](LICENSE).
-
-You are free to:
-- ✅ Use this code for learning
-- ✅ Fork and modify for your own projects
-- ✅ Use as reference for similar projects
-
-Please:
-- 📝 Provide attribution if you use significant portions
-- 🔒 Never commit sensitive credentials to Git
-- 🤝 Share improvements back to the community
+MIT License - see [LICENSE](LICENSE) file. Free to use for learning and reference. Please provide attribution if using significant portions.
 
 ---
 
 ## 🙏 Acknowledgments
 
-### Technologies
-- [Next.js](https://nextjs.org/) - React framework
-- [shadcn/ui](https://ui.shadcn.com/) - Component library
-- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [Vercel](https://vercel.com/) - Hosting platform
-
-### Design Inspiration
-- [TrendRadar](https://github.com/sansan0/TrendRadar) - README structure inspiration
-- [Radix UI](https://www.radix-ui.com/) - Accessible components
-- [Lucide Icons](https://lucide.dev/) - Icon library
+Built with [Next.js](https://nextjs.org/), [shadcn/ui](https://ui.shadcn.com/), [Tailwind CSS](https://tailwindcss.com/), and [Radix UI](https://www.radix-ui.com/).
 
 ---
 
 ## 📄 License
 
-MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
 ## 🔝 回到頂部 (Back to Top)
+
+[⬆️ Back to Top](#top)
+
+---
 
 **Built with ❤️ by Waymaker Business | Serving San Jose's childcare community**
 
