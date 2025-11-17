@@ -24,25 +24,25 @@
 <tr>
 <td width="25%" align="center">
 
-### 🎯 [核心功能](#features)
+### 🎯 [核心功能](#-features)
 **Core Features**
 
 </td>
 <td width="25%" align="center">
 
-### 🚀 [快速開始](#getting-started)
+### 🚀 [快速開始](#-getting-started)
 **Quick Start**
 
 </td>
 <td width="25%" align="center">
 
-### 📚 [文檔](#documentation)
+### 📚 [文檔](#-documentation)
 **Documentation**
 
 </td>
 <td width="25%" align="center">
 
-### 🛠️ [技術棧](#tech-stack)
+### 🛠️ [技術棧](#️-tech-stack)
 **Tech Stack**
 
 </td>
@@ -50,7 +50,7 @@
 <tr>
 <td width="25%" align="center">
 
-### � [自定義內容](docs/content-management.md)
+### 📝 [內容管理](docs/content-management.md)
 **Content Management**
 
 </td>
@@ -62,13 +62,13 @@
 </td>
 <td width="25%" align="center">
 
-### 🌐 [部署指南](docs/development-guide.md#deployment)
+### 🌐 [部署指南](#-deployment)
 **Deployment**
 
 </td>
 <td width="25%" align="center">
 
-### ⭐ [項目相關](#about)
+### ⭐ [項目相關](#-about)
 **About Project**
 
 </td>
