@@ -1,6 +1,6 @@
 # Waymaker CPR Training Platform - Documentation Index
 
-_Last updated: November 10, 2025_
+_Last updated: November 16, 2025_
 
 Welcome to the comprehensive documentation for the Waymaker CPR Training Platform. This index provides a roadmap for understanding, developing, and maintaining the platform.
 
@@ -12,6 +12,7 @@ Start here to understand the project and get up to speed:
 1. **[Project Overview](project-overview.md)** - Essential background and context
 2. **[Development Guide](development-guide.md)** - Setup and getting started
 3. **[Brand Guidelines](brand-guidelines.md)** - Visual identity and styling standards
+4. **[Project Cleanup Summary](project-cleanup-summary.md)** - Current project structure and organization
 
 ### For Developers
 Technical documentation for building and maintaining the platform:
@@ -19,8 +20,9 @@ Technical documentation for building and maintaining the platform:
 1. **[Technical Architecture](technical-architecture.md)** - System design and code standards
 2. **[Development Guide](development-guide.md)** - Workflow, testing, and deployment
 3. **[Content Management](content-management.md)** - Managing bilingual content
-4. **[Email Setup Guide](email-quick-setup.md)** - Gmail SMTP configuration (5 min)
-5. **[SEO & Mobile Optimization](seo-mobile-optimization.md)** - Search engine and responsive design
+4. **[Email Quick Setup](email-quick-setup.md)** - Gmail SMTP configuration (5 min)
+5. **[Email Architecture](email-architecture.md)** - Email system design and API specs
+6. **[SEO & Mobile Optimization](seo-mobile-optimization.md)** - Search engine and responsive design
 
 ### For Content Managers
 Documentation for managing and updating site content:
@@ -88,6 +90,12 @@ Complete guide to search engine optimization and mobile responsiveness implement
 
 ### [SEO Quick Reference](seo-quick-reference.md)
 Quick reference for SEO best practices, metadata management, and optimization checklist.
+
+### [Project Cleanup Summary (Nov 16)](project-cleanup-summary-nov16.md)
+Recent cleanup and content update summary including partner logo redesign, payment method updates, and service area changes.
+
+### [Project Cleanup Summary (Nov 10)](project-cleanup-summary.md)
+Initial project organization and documentation consolidation summary.
 
 ### [CHANGELOG](CHANGELOG.md)
 Chronological record of all project changes, features, fixes, and updates.
