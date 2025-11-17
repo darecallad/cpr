@@ -27,22 +27,22 @@ export function PartnersSection() {
   <p className="text-[#2F4858] text-lg mb-8">{content.description}</p>
         <div className="mx-auto grid w-full max-w-5xl grid-cols-2 items-center justify-items-center gap-10 sm:grid-cols-3 lg:grid-cols-6">
           {[
-            { src: "/partners/kidspace.png", alt: "Kidspace", width: 260, height: 84 },
+            { src: "/partners/sunnygarden.svg", alt: "Sunny Garden Daycare", width: 260, height: 84 },
             {
-              src: "/partners/sunnydaycare.png",
-              alt: "Sunny Day Care",
+              src: "/partners/sunnychildcare-new.svg",
+              alt: "Sunny Child Care",
               width: 260,
               height: 84,
             },
             {
-              src: "/partners/littlesprouts.png",
-              alt: "Little Sprouts",
+              src: "/partners/sweetbutterfly.svg",
+              alt: "Sweet Butterfly Daycare",
               width: 260,
               height: 84,
             },
             {
-              src: "/partners/abcchildcare.png",
-              alt: "ABC Childcare",
+              src: "/partners/appletree.svg",
+              alt: "Apple Tree Daycare",
               width: 260,
               height: 84,
             },

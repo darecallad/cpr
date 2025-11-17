@@ -308,7 +308,6 @@ export default function BookingPage() {
                           {session.label}
                         </option>
                       ))}
-                      <option value="custom">{copy.labels.sessionCustomOption}</option>
                     </select>
                     {errors.sessionId && (
                       <p className="text-sm text-[#C65353]">{errors.sessionId}</p>
@@ -319,30 +318,6 @@ export default function BookingPage() {
                       </p>
                     )}
                   </div>
-
-                  {values.sessionId === "custom" && (
-                    <div className="space-y-2">
-                      <Label htmlFor="customDate" className="flex items-center gap-2 text-[#2F4858]">
-                        <span>{copy.labels.customDate}</span>
-                        <span className="text-[#C65353]">*</span>
-                      </Label>
-                      <Input
-                        id="customDate"
-                        name="customDate"
-                        type="text"
-                        autoComplete="off"
-                        value={values.customDate}
-                        onChange={handleInputChange("customDate")}
-                        aria-invalid={Boolean(errors.customDate)}
-                        required
-                        placeholder={copy.labels.customDatePlaceholder}
-                        className="border-[#CCE6DE] focus-visible:border-[#73BBD1] focus-visible:ring-[#73BBD1]/50"
-                      />
-                      {errors.customDate && (
-                        <p className="text-sm text-[#C65353]">{errors.customDate}</p>
-                      )}
-                    </div>
-                  )}
 
                   <div className="space-y-2">
                     <Label htmlFor="notes" className="text-[#2F4858]">
@@ -380,16 +355,6 @@ export default function BookingPage() {
                 <p className="text-sm text-[#2F4858]">
                   {copy.payment.description}
                 </p>
-                <div className="flex gap-2">
-                  {["VISA", "MC", "AMEX"].map((brand) => (
-                    <span
-                      key={brand}
-                      className="flex h-10 w-16 items-center justify-center rounded-md border border-[#CCE6DE] bg-[#F8FCFB] text-xs font-semibold text-[#2F4858] shadow-xs"
-                    >
-                      {brand}
-                    </span>
-                  ))}
-                </div>
                 <div className="space-y-3">
                   {copy.payment.methods.map((method) => {
                     const Icon = paymentMethodIcons[method.id];

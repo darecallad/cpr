@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { CreditCard, Wallet } from "lucide-react";
+import { Wallet, FileText } from "lucide-react";
 
 export type BookingLocale = "en" | "zh";
 
@@ -43,7 +43,7 @@ export type BookingCopy = {
   };
 };
 
-export type PaymentMethodId = "cards" | "cashapp";
+export type PaymentMethodId = "paypal" | "venmo" | "check";
 
 export type BookingSession = {
   id: string;
@@ -54,22 +54,16 @@ export type BookingSession = {
 
 export const upcomingSessions: BookingSession[] = [
   {
-    id: "session-1",
-    isoDate: "2025-12-03T17:00:00.000Z",
-    label: "December 3 · Torrance Studio",
-    note: "Hands-on workshop · 9:00 AM – 5:00 PM",
+    id: "english-session",
+    isoDate: "",
+    label: "English Session",
+    note: "",
   },
   {
-    id: "session-2",
-    isoDate: "2026-01-10T17:00:00.000Z",
-    label: "January 10 · On-site (Greater LA)",
-    note: "Private group · 8:30 AM – 4:30 PM",
-  },
-  {
-    id: "session-3",
-    isoDate: "2026-02-07T17:00:00.000Z",
-    label: "February 7 · Torrance Studio",
-    note: "Open enrollment · 9:00 AM – 5:00 PM",
+    id: "chinese-session",
+    isoDate: "",
+    label: "中文班",
+    note: "",
   },
 ];
 
@@ -86,11 +80,11 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       email: "Email address",
       organization: "Organization (optional)",
       session: "Select a session",
-      sessionPlaceholder: "Choose an upcoming training date",
-  sessionCustomOption: "Request a custom date",
+      sessionPlaceholder: "Choose English or Chinese session",
+      sessionCustomOption: "Request a custom date",
       customDate: "Prefer a different date?",
       customDatePlaceholder: "Share your preferred date or timeframe",
-      notes: "Additional requests",
+      notes: "Your available dates and times",
     },
     submit: "Submit registration",
     assistance:
@@ -111,17 +105,22 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       heading: "Payment overview",
       description:
         "After we confirm the details, we will send a secure checkout link tailored to your session.",
-      security: "All transactions are encrypted. We never store your card information.",
+      security: "All transactions are encrypted and secure.",
       methods: [
         {
-          id: "cards",
-          label: "Credit & debit cards",
-          detail: "Visa, Mastercard, and American Express supported with instant receipts.",
+          id: "paypal",
+          label: "PayPal",
+          detail: "Safe and convenient payments through PayPal with buyer protection.",
         },
         {
-          id: "cashapp",
-          label: "Cash App",
-          detail: "Fast and secure payments via Cash App for instant processing.",
+          id: "venmo",
+          label: "Venmo",
+          detail: "Fast and easy payments via Venmo for instant processing.",
+        },
+        {
+          id: "check",
+          label: "Check",
+          detail: "Pay by personal or business check. Details will be provided after confirmation.",
         },
       ],
     },
@@ -138,11 +137,11 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       email: "Email",
       organization: "單位名稱（選填）",
       session: "選擇課程場次",
-      sessionPlaceholder: "請選擇即將開課的日期",
+      sessionPlaceholder: "選擇英文或是中文班",
   sessionCustomOption: "想安排其他日期",
       customDate: "想安排其他日期？",
       customDatePlaceholder: "請填寫偏好的日期或時段",
-      notes: "備註需求",
+      notes: "您方便的日期和時間",
     },
     submit: "提交報名",
     assistance:
@@ -162,17 +161,22 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
     payment: {
       heading: "付款方式",
       description: "確認課程後，我們將寄送專屬的安全付款連結。",
-      security: "所有交易皆為加密傳輸，網站不會儲存您的信用卡資訊。",
+      security: "所有交易皆為加密傳輸，安全可靠。",
       methods: [
         {
-          id: "cards",
-          label: "信用卡 / 金融卡",
-          detail: "支援 Visa、Mastercard、American Express，付款完成立即寄發收據。",
+          id: "paypal",
+          label: "PayPal",
+          detail: "透過 PayPal 安全便利付款，享有買家保護。",
         },
         {
-          id: "cashapp",
-          label: "Cash App",
-          detail: "透過 Cash App 快速安全付款，即時處理。",
+          id: "venmo",
+          label: "Venmo",
+          detail: "透過 Venmo 快速付款，即時處理。",
+        },
+        {
+          id: "check",
+          label: "支票",
+          detail: "可使用個人或公司支票付款。確認後將提供詳細資訊。",
         },
       ],
     },
@@ -180,6 +184,7 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
 };
 
 export const paymentMethodIcons: Record<PaymentMethodId, LucideIcon> = {
-  cards: CreditCard,
-  cashapp: Wallet,
+  paypal: Wallet,
+  venmo: Wallet,
+  check: FileText,
 };

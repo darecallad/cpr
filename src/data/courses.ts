@@ -154,7 +154,7 @@ export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
           title: "On-site workshop",
           description:
             "We bring manikins, AED trainers, and supplies to your campus for a private session aligned with your daily schedule.",
-          detail: "Ideal for teams of 6–24 participants. Travel within Greater LA & Orange County included.",
+          detail: "Ideal for teams of 8+ participants. Travel within San Jose area included.",
         },
         {
           title: "Waymaker classroom",
@@ -175,9 +175,8 @@ export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
       body:
         "Standard tuition is $90 per participant and includes bilingual instruction, course handbook, and a two-year EMSA certificate with tracking sticker.",
       bullets: [
-        "Groups of 15+ receive a 10% discount.",
-        "Bundle CPR/First Aid with Preventive Health & Safety for a combined rate of $170 per person.",
-        "Flexible payment options: credit card, ACH, or district purchase order.",
+        "Groups of 8+ receive a 10% discount.",
+        "Flexible payment options: Venmo, PayPal, or district purchase order.",
       ],
     },
     certification: {
@@ -205,7 +204,7 @@ export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
         {
           question: "Can you teach at our facility?",
           answer:
-            "Absolutely. On-site workshops are our most popular format. Provide a multipurpose room or large classroom and we handle the rest.",
+            "Absolutely. On-site workshops are our most popular format. Provide a multipurpose room or large classroom and we handle the rest. Minimum group size of 8 participants required for on-site training.",
         },
         {
           question: "What should participants wear or bring?",
@@ -289,7 +288,7 @@ export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
           title: "到校專班",
           description:
             "講師攜帶假人、AED 訓練機與教材到貴單位授課，課程可配合園所作息安排。",
-          detail: "適合 6–24 人團隊，洛杉磯與橙縣地區免收車程費。",
+          detail: "適合 8 人以上團隊，San Jose 地區免收車程費。",
         },
         {
           title: "Waymaker 教室",
@@ -310,9 +309,8 @@ export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
       body:
         "標準學費每人 $90，含雙語講授、教材與附 EMSA 貼紙的兩年期證書。",
       bullets: [
-        "15 人以上團體可享 9 折優惠。",
-        "CPR/急救與預防健康安全課程合購，每人 $170。",
-        "提供信用卡、ACH 或學區採購單等多元付款方式。",
+        "8 人以上團體可享 9 折優惠。",
+        "提供 Venmo、PayPal 或學區採購單等多元付款方式。",
       ],
     },
     certification: {
@@ -336,7 +334,7 @@ export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
         },
         {
           question: "可以到我們園所授課嗎？",
-          answer: "當然可以。到校專班是最受歡迎的方式，只需提供可容納學員的教室即可。",
+          answer: "當然可以。到校專班是最受歡迎的方式，只需提供可容納學員的教室即可。最低需要 8 人以上團體報名才能安排到校授課。",
         },
         {
           question: "學員需要準備什麼？",
