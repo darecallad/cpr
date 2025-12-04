@@ -90,6 +90,34 @@ export const seoData = {
       ],
     },
   },
+  partners: {
+    en: {
+      title: "Partner Kindergartens | Waymaker CPR - Trusted Childcare Providers",
+      description:
+        "Explore our network of trusted partner kindergartens and daycares in San Jose, Sunnyvale, and Santa Clara. Find quality childcare providers committed to safety and excellence.",
+      keywords: [
+        "partner kindergartens San Jose",
+        "trusted daycares Sunnyvale",
+        "childcare providers Santa Clara",
+        "Waymaker CPR partners",
+        "preschools with CPR certified staff",
+        "daycare tour guidelines",
+      ],
+    },
+    zh: {
+      title: "合作幼兒園 | Waymaker CPR - 值得信賴的托育夥伴",
+      description:
+        "探索我們在聖荷西、桑尼維爾和聖塔克拉拉的合作幼兒園與托兒所網絡。尋找致力於安全與卓越品質的優質托育服務。",
+      keywords: [
+        "聖荷西合作幼兒園",
+        "桑尼維爾優質托兒所",
+        "聖塔克拉拉托育服務",
+        "Waymaker CPR 合作夥伴",
+        "CPR 認證幼兒園",
+        "參觀托兒所須知",
+      ],
+    },
+  },
 } as const;
 
 export type SEOPage = keyof typeof seoData;

@@ -3,7 +3,7 @@
 
 import type { ChangeEvent, FormEvent } from "react";
 import { useMemo, useState } from "react";
-import { Clock, Mail, MapPin } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -146,6 +146,12 @@ export default function ContactPage() {
         href: copy.details.email.href,
       },
       {
+        icon: Phone,
+        label: copy.details.phone.label,
+        value: copy.details.phone.value,
+        href: copy.details.phone.href,
+      },
+      {
         icon: MapPin,
         label: copy.details.address.label,
         value: copy.details.address.lines.join("\n"),
@@ -153,7 +159,7 @@ export default function ContactPage() {
         isAddress: true,
       },
     ],
-    [copy.details.address, copy.details.email],
+    [copy.details.address, copy.details.email, copy.details.phone],
   );
 
   return (

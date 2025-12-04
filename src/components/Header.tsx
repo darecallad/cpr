@@ -19,12 +19,14 @@ export function Header() {
       home: "Home",
       courses: "Courses",
       booking: "Booking",
+      partners: "Partner Kindergartens",
       contact: "Contact",
     },
     zh: {
       home: "首頁",
       courses: "課程介紹",
       booking: "預約報名",
+      partners: "合作幼兒園",
       contact: "聯絡我們",
     },
   } as const;
@@ -39,6 +41,7 @@ export function Header() {
     { path: "/", label: labels.home },
     { path: "/courses", label: labels.courses },
     { path: "/booking", label: labels.booking },
+    { path: "/partners", label: labels.partners },
     { path: "/contact", label: labels.contact },
   ];
 

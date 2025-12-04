@@ -46,6 +46,7 @@ type ContactCopy = {
   };
   details: {
     email: ContactDetail;
+    phone: ContactDetail;
     address: ContactDetail & { lines: string[] };
     serviceHours: ContactDetail;
   };
@@ -68,6 +69,11 @@ export const contactCopy: Record<Locale, ContactCopy> = {
         label: "Email",
         value: "info@waymakerbiz.com",
         href: "mailto:info@waymakerbiz.com",
+      },
+      phone: {
+        label: "Phone",
+        value: "(408) 590-3617",
+        href: "tel:4085903617",
       },
       address: {
         label: "Training studio",
@@ -129,6 +135,11 @@ export const contactCopy: Record<Locale, ContactCopy> = {
         label: "電子郵件",
         value: "info@waymakerbiz.com",
         href: "mailto:info@waymakerbiz.com",
+      },
+      phone: {
+        label: "電話",
+        value: "(408) 590-3617",
+        href: "tel:4085903617",
       },
       address: {
         label: "培訓教室",

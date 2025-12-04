@@ -37,6 +37,43 @@ export function SEOHead({ page }: SEOHeadProps) {
 
     // Update lang attribute
     document.documentElement.lang = locale === "zh" ? "zh-TW" : "en";
+
+    // Add JSON-LD for LocalBusiness
+    const scriptId = "json-ld-local-business";
+    let script = document.getElementById(scriptId);
+    if (!script) {
+      script = document.createElement("script");
+      script.id = scriptId;
+      script.setAttribute("type", "application/ld+json");
+      document.head.appendChild(script);
+    }
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Waymaker CPR",
+      "image": "https://waymakercpr.com/logo.svg",
+      "telephone": "(408) 590-3617",
+      "email": "info@waymakerbiz.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "2586 Seaboard Ave",
+        "addressLocality": "San Jose",
+        "addressRegion": "CA",
+        "postalCode": "95131",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.386051,
+        "longitude": -121.883873
+      },
+      "url": "https://waymakercpr.com",
+      "priceRange": "$$"
+    };
+
+    script.textContent = JSON.stringify(jsonLd);
+
   }, [seo, locale]);
 
   return null;

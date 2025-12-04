@@ -15,6 +15,8 @@ const copy = {
         title: "Contact",
         emailLabel: "Email",
         emailValue: "info@waymakerbiz.com",
+        phoneLabel: "Phone",
+        phoneValue: "(408) 590-3617",
         serviceLabel: "Service area",
         serviceValue: "San Jose, CA",
       },
@@ -24,6 +26,7 @@ const copy = {
           { label: "Home", href: "/" },
           { label: "Courses", href: "/courses" },
           { label: "Booking", href: "/booking" },
+          { label: "Partner Kindergartens", href: "/partners" },
           { label: "Contact", href: "/contact" },
         ],
       },
@@ -41,6 +44,8 @@ const copy = {
         title: "聯絡方式",
         emailLabel: "電子郵件",
         emailValue: "info@waymakerbiz.com",
+        phoneLabel: "電話",
+        phoneValue: "(408) 590-3617",
         serviceLabel: "服務範圍",
         serviceValue: "加州聖荷西地區",
       },
@@ -50,6 +55,7 @@ const copy = {
           { label: "首頁", href: "/" },
           { label: "課程介紹", href: "/courses" },
           { label: "預約報名", href: "/booking" },
+          { label: "合作幼兒園", href: "/partners" },
           { label: "聯絡我們", href: "/contact" },
         ],
       },
@@ -100,6 +106,14 @@ export function Footer() {
                 <dd>
                   <a href="mailto:info@waymakerbiz.com" className="hover:text-white">
                     {content.sections.contact.emailValue}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-white/60">{content.sections.contact.phoneLabel}</dt>
+                <dd>
+                  <a href="tel:4085903617" className="hover:text-white">
+                    {content.sections.contact.phoneValue}
                   </a>
                 </dd>
               </div>
