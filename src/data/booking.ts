@@ -11,6 +11,7 @@ export type BookingCopy = {
     phone: string;
     email: string;
     organization: string;
+    organizationPlaceholder: string;
     session: string;
     sessionPlaceholder: string;
     sessionCustomOption: string;
@@ -28,6 +29,7 @@ export type BookingCopy = {
     name: string;
     phone: string;
     email: string;
+    organization: string;
     session: string;
     customDate: string;
   };
@@ -78,7 +80,8 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       name: "Name",
       phone: "Phone",
       email: "Email address",
-      organization: "Organization (optional)",
+      organization: "Organization",
+      organizationPlaceholder: "Select an organization",
       session: "Select a session",
       sessionPlaceholder: "Choose English or Chinese session",
       sessionCustomOption: "Request a custom date",
@@ -98,6 +101,7 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       name: "Please enter your name.",
       phone: "Please provide a phone number.",
       email: "Please provide a valid email address.",
+      organization: "Please select an organization.",
       session: "Please select an upcoming session or request a custom date.",
       customDate: "Let us know your preferred date.",
     },
@@ -135,7 +139,8 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       name: "姓名",
       phone: "聯絡電話",
       email: "Email",
-      organization: "單位名稱（選填）",
+      organization: "單位名稱",
+      organizationPlaceholder: "選擇單位名稱",
       session: "選擇課程場次",
       sessionPlaceholder: "選擇英文或是中文班",
   sessionCustomOption: "想安排其他日期",
@@ -155,6 +160,7 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       name: "請輸入姓名。",
       phone: "請留下聯絡電話。",
       email: "請輸入有效的 Email。",
+      organization: "請選擇單位名稱。",
       session: "請選擇場次或告知希望的日期。",
       customDate: "請填寫希望安排的日期。",
     },

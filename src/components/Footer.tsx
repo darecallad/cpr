@@ -13,12 +13,14 @@ const copy = {
     sections: {
       contact: {
         title: "Contact",
-        emailLabel: "Email",
-        emailValue: "info@waymakerbiz.com",
+        waymakerEmailLabel: "Waymaker Email",
+        waymakerEmailValue: "info@waymakerbiz.com",
+        daycareEmailLabel: "Daycare Email",
+        daycareEmailValue: "daycareinformation4you@gmail.com",
         phoneLabel: "Phone",
         phoneValue: "(408) 590-3617",
         serviceLabel: "Service area",
-        serviceValue: "San Jose, CA",
+        serviceValue: "Mountain View, Sunnyvale, Cupertino, Santa Clara, San Jose, Milpitas, Fremont, Newark, San Lorenzo, Los Altos, Campbell",
       },
       links: {
         title: "Quick links",
@@ -26,7 +28,7 @@ const copy = {
           { label: "Home", href: "/" },
           { label: "Courses", href: "/courses" },
           { label: "Booking", href: "/booking" },
-          { label: "Partner Kindergartens", href: "/partners" },
+          { label: "Partner Daycare", href: "/partners" },
           { label: "Contact", href: "/contact" },
         ],
       },
@@ -42,12 +44,14 @@ const copy = {
     sections: {
       contact: {
         title: "聯絡方式",
-        emailLabel: "電子郵件",
-        emailValue: "info@waymakerbiz.com",
+        waymakerEmailLabel: "Waymaker 電子郵件",
+        waymakerEmailValue: "info@waymakerbiz.com",
+        daycareEmailLabel: "Daycare 電子郵件",
+        daycareEmailValue: "daycareinformation4you@gmail.com",
         phoneLabel: "電話",
         phoneValue: "(408) 590-3617",
         serviceLabel: "服務範圍",
-        serviceValue: "加州聖荷西地區",
+        serviceValue: "Mountain View, Sunnyvale, Cupertino, Santa Clara, San Jose, Milpitas, Fremont, Newark, San Lorenzo, Los Altos, Campbell",
       },
       links: {
         title: "快速連結",
@@ -102,10 +106,18 @@ export function Footer() {
             </h3>
             <dl className="space-y-2 text-sm text-white/85">
               <div>
-                <dt className="text-white/60">{content.sections.contact.emailLabel}</dt>
+                <dt className="text-white/60">{content.sections.contact.waymakerEmailLabel}</dt>
                 <dd>
-                  <a href="mailto:info@waymakerbiz.com" className="hover:text-white">
-                    {content.sections.contact.emailValue}
+                  <a href={`mailto:${content.sections.contact.waymakerEmailValue}`} className="hover:text-white">
+                    {content.sections.contact.waymakerEmailValue}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-white/60">{content.sections.contact.daycareEmailLabel}</dt>
+                <dd>
+                  <a href={`mailto:${content.sections.contact.daycareEmailValue}`} className="hover:text-white">
+                    {content.sections.contact.daycareEmailValue}
                   </a>
                 </dd>
               </div>

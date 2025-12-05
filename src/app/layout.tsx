@@ -38,6 +38,8 @@ export const metadata: Metadata = {
     "幼兒園急救訓練",
     "San Jose CPR instructor",
     "California childcare certification",
+    "San Jose Daycare",
+    "Top Daycares San Jose",
   ],
   authors: [{ name: "Waymaker CPR Training" }],
   creator: "Waymaker CPR Training",

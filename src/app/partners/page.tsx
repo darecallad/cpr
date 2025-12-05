@@ -1,11 +1,23 @@
 "use client";
 
-import { Mail, Phone, Clock, MapPin } from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+import { Mail, Phone, Clock, MapPin, ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { SEOHead } from "@/components/SEOHead";
+import { partners } from "@/data/partners";
 
 export default function PartnersPage() {
   const { locale } = useLanguage();
+  const [expandedPartner, setExpandedPartner] = useState<string | null>(null);
+
+  const togglePartner = (name: string) => {
+    if (expandedPartner === name) {
+      setExpandedPartner(null);
+    } else {
+      setExpandedPartner(name);
+    }
+  };
 
   const copy = {
     en: {
@@ -34,7 +46,8 @@ export default function PartnersPage() {
         hours: "Business Hours:",
         hoursValue: "Monday through Friday 8:30am to 6:00pm",
         locations: "Locations:"
-      }
+      },
+      bookWithDaycare: "Book with Daycare"
     },
     zh: {
       title: "預約參觀",
@@ -62,26 +75,12 @@ export default function PartnersPage() {
         hours: "營業時間：",
         hoursValue: "週一至週五 上午 8:30 至 下午 6:00",
         locations: "據點："
-      }
+      },
+      bookWithDaycare: "預約參觀"
     }
   };
 
   const content = copy[locale];
-
-  const partners = [
-    { name: "Do Do Kids Daycare", license: "# 434417520", address: "2904 Fresno Street, Santa Clara CA 95051" },
-    { name: "Clever Kidz Daycare", license: "#015701200", address: "6267 Truckee Ct, Newark CA 94560" },
-    { name: "Sunny Garden Daycare", license: "# 434415392", address: "551 maple Ave, Sunnyvale CA 94085" },
-    { name: "Bright Sky Daycare", license: "# 434417366", address: "354 E Arbor Ave, Sunnyvale CA 94085" },
-    { name: "Little Dreamer Daycare", license: "# 434417348", address: "748 Borregas Ave, Sunnyvale CA 94085" },
-    { name: "Sweet Butterfly Daycare", license: "# 434416499", address: "216 E Arbor Ave, Sunnyvale CA 94085" },
-    { name: "Little Pine Tree Daycare", license: "# 434417356", address: "555 Pine Ave, Sunnyvale CA 94085" },
-    { name: "Little Sprouts Daycare", license: "# 434416178", address: "395 Carroll St., Sunnyvale CA 94086" },
-    { name: "Wonderland Daycare", license: "# 434416349", address: "962 Mesa Oak Ct, Sunnyvale CA 94086" },
-    { name: "Apple Land Daycare", license: "# 434417323", address: "723 Old San Francisco Rd., Sunnyvale CA 94086" },
-    { name: "Skyland Daycare", license: "# 434417910", address: "1236 Manet Dr., Sunnyvale, CA 94087" },
-    { name: "Apple Tree Daycare", license: "# 434416072", address: "1634 Meadowlark Lane, Sunnyvale CA 94087" },
-  ];
 
   return (
     <main className="flex flex-col min-h-screen bg-[#F5F9F8]">
@@ -164,10 +163,29 @@ export default function PartnersPage() {
               <div className="space-y-6">
                 {partners.map((partner, index) => (
                   <div key={index} className="border-b border-[#CDE6E0] pb-4 last:border-0">
-                    <p className="font-semibold text-[#0F6C8C]">{partner.name} ({partner.license})</p>
-                    <ul className="list-disc pl-5 mt-1 text-sm md:text-base">
-                      <li>{partner.address}</li>
-                    </ul>
+                    <button 
+                      onClick={() => togglePartner(partner.name)}
+                      className="flex items-center justify-between w-full text-left font-semibold text-[#0F6C8C] hover:text-[#0A4A61] transition-colors"
+                    >
+                      <span>{partner.name}</span>
+                      {expandedPartner === partner.name ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                    </button>
+                    
+                    {expandedPartner === partner.name && (
+                      <div className="mt-4 space-y-3 pl-4 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <p className="text-sm text-[#2F4858]"><span className="font-medium">Owner:</span> {partner.owner}</p>
+                        <p className="text-sm text-[#2F4858]"><span className="font-medium">License:</span> {partner.license}</p>
+                        <p className="text-sm text-[#2F4858]"><span className="font-medium">Address:</span> {partner.address}</p>
+                        <div className="pt-2">
+                           <Link 
+                             href={`/booking?organization=${encodeURIComponent(partner.name)}`}
+                             className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#FF8A5B] text-white hover:bg-[#F57643] h-10 px-4 py-2"
+                           >
+                             {content.bookWithDaycare}
+                           </Link>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

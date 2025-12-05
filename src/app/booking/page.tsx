@@ -1,7 +1,8 @@
 "use client";
 
 import type { ChangeEvent, FormEvent } from "react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,6 +14,7 @@ import {
   paymentMethodIcons,
   upcomingSessions,
 } from "@/data/booking";
+import { partners } from "@/data/partners";
 import { useLanguage } from "@/context/LanguageContext";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -38,15 +40,23 @@ const initialValues: FormValues = {
   notes: "",
 };
 
-export default function BookingPage() {
+function BookingForm() {
   const { locale } = useLanguage();
   const copy = bookingCopy[locale];
+  const searchParams = useSearchParams();
 
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success">(
     "idle",
   );
+
+  useEffect(() => {
+    const orgParam = searchParams.get("organization");
+    if (orgParam) {
+      setValues((prev) => ({ ...prev, organization: orgParam }));
+    }
+  }, [searchParams]);
 
   const selectedSession = useMemo(
     () => upcomingSessions.find((session) => session.id === values.sessionId),
@@ -82,7 +92,7 @@ export default function BookingPage() {
   };
 
   const handleInputChange = <T extends keyof FormValues>(field: T) =>
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       handleFieldChange(field, event.target.value as FormValues[T]);
     };
 
@@ -109,6 +119,10 @@ export default function BookingPage() {
       if (!emailPattern.test(email)) {
         nextErrors.email = copy.validation.email;
       }
+    }
+
+    if (!values.organization.trim()) {
+      nextErrors.organization = copy.validation.organization;
     }
 
     if (!values.sessionId) {
@@ -273,18 +287,36 @@ export default function BookingPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="organization" className="text-[#2F4858]">
-                      {copy.labels.organization}
+                    <Label htmlFor="organization" className="flex items-center gap-2 text-[#2F4858]">
+                      <span>{copy.labels.organization}</span>
+                      <span className="text-[#C65353]">*</span>
                     </Label>
-                    <Input
-                      id="organization"
-                      name="organization"
-                      type="text"
-                      autoComplete="organization"
-                      value={values.organization}
-                      onChange={handleInputChange("organization")}
-                      className="border-[#CCE6DE] focus-visible:border-[#73BBD1] focus-visible:ring-[#73BBD1]/50"
-                    />
+                    <div className="relative">
+                      <select
+                        id="organization"
+                        name="organization"
+                        value={values.organization}
+                        onChange={handleInputChange("organization")}
+                        aria-invalid={Boolean(errors.organization)}
+                        required
+                        className="flex h-10 w-full rounded-md border border-[#CCE6DE] bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-[#73BBD1] focus-visible:ring-[#73BBD1]/50 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <option value="">{copy.labels.organizationPlaceholder}</option>
+                        <optgroup label="Waymaker">
+                          <option value="Waymaker CPR">Waymaker CPR</option>
+                        </optgroup>
+                        <optgroup label="Daycare">
+                          {partners.map((partner) => (
+                            <option key={partner.name} value={partner.name}>
+                              {partner.name}
+                            </option>
+                          ))}
+                        </optgroup>
+                      </select>
+                    </div>
+                    {errors.organization && (
+                      <p className="text-sm text-[#C65353]">{errors.organization}</p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -385,5 +417,13 @@ export default function BookingPage() {
       </div>
     </section>
     </>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BookingForm />
+    </Suspense>
   );
 }

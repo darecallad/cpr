@@ -19,7 +19,7 @@ export function Header() {
       home: "Home",
       courses: "Courses",
       booking: "Booking",
-      partners: "Partner Kindergartens",
+      partners: "Partner Daycare",
       contact: "Contact",
     },
     zh: {
