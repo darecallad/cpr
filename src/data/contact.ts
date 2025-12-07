@@ -98,7 +98,7 @@ export const contactCopy: Record<Locale, ContactCopy> = {
       labels: {
         name: "Name",
         email: "Email",
-        category: "Inquiry type",
+        category: "Organization",
         message: "Message",
       },
       placeholders: {
@@ -107,9 +107,8 @@ export const contactCopy: Record<Locale, ContactCopy> = {
         message: "Tell us how we can help…",
       },
       categories: [
-        { value: "course", label: "Course inquiry" },
-        { value: "partnership", label: "Partnership proposal" },
-        { value: "other", label: "Other" },
+        { value: "Waymaker CPR", label: "Waymaker CPR" },
+        { value: "Daycare", label: "Daycare" },
       ],
       submit: "Send message",
       success: {
@@ -163,7 +162,7 @@ export const contactCopy: Record<Locale, ContactCopy> = {
       labels: {
         name: "姓名",
         email: "Email",
-        category: "諮詢類型",
+        category: "聯絡單位",
         message: "訊息內容",
       },
       placeholders: {
@@ -172,9 +171,8 @@ export const contactCopy: Record<Locale, ContactCopy> = {
         message: "請告訴我們需求或想了解的內容…",
       },
       categories: [
-        { value: "course", label: "課程詢問" },
-        { value: "partnership", label: "合作提案" },
-        { value: "other", label: "其他" },
+        { value: "Waymaker CPR", label: "Waymaker CPR" },
+        { value: "Daycare", label: "Daycare" },
       ],
       submit: "送出訊息",
       success: {

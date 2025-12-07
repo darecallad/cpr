@@ -133,8 +133,8 @@ export default function PartnersPage() {
                   <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
                     <Mail className="w-5 h-5 text-[#0F6C8C]" /> {content.contact.email}
                   </h3>
-                  <a href="mailto:daycareinformation4you@gmail.com" className="text-[#0F6C8C] hover:underline break-all">
-                    daycareinformation4you@gmail.com
+                  <a href="mailto:daycare@waymakerbiz.com" className="text-[#0F6C8C] hover:underline break-all">
+                    daycare@waymakerbiz.com
                   </a>
                 </div>
 

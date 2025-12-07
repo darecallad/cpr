@@ -25,6 +25,7 @@ type FormValues = {
   organization: string;
   sessionId: string;
   customDate: string;
+  daycareDate: string;
   notes: string;
 };
 
@@ -37,7 +38,95 @@ const initialValues: FormValues = {
   organization: "",
   sessionId: "",
   customDate: "",
+  daycareDate: "",
   notes: "",
+};
+
+const getAvailableDates = (organizationName: string) => {
+  const partner = partners.find((p) => p.name === organizationName);
+  if (!partner) return [];
+
+  const address = partner.address;
+  const dates: { value: string; label: string }[] = [];
+  const today = new Date();
+
+  // Generate next 21 days (3 weeks)
+  for (let i = 1; i <= 21; i++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() + i);
+    const dayOfWeek = date.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+    const dateString = date.toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
+    const isoDate = date.toISOString().split("T")[0];
+
+    let time = "";
+
+    // Rules based on address
+    if (
+      address.includes("555 Pine Ave") ||
+      address.includes("395 Carroll St") ||
+      address.includes("748 Borregas Ave")
+    ) {
+      // Mon, Tue, Wed, Fri @ 6pm (Thu closed)
+      if (dayOfWeek !== 0 && dayOfWeek !== 6 && dayOfWeek !== 4) {
+        time = "18:00";
+      }
+    } else if (address.includes("216 E Arbor Ave")) {
+      // Sat @ 10am only
+      if (dayOfWeek === 6) {
+        time = "10:00";
+      }
+    } else if (
+      address.includes("723 Old San Francisco Rd") ||
+      address.includes("1634 Meadowlark Lane")
+    ) {
+      // Tue, Wed, Thu @ 6pm (Mon/Fri closed)
+      if (dayOfWeek === 2 || dayOfWeek === 3 || dayOfWeek === 4) {
+        time = "18:00";
+      }
+    } else if (address.includes("354 E Arbor Ave")) {
+      // Wed, Fri @ 6pm only
+      if (dayOfWeek === 3 || dayOfWeek === 5) {
+        time = "18:00";
+      }
+    } else if (address.includes("962 Mesa Oak Ct")) {
+      // Mon-Fri @ 5:30pm
+      if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+        time = "17:30";
+      }
+    } else if (address.includes("2904 Fresno Street")) {
+      // Fri @ 6pm only
+      if (dayOfWeek === 5) {
+        time = "18:00";
+      }
+    } else if (address.includes("551 maple Ave")) {
+      // Mon-Fri @ 6pm
+      if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+        time = "18:00";
+      }
+    } else if (address.includes("1236 Manet Dr")) {
+      // Skyland: Mon-Fri @ 6pm
+      if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+        time = "18:00";
+      }
+    } else {
+      // Default for any other address: Mon-Fri @ 6pm
+      if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+        time = "18:00";
+      }
+    }
+
+    if (time) {
+      dates.push({
+        value: `${isoDate}T${time}`,
+        label: `${dateString} @ ${time}`,
+      });
+    }
+  }
+  return dates;
 };
 
 function BookingForm() {
@@ -50,6 +139,7 @@ function BookingForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">(
     "idle",
   );
+  const [calendarLink, setCalendarLink] = useState<string>("");
 
   useEffect(() => {
     const orgParam = searchParams.get("organization");
@@ -75,6 +165,12 @@ function BookingForm() {
 
       if (field === "sessionId" && nextValue !== "custom") {
         next.customDate = "";
+      }
+
+      if (field === "organization") {
+        next.sessionId = "";
+        next.customDate = "";
+        next.daycareDate = "";
       }
 
       return next;
@@ -129,8 +225,15 @@ function BookingForm() {
       nextErrors.sessionId = copy.validation.session;
     }
 
-    if (values.sessionId === "custom" && !values.customDate.trim()) {
-      nextErrors.customDate = copy.validation.customDate;
+    if (values.organization === "Waymaker CPR") {
+      if (values.sessionId === "custom" && !values.customDate.trim()) {
+        nextErrors.customDate = copy.validation.customDate;
+      }
+    } else if (values.organization) {
+      // Daycare
+      if (!values.daycareDate) {
+        nextErrors.daycareDate = copy.validation.daycareDate;
+      }
     }
 
     return nextErrors;
@@ -150,13 +253,23 @@ function BookingForm() {
 
     try {
       // 準備發送數據
+      let preferredDate = selectedSession?.isoDate;
+      if (values.organization === "Waymaker CPR") {
+        if (values.sessionId === "custom") {
+          preferredDate = values.customDate;
+        }
+      } else {
+        // Daycare
+        preferredDate = values.daycareDate;
+      }
+
       const bookingData = {
         fullName: values.name,
         phone: values.phone,
         email: values.email,
         organization: values.organization || undefined,
         courseType: selectedSession?.label || "Custom Date",
-        preferredDate: values.sessionId === "custom" ? values.customDate : selectedSession?.isoDate,
+        preferredDate: preferredDate,
         numberOfStudents: undefined, // 可以之後從表單添加此欄位
         paymentMethod: "To be confirmed",
         specialRequests: values.notes || undefined,
@@ -175,6 +288,31 @@ function BookingForm() {
         throw new Error("Failed to send booking");
       }
 
+      // Generate Google Calendar Link
+      let link = "";
+      // Only generate if we have a valid ISO date string (Daycare dates are ISO with time)
+      if (preferredDate && preferredDate.includes("T")) {
+        const partner = partners.find((p) => p.name === values.organization);
+        const location = partner ? partner.address : "Waymaker CPR";
+        const title = `CPR Course - ${values.organization}`;
+        const details = `Course: ${selectedSession?.label || "Custom"}\nName: ${values.name}\nPhone: ${values.phone}`;
+
+        try {
+          const startDate = new Date(preferredDate);
+          // Default duration: 2 hours
+          const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000);
+          
+          const format = (d: Date) => d.toISOString().replace(/-|:|\.\d\d\d/g, "");
+          const start = format(startDate);
+          const end = format(endDate);
+
+          link = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+        } catch (e) {
+          console.error("Error generating calendar link", e);
+        }
+      }
+
+      setCalendarLink(link);
       setStatus("success");
       setValues(initialValues);
     } catch (error) {
@@ -212,6 +350,15 @@ function BookingForm() {
                 <p className="mt-2 text-sm md:text-base">
                   {copy.confirmation.body}
                 </p>
+                {calendarLink && (
+                  <div className="mt-6">
+                    <Button asChild className="bg-[#4285F4] hover:bg-[#3367D6] text-white font-medium px-6">
+                      <a href={calendarLink} target="_blank" rel="noopener noreferrer">
+                        Add to Google Calendar
+                      </a>
+                    </Button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -319,37 +466,77 @@ function BookingForm() {
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="session" className="flex items-center gap-2 text-[#2F4858]">
-                      <span>{copy.labels.session}</span>
-                      <span className="text-[#C65353]">*</span>
-                    </Label>
-                    <select
-                      id="session"
-                      value={values.sessionId}
-                      onChange={handleSessionChange}
-                      aria-invalid={Boolean(errors.sessionId)}
-                      required
-                      className="h-10 w-full rounded-md border border-[#CCE6DE] bg-white px-3 text-sm text-[#2F4858] shadow-xs outline-none transition focus:border-[#73BBD1] focus:ring-2 focus:ring-[#73BBD1]/40"
-                    >
-                      <option value="" disabled>
-                        {copy.labels.sessionPlaceholder}
-                      </option>
-                      {upcomingSessions.map((session) => (
-                        <option key={session.id} value={session.id}>
-                          {session.label}
+                  {values.organization && (
+                    <div className="space-y-2">
+                      <Label htmlFor="session" className="flex items-center gap-2 text-[#2F4858]">
+                        <span>{values.organization === "Waymaker CPR" ? copy.labels.session : copy.labels.preferLanguage}</span>
+                        <span className="text-[#C65353]">*</span>
+                      </Label>
+                      <select
+                        id="session"
+                        value={values.sessionId}
+                        onChange={handleSessionChange}
+                        aria-invalid={Boolean(errors.sessionId)}
+                        required
+                        className="h-10 w-full rounded-md border border-[#CCE6DE] bg-white px-3 text-sm text-[#2F4858] shadow-xs outline-none transition focus:border-[#73BBD1] focus:ring-2 focus:ring-[#73BBD1]/40"
+                      >
+                        <option value="" disabled>
+                          {values.organization === "Waymaker CPR" ? copy.labels.sessionPlaceholder : copy.labels.preferLanguagePlaceholder}
                         </option>
-                      ))}
-                    </select>
-                    {errors.sessionId && (
-                      <p className="text-sm text-[#C65353]">{errors.sessionId}</p>
-                    )}
-                    {selectedSession?.note && (
-                      <p className="text-xs text-[#0F3B4C] opacity-80">
-                        {selectedSession.note}
-                      </p>
-                    )}
-                  </div>
+                        {values.organization === "Waymaker CPR" ? (
+                          <>
+                            {upcomingSessions.map((session) => (
+                              <option key={session.id} value={session.id}>
+                                {session.label}
+                              </option>
+                            ))}
+                          </>
+                        ) : (
+                          <>
+                            <option value="english-session">English</option>
+                            <option value="chinese-session">Chinese / 中文</option>
+                          </>
+                        )}
+                      </select>
+                      {errors.sessionId && (
+                        <p className="text-sm text-[#C65353]">{errors.sessionId}</p>
+                      )}
+                      {selectedSession?.note && (
+                        <p className="text-xs text-[#0F3B4C] opacity-80">
+                          {selectedSession.note}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {values.organization && values.organization !== "Waymaker CPR" && values.sessionId && (
+                    <div className="space-y-2">
+                      <Label htmlFor="daycareDate" className="flex items-center gap-2 text-[#2F4858]">
+                        <span>{copy.labels.daycareDate}</span>
+                        <span className="text-[#C65353]">*</span>
+                      </Label>
+                      <select
+                        id="daycareDate"
+                        value={values.daycareDate}
+                        onChange={handleInputChange("daycareDate")}
+                        aria-invalid={Boolean(errors.daycareDate)}
+                        required
+                        className="h-10 w-full rounded-md border border-[#CCE6DE] bg-white px-3 text-sm text-[#2F4858] shadow-xs outline-none transition focus:border-[#73BBD1] focus:ring-2 focus:ring-[#73BBD1]/40"
+                      >
+                        <option value="" disabled>
+                          {copy.labels.daycareDatePlaceholder}
+                        </option>
+                        {getAvailableDates(values.organization).map((date) => (
+                          <option key={date.value} value={date.value}>
+                            {date.label}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.daycareDate && (
+                        <p className="text-sm text-[#C65353]">{errors.daycareDate}</p>
+                      )}
+                    </div>
+                  )}
 
                   <div className="space-y-2">
                     <Label htmlFor="notes" className="text-[#2F4858]">
