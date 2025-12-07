@@ -89,6 +89,7 @@
 - **Flexible Scheduling**: Users specify their available dates and times
 - **Multiple Payment Options**: PayPal, Venmo, and Check
 - **Email Notifications**: Automatic confirmation emails to both admin and user
+- **Automated Reminders**: Daily cron job sends course reminders 1 day in advance (Bilingual)
 
 ### 🎨 Modern UI/UX
 - **Mobile-First Design**: Optimized for smartphones and tablets
@@ -140,6 +141,10 @@
 ### Email Integration
 - **Nodemailer** - Email sending library
 - **Gmail SMTP** - Email service provider
+
+### Backend & Infrastructure
+- **Redis (ioredis)** - Data persistence for bookings and reminders
+- **Vercel Cron** - Scheduled tasks for automated emails
 
 ### Development Tools
 - **ESLint** - Code linting

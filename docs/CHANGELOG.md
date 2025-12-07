@@ -2,7 +2,36 @@
 
 All notable changes to the Waymaker CPR Training Platform project will be documented in this file.
 
-## [Unreleased] - 2025-11-10
+## [1.1.0] - 2025-12-07
+
+### Added
+#### Automated Reminder System
+- **Cron Job Integration:**
+  - Implemented daily cron job (`/api/cron/reminder`) running at 17:00 UTC.
+  - Automatically sends reminder emails 1 day before the course.
+- **Redis Integration:**
+  - Added `ioredis` for data persistence.
+  - Created `src/lib/redis.ts` singleton client.
+  - Updated Booking API to store schedule data in Redis (`cpr:schedule:{YYYY-MM-DD}`).
+- **Bilingual Reminders:**
+  - Reminder emails support both English and Traditional Chinese based on user preference.
+  - Dynamic content generation for course type, date, and location.
+- **Email Routing:**
+  - Configured distinct sender identities for "Waymaker CPR" vs "Daycare" bookings.
+
+#### Security & Maintenance
+- **Next.js Update:**
+  - Upgraded Next.js to version 15.3.4 (Latest) to address CVE-2025-66478.
+- **Testing Tools:**
+  - Added `scripts/test-booking.js` for end-to-end booking flow testing.
+
+### Changed
+- **Booking API:**
+  - Modified `/api/booking` to perform dual actions: send confirmation email AND save to Redis.
+- **Data Models:**
+  - Updated `BookingCopy` interface in `src/data/booking.ts` to support Daycare date selection fields.
+
+## [1.0.0] - 2025-11-10
 
 ### Added
 #### Email Integration
