@@ -15,6 +15,10 @@ export type BookingCopy = {
     session: string;
     sessionPlaceholder: string;
     sessionCustomOption: string;
+    preferLanguage: string;
+    preferLanguagePlaceholder: string;
+    daycareDate: string;
+    daycareDatePlaceholder: string;
     customDate: string;
     customDatePlaceholder: string;
     notes: string;
@@ -31,6 +35,7 @@ export type BookingCopy = {
     email: string;
     organization: string;
     session: string;
+    daycareDate: string;
     customDate: string;
   };
   payment: {
@@ -85,7 +90,11 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       session: "Select a session",
       sessionPlaceholder: "Choose English or Chinese session",
       sessionCustomOption: "Request a custom date",
-      customDate: "Prefer a different date?",
+    preferLanguage: "Preferred Language",
+    preferLanguagePlaceholder: "Select a language",
+    daycareDate: "Select a Date",
+    daycareDatePlaceholder: "Choose a date",
+    customDate: "Prefer a different date?",
       customDatePlaceholder: "Share your preferred date or timeframe",
       notes: "Your available dates and times",
     },
@@ -103,6 +112,7 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       email: "Please provide a valid email address.",
       organization: "Please select an organization.",
       session: "Please select an upcoming session or request a custom date.",
+      daycareDate: "Please select a date.",
       customDate: "Let us know your preferred date.",
     },
     payment: {
@@ -143,7 +153,11 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       organizationPlaceholder: "選擇單位名稱",
       session: "選擇課程場次",
       sessionPlaceholder: "選擇英文或是中文班",
-  sessionCustomOption: "想安排其他日期",
+      sessionCustomOption: "想安排其他日期",
+      preferLanguage: "偏好語言",
+      preferLanguagePlaceholder: "選擇語言",
+      daycareDate: "選擇日期",
+      daycareDatePlaceholder: "選擇日期",
       customDate: "想安排其他日期？",
       customDatePlaceholder: "請填寫偏好的日期或時段",
       notes: "您方便的日期和時間",
@@ -162,6 +176,7 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       email: "請輸入有效的 Email。",
       organization: "請選擇單位名稱。",
       session: "請選擇場次或告知希望的日期。",
+      daycareDate: "請選擇日期。",
       customDate: "請填寫希望安排的日期。",
     },
     payment: {
