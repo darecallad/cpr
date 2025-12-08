@@ -94,75 +94,74 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
     preferLanguagePlaceholder: "Select a language",
     daycareDate: "Select a Date",
     daycareDatePlaceholder: "Choose a date",
-    customDate: "Prefer a different date?",
-      customDatePlaceholder: "Share your preferred date or timeframe",
-      notes: "Your available dates and times",
-    },
-    submit: "Submit registration",
-    assistance:
-      "Need help with your booking? Email us at info@waymakerbiz.com and we will assist you right away.",
-    confirmation: {
-      title: "Registration received",
-      body:
-        "Thank you! We have your request on file and will reach out within 24 hours to confirm your session and provide a secure payment link.",
-    },
-    validation: {
-      name: "Please enter your name.",
-      phone: "Please provide a phone number.",
-      email: "Please provide a valid email address.",
-      organization: "Please select an organization.",
-      session: "Please select an upcoming session or request a custom date.",
-      daycareDate: "Please select a date.",
-      customDate: "Let us know your preferred date.",
-    },
-    payment: {
-      heading: "Payment overview",
-      description:
-        "After we confirm the details, we will send a secure checkout link tailored to your session.",
-      security: "All transactions are encrypted and secure.",
-      methods: [
-        {
-          id: "paypal",
-          label: "PayPal",
-          detail: "Safe and convenient payments through PayPal with buyer protection.",
+          customDate: "Your available dates and times",
+          customDatePlaceholder: "Share your preferred date or timeframe",
+          notes: "Notes or Special Requests",
         },
-        {
-          id: "venmo",
-          label: "Venmo",
-          detail: "Fast and easy payments via Venmo for instant processing.",
+        submit: "Submit registration",
+        assistance:
+          "Need help with your booking? Email us at info@waymakerbiz.com and we will assist you right away.",
+        confirmation: {
+          title: "Registration received",
+          body:
+            "Thank you! We have your request on file and will reach out within 24 hours to confirm your session and provide a secure payment link.",
         },
-        {
-          id: "check",
-          label: "Check",
-          detail: "Pay by personal or business check. Details will be provided after confirmation.",
+        validation: {
+          name: "Please enter your name.",
+          phone: "Please provide a phone number.",
+          email: "Please provide a valid email address.",
+          organization: "Please select an organization.",
+          session: "Please select an upcoming session or request a custom date.",
+          daycareDate: "Please select a date.",
+          customDate: "Let us know your preferred date.",
         },
-      ],
-    },
-  },
-  zh: {
-    title: "預約報名",
-    intro: [
-      "請填寫以下資訊預約課程。",
-      "我們將儘快與您確認開課日期並提供付款連結。",
-    ],
-    labels: {
-      name: "姓名",
-      phone: "聯絡電話",
-      email: "Email",
-      organization: "單位名稱",
-      organizationPlaceholder: "選擇單位名稱",
-      session: "選擇課程場次",
-      sessionPlaceholder: "選擇英文或是中文班",
-      sessionCustomOption: "想安排其他日期",
-      preferLanguage: "偏好語言",
-      preferLanguagePlaceholder: "選擇語言",
-      daycareDate: "選擇日期",
-      daycareDatePlaceholder: "選擇日期",
-      customDate: "想安排其他日期？",
-      customDatePlaceholder: "請填寫偏好的日期或時段",
-      notes: "您方便的日期和時間",
-    },
-    submit: "提交報名",
+        payment: {
+          heading: "Payment overview",
+          description:
+            "After we confirm the details, we will send a secure checkout link tailored to your session.",
+          security: "All transactions are encrypted and secure.",
+          methods: [
+            {
+              id: "paypal",
+              label: "PayPal",
+              detail: "Safe and convenient payments through PayPal with buyer protection.",
+            },
+            {
+              id: "venmo",
+              label: "Venmo",
+              detail: "Fast and easy payments via Venmo for instant processing.",
+            },
+            {
+              id: "check",
+              label: "Check",
+              detail: "Pay by personal or business check. Details will be provided after confirmation.",
+            },
+          ],
+        },
+      },
+      zh: {
+        title: "預約報名",
+        intro: [
+          "請填寫以下資訊預約課程。",
+          "我們將儘快與您確認開課日期並提供付款連結。",
+        ],
+        labels: {
+          name: "姓名",
+          phone: "聯絡電話",
+          email: "Email",
+          organization: "單位名稱",
+          organizationPlaceholder: "選擇單位名稱",
+          session: "選擇課程場次",
+          sessionPlaceholder: "選擇英文或是中文班",
+          sessionCustomOption: "想安排其他日期",
+          preferLanguage: "偏好語言",
+          preferLanguagePlaceholder: "選擇語言",
+          daycareDate: "選擇日期",
+          daycareDatePlaceholder: "選擇日期",
+          customDate: "您方便的日期和時間",
+          customDatePlaceholder: "請填寫偏好的日期或時段，例如：2024年11月25日 上午9:00",
+          notes: "備註或特殊要求",
+        },    submit: "提交報名",
     assistance:
       "需要協助嗎？歡迎來信 info@waymakerbiz.com，我們將盡速協助您。",
     confirmation: {

@@ -466,10 +466,10 @@ function BookingForm() {
                     )}
                   </div>
 
-                  {values.organization && (
+                  {values.organization === "Waymaker CPR" && (
                     <div className="space-y-2">
                       <Label htmlFor="session" className="flex items-center gap-2 text-[#2F4858]">
-                        <span>{values.organization === "Waymaker CPR" ? copy.labels.session : copy.labels.preferLanguage}</span>
+                        <span>{copy.labels.session}</span>
                         <span className="text-[#C65353]">*</span>
                       </Label>
                       <select
@@ -481,22 +481,14 @@ function BookingForm() {
                         className="h-10 w-full rounded-md border border-[#CCE6DE] bg-white px-3 text-sm text-[#2F4858] shadow-xs outline-none transition focus:border-[#73BBD1] focus:ring-2 focus:ring-[#73BBD1]/40"
                       >
                         <option value="" disabled>
-                          {values.organization === "Waymaker CPR" ? copy.labels.sessionPlaceholder : copy.labels.preferLanguagePlaceholder}
+                          {copy.labels.sessionPlaceholder}
                         </option>
-                        {values.organization === "Waymaker CPR" ? (
-                          <>
-                            {upcomingSessions.map((session) => (
-                              <option key={session.id} value={session.id}>
-                                {session.label}
-                              </option>
-                            ))}
-                          </>
-                        ) : (
-                          <>
-                            <option value="english-session">English</option>
-                            <option value="chinese-session">Chinese / 中文</option>
-                          </>
-                        )}
+                        {upcomingSessions.map((session) => (
+                          <option key={session.id} value={session.id}>
+                            {session.label}
+                          </option>
+                        ))}
+                        <option value="custom">{copy.labels.sessionCustomOption}</option>
                       </select>
                       {errors.sessionId && (
                         <p className="text-sm text-[#C65353]">{errors.sessionId}</p>
@@ -509,33 +501,81 @@ function BookingForm() {
                     </div>
                   )}
 
-                  {values.organization && values.organization !== "Waymaker CPR" && values.sessionId && (
+                  {values.organization === "Waymaker CPR" && values.sessionId === "custom" && (
                     <div className="space-y-2">
-                      <Label htmlFor="daycareDate" className="flex items-center gap-2 text-[#2F4858]">
-                        <span>{copy.labels.daycareDate}</span>
+                      <Label htmlFor="customDate" className="flex items-center gap-2 text-[#2F4858]">
+                        <span>{copy.labels.customDate}</span>
                         <span className="text-[#C65353]">*</span>
                       </Label>
-                      <select
-                        id="daycareDate"
-                        value={values.daycareDate}
-                        onChange={handleInputChange("daycareDate")}
-                        aria-invalid={Boolean(errors.daycareDate)}
+                      <Input
+                        id="customDate"
+                        name="customDate"
+                        type="text"
+                        placeholder={copy.labels.customDatePlaceholder}
+                        value={values.customDate}
+                        onChange={handleInputChange("customDate")}
+                        aria-invalid={Boolean(errors.customDate)}
                         required
-                        className="h-10 w-full rounded-md border border-[#CCE6DE] bg-white px-3 text-sm text-[#2F4858] shadow-xs outline-none transition focus:border-[#73BBD1] focus:ring-2 focus:ring-[#73BBD1]/40"
-                      >
-                        <option value="" disabled>
-                          {copy.labels.daycareDatePlaceholder}
-                        </option>
-                        {getAvailableDates(values.organization).map((date) => (
-                          <option key={date.value} value={date.value}>
-                            {date.label}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.daycareDate && (
-                        <p className="text-sm text-[#C65353]">{errors.daycareDate}</p>
+                        className="border-[#CCE6DE] focus-visible:border-[#73BBD1] focus-visible:ring-[#73BBD1]/50"
+                      />
+                      {errors.customDate && (
+                        <p className="text-sm text-[#C65353]">{errors.customDate}</p>
                       )}
                     </div>
+                  )}
+
+                  {values.organization && values.organization !== "Waymaker CPR" && (
+                    <>
+                      <div className="space-y-2">
+                        <Label htmlFor="session" className="flex items-center gap-2 text-[#2F4858]">
+                          <span>{copy.labels.preferLanguage}</span>
+                          <span className="text-[#C65353]">*</span>
+                        </Label>
+                        <select
+                          id="session"
+                          value={values.sessionId}
+                          onChange={handleSessionChange}
+                          aria-invalid={Boolean(errors.sessionId)}
+                          required
+                          className="h-10 w-full rounded-md border border-[#CCE6DE] bg-white px-3 text-sm text-[#2F4858] shadow-xs outline-none transition focus:border-[#73BBD1] focus:ring-2 focus:ring-[#73BBD1]/40"
+                        >
+                          <option value="" disabled>
+                            {copy.labels.preferLanguagePlaceholder}
+                          </option>
+                          <option value="english-session">English</option>
+                          <option value="chinese-session">Chinese / 中文</option>
+                        </select>
+                        {errors.sessionId && (
+                          <p className="text-sm text-[#C65353]">{errors.sessionId}</p>
+                        )}
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="daycareDate" className="flex items-center gap-2 text-[#2F4858]">
+                          <span>{copy.labels.daycareDate}</span>
+                          <span className="text-[#C65353]">*</span>
+                        </Label>
+                        <select
+                          id="daycareDate"
+                          value={values.daycareDate}
+                          onChange={handleInputChange("daycareDate")}
+                          aria-invalid={Boolean(errors.daycareDate)}
+                          required
+                          className="h-10 w-full rounded-md border border-[#CCE6DE] bg-white px-3 text-sm text-[#2F4858] shadow-xs outline-none transition focus:border-[#73BBD1] focus:ring-2 focus:ring-[#73BBD1]/40"
+                        >
+                          <option value="" disabled>
+                            {copy.labels.daycareDatePlaceholder}
+                          </option>
+                          {getAvailableDates(values.organization).map((date) => (
+                            <option key={date.value} value={date.value}>
+                              {date.label}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.daycareDate && (
+                          <p className="text-sm text-[#C65353]">{errors.daycareDate}</p>
+                        )}
+                      </div>
+                    </>
                   )}
 
                   <div className="space-y-2">
