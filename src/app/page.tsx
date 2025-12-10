@@ -3,7 +3,7 @@
 
 import { HeroSection } from "@/components/HeroSection";
 import { WhyWaymakerSection } from "@/components/WhyWaymakerSection";
-import { BrandMissionSection } from "@/components/BrandMissionSection";
+import { DaycareOpportunitySection } from "@/components/DaycareOpportunitySection";
 import { OurCoursesSection } from "@/components/OurCoursesSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
@@ -14,8 +14,8 @@ export default function Page() {
     <main className="flex flex-col">
       <HeroSection />
       <WhyWaymakerSection />
-      <BrandMissionSection />
       <OurCoursesSection />
+      <DaycareOpportunitySection />
       <ProcessSection />
       <TestimonialsSection />
       <PartnersSection />

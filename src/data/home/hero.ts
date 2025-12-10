@@ -3,20 +3,23 @@ export type HeroLocale = "en" | "zh";
 export type HeroCopy = {
   title: string;
   description: string;
-  cta: string;
+  ctaCpr: string;
+  ctaDaycare: string;
 };
 
 export const heroCopy: Record<HeroLocale, HeroCopy> = {
   en: {
-    title: "Professional Training\nCaring Support",
+    title: "Empowering Educators\nBuilding Futures",
     description:
-      "Waymaker provides professional and compassionate CPR and first aid training for daycare and childcare facilities. Our engaging courses equip educators.",
-    cta: "BOOK NOW",
+      "Waymaker provides professional CPR training and expert guidance for starting your own daycare. We support your journey in childcare from certification to business ownership.",
+    ctaCpr: "Book CPR Class",
+    ctaDaycare: "Start a Daycare",
   },
   zh: {
-    title: "專業守護\n安心相伴",
+    title: "賦能教育者\n共創未來",
     description:
-      "Waymaker 致力於為幼兒園與托育機構提供專業且貼心的 CPR 與急救培訓，幫助每位教育者成為孩子的生命守護者。",
-    cta: "立即預約",
+      "Waymaker 提供專業的 CPR 培訓與托育中心創業輔導。從急救認證到建立自己的托育事業，我們全程支持您的職涯發展。",
+    ctaCpr: "預約 CPR 課程",
+    ctaDaycare: "開啟托育事業",
   },
 };
