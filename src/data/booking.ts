@@ -21,6 +21,7 @@ export type BookingCopy = {
     daycareDatePlaceholder: string;
     customDate: string;
     customDatePlaceholder: string;
+    timeSlotWednesdayAfternoon: string;
     notes: string;
   };
   submit: string;
@@ -61,15 +62,15 @@ export type BookingSession = {
 
 export const upcomingSessions: BookingSession[] = [
   {
-    id: "english-session",
+    id: "cpr",
     isoDate: "",
-    label: "English Session",
+    label: "CPR Class",
     note: "",
   },
   {
-    id: "chinese-session",
+    id: "daycare",
     isoDate: "",
-    label: "中文班",
+    label: "Daycare Consultation",
     note: "",
   },
 ];
@@ -88,14 +89,15 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
       organization: "Organization",
       organizationPlaceholder: "Select an organization",
       session: "Select a session",
-      sessionPlaceholder: "Choose English or Chinese session",
+      sessionPlaceholder: "Select a service",
       sessionCustomOption: "Request a custom date",
     preferLanguage: "Preferred Language",
     preferLanguagePlaceholder: "Select a language",
     daycareDate: "Select a Date",
     daycareDatePlaceholder: "Choose a date",
-          customDate: "Your available dates and times",
-          customDatePlaceholder: "Share your preferred date or timeframe",
+          customDate: "Select Time",
+          customDatePlaceholder: "Select a time slot",
+          timeSlotWednesdayAfternoon: "Every Wednesday Afternoon",
           notes: "Notes or Special Requests",
         },
         submit: "Submit registration",
@@ -152,14 +154,15 @@ export const bookingCopy: Record<BookingLocale, BookingCopy> = {
           organization: "單位名稱",
           organizationPlaceholder: "選擇單位名稱",
           session: "選擇課程場次",
-          sessionPlaceholder: "選擇英文或是中文班",
+          sessionPlaceholder: "選擇服務項目",
           sessionCustomOption: "想安排其他日期",
           preferLanguage: "偏好語言",
           preferLanguagePlaceholder: "選擇語言",
           daycareDate: "選擇日期",
           daycareDatePlaceholder: "選擇日期",
-          customDate: "您方便的日期和時間",
-          customDatePlaceholder: "請填寫偏好的日期或時段，例如：2024年11月25日 上午9:00",
+          customDate: "選擇時間",
+          customDatePlaceholder: "選擇時段",
+          timeSlotWednesdayAfternoon: "每週三下午",
           notes: "備註或特殊要求",
         },    submit: "提交報名",
     assistance:
