@@ -70,6 +70,15 @@ export type CourseCopy = {
     description: string;
     button: string;
   };
+  daycareConsultation: {
+    title: string;
+    description: string;
+    features: {
+      title: string;
+      description: string;
+    }[];
+    cta: string;
+  };
 };
 
 export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
@@ -219,6 +228,25 @@ export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
         "Secure your preferred date and equip every teacher with proven, child-focused emergency skills.",
       button: "Plan a session",
     },
+    daycareConsultation: {
+      title: "Daycare Setup Consultation",
+      description: "Beyond just paperwork, we offer personalized mentorship to help you build a daycare that reflects your vision. From licensing to curriculum philosophy, we walk with you.",
+      features: [
+        {
+          title: "1-on-1 Mentorship",
+          description: "Dedicated time to discuss your specific challenges and goals. We listen to your vision and help you make it a reality.",
+        },
+        {
+          title: "Educational Inspiration",
+          description: "Guidance on developing a unique teaching philosophy that stands out. We help you find your voice in the crowded childcare market.",
+        },
+        {
+          title: "Strategic Roadmap",
+          description: "A clear, step-by-step plan from empty space to grand opening. We turn confusion into a checklist.",
+        },
+      ],
+      cta: "Book a Consultation",
+    },
   },
   zh: {
     hero: {
@@ -347,6 +375,25 @@ export const coursesCopy: Record<CoursesLocale, CourseCopy> = {
       description:
         "立即預約專屬課程，讓每位老師都具備沉著可靠的急救能力。",
       button: "立即預約課程",
+    },
+    daycareConsultation: {
+      title: "托育中心創業諮詢",
+      description: "不僅僅是文書作業，我們提供一對一的創業導師服務。從執照申請到教育理念的啟發，我們與您並肩同行，打造您夢想中的托育中心。",
+      features: [
+        {
+          title: "1 對 1 深度交流",
+          description: "專屬的諮詢時間，針對您的具體挑戰與目標進行深度交流。我們傾聽您的願景，協助您將其化為現實。",
+        },
+        {
+          title: "教育理念啟發",
+          description: "協助您發展獨特的教育理念，讓您的園所與眾不同。在競爭激烈的市場中，找到屬於您的聲音。",
+        },
+        {
+          title: "實戰策略規劃",
+          description: "從空屋到開幕，提供清晰的實戰步驟與策略規劃。我們將混亂的流程轉化為清晰的執行清單。",
+        },
+      ],
+      cta: "預約諮詢",
     },
   },
 };
