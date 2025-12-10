@@ -41,7 +41,7 @@ export function HeroSection() {
               <Link href="/booking">
                 <Button
                   size="hero"
-                  className="bg-[#FF8A5B] hover:bg-[#F57643] text-white font-semibold text-base shadow-md w-full sm:w-auto transition-transform hover:scale-105"
+                  className="bg-[#FF8A5B] hover:bg-[#F57643] text-white font-semibold text-base shadow-lg shadow-orange-900/20 w-full sm:w-auto transition-all hover:scale-105 hover:shadow-xl"
                 >
                   {content.ctaCpr}
                 </Button>
@@ -49,8 +49,7 @@ export function HeroSection() {
               <Link href="/contact">
                 <Button
                   size="hero"
-                  variant="outline"
-                  className="bg-white/10 hover:bg-white/20 text-white border-white font-semibold text-base shadow-md w-full sm:w-auto backdrop-blur-sm transition-transform hover:scale-105"
+                  className="bg-white hover:bg-gray-50 text-[#0F6C8C] border-2 border-transparent hover:border-[#0F6C8C]/10 font-bold text-base shadow-lg shadow-black/10 w-full sm:w-auto transition-all hover:scale-105 hover:shadow-xl"
                 >
                   {content.ctaDaycare}
                 </Button>

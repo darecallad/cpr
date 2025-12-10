@@ -125,6 +125,38 @@ export const seoData = {
       ],
     },
   },
+  daycare: {
+    en: {
+      title: "Daycare Consulting | Start Your Childcare Business - Waymaker CPR",
+      description:
+        "Expert guidance for starting a daycare in California. From licensing and compliance to curriculum and business strategy, Waymaker helps you build a successful childcare center.",
+      keywords: [
+        "start a daycare California",
+        "daycare licensing consulting",
+        "childcare business plan",
+        "preschool setup guide",
+        "daycare compliance help",
+        "opening a daycare",
+        "childcare mentorship",
+        "開設托兒所",
+      ],
+    },
+    zh: {
+      title: "托育創業諮詢 | 開設您的托育中心 - Waymaker CPR",
+      description:
+        "加州托育創業的專業指南。從執照申請、法規合規到課程規劃與商業策略，Waymaker 協助您建立成功的托育中心。",
+      keywords: [
+        "加州開設托兒所",
+        "托育中心執照諮詢",
+        "幼兒園創業計畫",
+        "托兒所籌備指南",
+        "托育法規協助",
+        "如何開托兒所",
+        "幼教創業導師",
+        "daycare consulting",
+      ],
+    },
+  },
 } as const;
 
 export type SEOPage = keyof typeof seoData;
