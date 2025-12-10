@@ -1,82 +1,65 @@
 "use client";
 
-import { CheckCircle2, CalendarCheck2, GraduationCap } from "lucide-react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/context/LanguageContext";
-
-const copy = {
-  en: {
-    eyebrow: "How it works",
-    title: "A guided path from booking to certification",
-    steps: [
-      {
-        title: "Plan together",
-        description:
-          "Share your group size and schedule preferences—we tailor the agenda for your site.",
-        icon: CalendarCheck2,
-      },
-      {
-        title: "Train with confidence",
-        description:
-          "Interactive instruction blends demos, practice, and situational coaching for every participant.",
-        icon: GraduationCap,
-      },
-      {
-        title: "Leave certified",
-        description:
-          "Receive EMSA completion cards and compliance documentation right after class.",
-        icon: CheckCircle2,
-      },
-    ],
-  },
-  zh: {
-    eyebrow: "流程介紹",
-    title: "從預約到取證的貼心指引",
-    steps: [
-      {
-        title: "一起規劃",
-        description:
-          "告訴我們人數與時段需求，我們為場地量身安排課程節奏。",
-        icon: CalendarCheck2,
-      },
-      {
-        title: "安心實作",
-        description:
-          "示範、演練與情境討論並行，每位學員都能掌握關鍵技巧。",
-        icon: GraduationCap,
-      },
-      {
-        title: "立即取證",
-        description:
-          "課程結束立刻取得 EMSA 認證卡與合規文件，隨時備查。",
-        icon: CheckCircle2,
-      },
-    ],
-  },
-} as const;
+import { processCopy } from "@/data/home/process";
+import { cn } from "@/lib/utils";
 
 export function ProcessSection() {
   const { locale } = useLanguage();
-  const content = copy[locale];
+  const content = processCopy[locale];
+  const [activeTab, setActiveTab] = useState<"cpr" | "daycare">("cpr");
+
+  const activeSteps = content[activeTab].steps;
 
   return (
     <section className="bg-white py-16">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6">
-        <div className="space-y-3">
-          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#2F7FA3]">
-            {content.eyebrow}
-          </span>
-          <h2 className="text-3xl font-bold text-[#0F6C8C] md:text-4xl">
-            {content.title}
-          </h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3">
+            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#2F7FA3]">
+              {content.eyebrow}
+            </span>
+            <h2 className="text-3xl font-bold text-[#0F6C8C] md:text-4xl">
+              {content.title}
+            </h2>
+          </div>
+          
+          {/* Toggle / Tabs */}
+          <div className="flex p-1 bg-[#F4FAF8] rounded-lg self-start md:self-end">
+            <button
+              onClick={() => setActiveTab("cpr")}
+              className={cn(
+                "px-6 py-2 rounded-md text-sm font-medium transition-all duration-200",
+                activeTab === "cpr"
+                  ? "bg-white text-[#0F6C8C] shadow-sm"
+                  : "text-[#2F7FA3] hover:text-[#0F6C8C]"
+              )}
+            >
+              {content.cpr.label}
+            </button>
+            <button
+              onClick={() => setActiveTab("daycare")}
+              className={cn(
+                "px-6 py-2 rounded-md text-sm font-medium transition-all duration-200",
+                activeTab === "daycare"
+                  ? "bg-white text-[#0F6C8C] shadow-sm"
+                  : "text-[#2F7FA3] hover:text-[#0F6C8C]"
+              )}
+            >
+              {content.daycare.label}
+            </button>
+          </div>
         </div>
+
         <div className="grid gap-6 md:grid-cols-3">
-          {content.steps.map((step, index) => {
+          {activeSteps.map((step, index) => {
             const Icon = step.icon;
             return (
               <Card
                 key={step.title}
-                className="border border-[#E0F0F5] bg-[#F8FCFB] shadow-sm"
+                className="border border-[#E0F0F5] bg-[#F8FCFB] shadow-sm transition-all duration-300 hover:shadow-md"
               >
                 <CardContent className="space-y-4 p-6">
                   <div className="flex items-center gap-3">

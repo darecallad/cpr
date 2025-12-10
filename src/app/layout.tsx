@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Waymaker CPR Training",
   },
   description:
-    "Professional EMSA-certified CPR and First Aid training for childcare providers in San Jose, CA. Bilingual instruction (English/中文), on-site or studio classes. Book your training today!",
+    "Professional EMSA-certified CPR training and expert guidance on starting your own daycare in San Jose, CA. Bilingual instruction and business support. Book today!",
   keywords: [
     "CPR training San Jose",
     "First Aid certification California",
@@ -40,6 +40,12 @@ export const metadata: Metadata = {
     "California childcare certification",
     "San Jose Daycare",
     "Top Daycares San Jose",
+    "Open a daycare",
+    "Start a daycare",
+    "Childcare business consulting",
+    "開設托育中心",
+    "托育創業",
+    "Daycare licensing help",
   ],
   authors: [{ name: "Waymaker CPR Training" }],
   creator: "Waymaker CPR Training",

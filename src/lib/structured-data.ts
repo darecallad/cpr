@@ -93,6 +93,20 @@ export function generateStructuredData() {
         },
         inLanguage: ["en-US", "zh-TW"],
       },
+      {
+        "@type": "Service",
+        "@id": "https://waymakercpr.com/#daycare-consulting",
+        name: "Daycare Setup Consulting",
+        description: "Expert guidance on licensing, facility setup, and management for starting your own daycare.",
+        provider: {
+          "@id": "https://waymakercpr.com/#organization",
+        },
+        areaServed: {
+          "@type": "City",
+          name: "San Jose",
+          "@id": "https://www.wikidata.org/wiki/Q16553",
+        },
+      },
     ],
   };
 }
