@@ -46,7 +46,7 @@ export function HeroSection() {
                   {content.ctaCpr}
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href="/consulting">
                 <Button
                   size="hero"
                   className="bg-white hover:bg-gray-50 text-[#0F6C8C] border-2 border-transparent hover:border-[#0F6C8C]/10 font-bold text-base shadow-lg shadow-black/10 w-full sm:w-auto transition-all hover:scale-105 hover:shadow-xl"

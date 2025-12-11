@@ -125,7 +125,7 @@ export const seoData = {
       ],
     },
   },
-  daycare: {
+  consulting: {
     en: {
       title: "Daycare Consulting | Start Your Childcare Business - Waymaker CPR",
       description:

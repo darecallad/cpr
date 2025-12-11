@@ -1,5 +1,22 @@
 ﻿export const partners = [
   { 
+    name: "Sunny Childcare Center", 
+    slug: "sunny-childcare-center", 
+    logo: "/partners/sunny-logomark.png",
+    license: "# 434416296", 
+    address: "2586 Seaboard Ave, San Jose, CA 95131", 
+    owner: "Jessie Lee",
+    phone: "(510) 333-5943",
+    email: "Center.admin@sunnychildcare.com",
+    tourHours: "Mon-Fri 9:00 AM - 6:00 PM",
+    description: "Sunny Childcare Center is a premier facility located at Waymaker HQ. We offer a spacious, professional environment with structured learning programs for children. Visit our website at https://www.sunnychildcare.com/",
+    images: ["/center/cover-outdoor.webp", "/center/2.webp", "/center/18.webp", "/center/78.webp"],
+    type: "Center",
+    bookingUrl: "https://www.sunnychildcare.com/admission/tuition",
+    website: "https://www.sunnychildcare.com/",
+    googleReviewUrl: "https://www.google.com/maps/place/Sunny+Child+Care+Center/@37.3789363,-121.940731,17z/data=!4m8!3m7!1s0x808fcbd7e7cb599b:0x5feb29d49ff1cc8d!8m2!3d37.3789363!4d-121.9381561!9m1!1b1!16s%2Fg%2F11v9vt1x4y?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  { 
     name: "Do Do Kids Daycare", 
     slug: "do-do-kids-daycare", 
     logo: "/partners/dodokids.svg",
@@ -10,7 +27,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Fri 6:00 PM",
     description: "Do Do Kids Daycare provides a nurturing environment where children can learn and grow. We focus on early childhood development through play-based learning.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/DoDo+Kids+Daycare/@37.3497959,-121.9817375,17z/data=!4m8!3m7!1s0x808fcbed24de36bf:0x1a14ff51217fc23!8m2!3d37.3497959!4d-121.9791626!9m1!1b1!16s%2Fg%2F11yj2cj3jj?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Clever Kidz Daycare", 
@@ -23,7 +41,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Mon-Fri 9:30 AM - 11:30 AM",
     description: "At Clever Kidz Daycare, we believe every child is unique. Our curriculum is designed to foster creativity, critical thinking, and social skills.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Clever+Kidz+Home+Daycare/@37.5207043,-122.0085866,17z/data=!4m8!3m7!1s0x8091e373148e2d29:0x25eb7aeb36194272!8m2!3d37.5207043!4d-122.0060117!9m1!1b1!16s%2Fg%2F11fn013vrs?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Sunny Garden Daycare", 
@@ -36,7 +55,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Mon-Fri 6:00 PM",
     description: "Sunny Garden Daycare offers a warm, home-like atmosphere. We have a large outdoor play area and provide healthy, organic meals.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Sunny+Garden+Daycare/@37.3876123,-122.0226213,16z/data=!4m8!3m7!1s0x808fb648beeb6c07:0x9c6e0af9043c027!8m2!3d37.3876123!4d-122.0200464!9m1!1b1!16s%2Fg%2F11f37xx3cy?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Bright Sky Daycare", 
@@ -49,7 +69,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Wed, Fri 6:00 PM",
     description: "Bright Sky Daycare is dedicated to providing high-quality care. Our experienced staff ensures a safe and stimulating environment for your little ones.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Bright+Sky+Daycare/@37.3879044,-122.025918,17z/data=!4m8!3m7!1s0x808fb76128e520e5:0x8951b272fd1148c0!8m2!3d37.3879044!4d-122.0233431!9m1!1b1!16s%2Fg%2F11l2d8dwmg?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Little Dreamer Daycare", 
@@ -62,7 +83,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Mon, Wed, Thu, Fri 6:00 PM",
     description: "Little Dreamer Daycare encourages imagination and exploration. We offer a variety of activities including art, music, and storytelling.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Little+Dreamer+Daycare/@37.395275,-122.0257404,17z/data=!4m8!3m7!1s0x808fb7ca3b328a03:0xb4e323bb929e71b!8m2!3d37.395275!4d-122.0231655!9m1!1b1!16s%2Fg%2F11vdt9x7dw?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Sweet Butterfly Daycare", 
@@ -75,7 +97,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Sat 10:00 AM",
     description: "Sweet Butterfly Daycare provides a cozy and loving environment. We focus on social-emotional development and building strong relationships.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Sweet+Butterfly+Daycare/@37.3884738,-122.0276421,17z/data=!4m8!3m7!1s0x808fb7339f3e0043:0xa8ebafc3323d05d5!8m2!3d37.3884738!4d-122.0250672!9m1!1b1!16s%2Fg%2F11qbxt3dhh?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Little Pine Tree Daycare", 
@@ -88,7 +111,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Mon, Wed, Thu, Fri 6:00 PM",
     description: "Little Pine Tree Daycare connects children with nature. Our program includes outdoor exploration and gardening activities.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Little+Pine+Tree+Daycare/@37.3910827,-122.0320448,17z/data=!4m8!3m7!1s0x214caa470fc925bd:0xa16c78a21e2549a4!8m2!3d37.3910827!4d-122.0294699!9m1!1b1!16s%2Fg%2F11vbb7f02s?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Little Sprouts Daycare", 
@@ -101,7 +125,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Mon, Wed, Thu, Fri 6:00 PM",
     description: "Little Sprouts Daycare nurtures young minds. We offer a balanced curriculum of structured learning and free play.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Little+Sprouts+Daycare/@37.3723851,-122.0322299,17z/data=!4m8!3m7!1s0xb0263997ffe00e7:0x2a8a4b7d9eaef51b!8m2!3d37.3723851!4d-122.029655!9m1!1b1!16s%2Fg%2F11l2g65dty?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Wonderland Daycare", 
@@ -127,7 +152,8 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Tue, Wed, Thu 6:00 PM",
     description: "Apple Land Daycare focuses on healthy habits and active play. We provide nutritious meals and plenty of physical activity.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Apple+Land+Daycare/@37.3669324,-122.0204607,17z/data=!4m8!3m7!1s0x808fb7e6f56ff1a3:0xce63449832b4d248!8m2!3d37.3669324!4d-122.0178858!9m1!1b1!16s%2Fg%2F11y1jll84v?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
   { 
     name: "Skyland Daycare", 
@@ -153,6 +179,7 @@
     email: "daycare@waymakerbiz.com",
     tourHours: "Tue, Wed, Thu 6:00 PM",
     description: "Apple Tree Daycare is a home away from home. We prioritize safety, comfort, and individual attention for every child.",
-    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"]
+    images: ["/placeholder-daycare-1.jpg", "/placeholder-daycare-2.jpg"],
+    googleReviewUrl: "https://www.google.com/maps/place/Apple+Tree+Daycare/@37.3405526,-122.0179405,17z/data=!4m8!3m7!1s0x808fb5007842abe7:0xfeb30ffb42b5b4f5!8m2!3d37.3405527!4d-122.0130696!9m1!1b1!16s%2Fg%2F11lf742vns?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
   },
 ];
