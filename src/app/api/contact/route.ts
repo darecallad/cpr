@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getTransporter, getSender } from "@/lib/email";
 import redis from "@/lib/redis";
+import crypto from "crypto";
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,11 +20,17 @@ export async function POST(request: NextRequest) {
     const isDaycare = category === "Daycare";
     const targetEmail = isDaycare ? "daycare@waymakerbiz.com" : "info@waymakerbiz.com";
     const emailType = isDaycare ? "daycare" : "waymaker";
+    const bookingId = crypto.randomUUID();
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.waymakerbiz.com";
+    const cancellationLink = preferredDate 
+      ? `${baseUrl}/booking/cancel?id=${bookingId}&date=${preferredDate}`
+      : "";
 
     // Save to Redis if it's a booking with a date
     if (preferredDate) {
       try {
         const bookingData = {
+          id: bookingId,
           fullName: name,
           email,
           courseType: `Daycare Tour - ${organization || 'Unknown'}`,
@@ -186,6 +193,13 @@ This email was automatically sent from Waymaker CPR website
               <p style="background-color: white; padding: 15px; border-left: 4px solid #2F4858;">${message}</p>
               
               ${calendarLink ? `<p><strong>Upcoming Tour:</strong><br><a href="${calendarLink}" class="btn" target="_blank">Add to Google Calendar</a></p>` : ''}
+              
+              ${cancellationLink ? `
+              <div style="margin-top: 20px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+                <p style="font-size: 14px; color: #666;">Need to cancel?</p>
+                <a href="${cancellationLink}" style="color: #dc2626; text-decoration: underline;">Cancel Booking</a>
+              </div>
+              ` : ""}
             </div>
             <div class="footer">
               <p>&copy; Waymaker CPR</p>
@@ -220,6 +234,13 @@ This email was automatically sent from Waymaker CPR website
               <p style="background-color: white; padding: 15px; border-left: 4px solid #2F4858;">${message}</p>
 
               ${calendarLink ? `<p><strong>即將到來的參觀：</strong><br><a href="${calendarLink}" class="btn" target="_blank">加入 Google 行事曆</a></p>` : ''}
+
+              ${cancellationLink ? `
+              <div style="margin-top: 20px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+                <p style="font-size: 14px; color: #666;">需要取消預約？</p>
+                <a href="${cancellationLink}" style="color: #dc2626; text-decoration: underline;">取消預約</a>
+              </div>
+              ` : ""}
             </div>
             <div class="footer">
               <p>&copy; Waymaker CPR</p>

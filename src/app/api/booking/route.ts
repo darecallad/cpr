@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getTransporter, getSender } from "@/lib/email";
 import { partners } from "@/data/partners";
 import redis from "@/lib/redis";
+import crypto from "crypto";
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,6 +31,11 @@ export async function POST(request: NextRequest) {
     // Determine target email
     const isDaycare = organization && organization !== "Waymaker CPR";
     const targetEmail = isDaycare ? "daycare@waymakerbiz.com" : "info@waymakerbiz.com";
+    const bookingId = crypto.randomUUID();
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.waymakerbiz.com";
+    const cancellationLink = preferredDate && preferredDate.includes("T") 
+      ? `${baseUrl}/booking/cancel?id=${bookingId}&date=${preferredDate.split("T")[0]}`
+      : "";
 
     // Generate Calendar Link
     let calendarLink = "";
@@ -58,6 +64,7 @@ export async function POST(request: NextRequest) {
       try {
         const dateOnly = preferredDate.split("T")[0]; // 2023-12-08
         const bookingRecord = {
+          id: bookingId,
           fullName,
           email,
           courseType,
@@ -259,6 +266,13 @@ This email was automatically sent from Waymaker CPR website
                 <a href="${calendarLink}" class="btn">Add to Google Calendar</a>
               </div>
               ` : ""}
+
+              ${cancellationLink ? `
+              <div style="margin-top: 20px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+                <p style="font-size: 14px; color: #666;">Need to cancel?</p>
+                <a href="${cancellationLink}" style="color: #dc2626; text-decoration: underline;">Cancel Booking</a>
+              </div>
+              ` : ""}
               
               <p>If you have any questions, please reply to this email.</p>
             </div>
@@ -297,6 +311,13 @@ This email was automatically sent from Waymaker CPR website
               ${calendarLink ? `
               <div style="margin-top: 20px; text-align: center;">
                 <a href="${calendarLink}" class="btn">加入 Google 行事曆</a>
+              </div>
+              ` : ""}
+
+              ${cancellationLink ? `
+              <div style="margin-top: 20px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+                <p style="font-size: 14px; color: #666;">需要取消預約？</p>
+                <a href="${cancellationLink}" style="color: #dc2626; text-decoration: underline;">取消預約</a>
               </div>
               ` : ""}
               
