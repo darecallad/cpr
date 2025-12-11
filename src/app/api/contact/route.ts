@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getTransporter, getSender } from "@/lib/email";
+import redis from "@/lib/redis";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message, locale, category } = body;
+    const { name, email, message, locale, category, preferredDate, organization } = body;
 
     // 基本驗證
     if (!name || !email || !message || !category) {
@@ -18,6 +19,29 @@ export async function POST(request: NextRequest) {
     const isDaycare = category === "Daycare";
     const targetEmail = isDaycare ? "daycare@waymakerbiz.com" : "info@waymakerbiz.com";
     const emailType = isDaycare ? "daycare" : "waymaker";
+
+    // Save to Redis if it's a booking with a date
+    if (preferredDate) {
+      try {
+        const bookingData = {
+          fullName: name,
+          email,
+          courseType: `Daycare Tour - ${organization || 'Unknown'}`,
+          locale,
+          preferredDate,
+          organization: organization || "Daycare Partner"
+        };
+
+        // Save to Redis using the tour date as the key
+        // The cron job runs daily and checks for keys matching "tomorrow"
+        const key = `cpr:schedule:${preferredDate}`;
+        await redis.rpush(key, JSON.stringify(bookingData));
+        console.log(`Saved booking for tour on ${preferredDate}`);
+      } catch (redisError) {
+        console.error("Redis save error:", redisError);
+        // Continue even if Redis fails, main email is more important
+      }
+    }
 
     // 準備郵件內容 - HTML 格式
     const htmlContent = `
@@ -114,7 +138,29 @@ This email was automatically sent from Waymaker CPR website
       ? "We received your message - Waymaker CPR" 
       : "我們已收到您的訊息 - Waymaker CPR";
 
-    const userHtmlContent = locale === "en" ? `
+
+    // Generate Google Calendar Link if date is present
+    let calendarLink = "";
+    if (preferredDate && organization) {
+      const dateStr = preferredDate.replace(/-/g, "");
+      // Assuming 1 hour duration for tour
+      // Need to handle timezones properly, but for now assuming local time or just date
+      // Since we don't have specific time in the date picker (it's just YYYY-MM-DD), 
+      // we might default to a time or ask user. 
+      // However, the user prompt implies specific times per daycare.
+      // For simplicity in this link, we'll set it as an all-day event or a placeholder time.
+      // Better: Use the specific time from the partner data if we could map it, 
+      // but here we only have the date. Let's default to 10 AM for the link or just the date.
+      const startTime = dateStr + "T100000"; 
+      const endTime = dateStr + "T110000";
+      const details = encodeURIComponent("Tour at " + organization);
+      const location = encodeURIComponent(organization);
+      calendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("Daycare Tour: " + organization) + "&dates=" + startTime + "/" + endTime + "&details=" + details + "&location=" + location;
+    }
+
+    let userHtmlContent = "";
+    if (locale === "en") {
+      userHtmlContent = `
       <!DOCTYPE html>
       <html>
         <head>
@@ -125,6 +171,7 @@ This email was automatically sent from Waymaker CPR website
             .header { background-color: #2F4858; color: white; padding: 20px; text-align: center; }
             .content { background-color: #f9f9f9; padding: 30px; border-radius: 5px; margin-top: 20px; }
             .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 12px; }
+            .btn { display: inline-block; background-color: #ea580c; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 15px; }
           </style>
         </head>
         <body>
@@ -137,14 +184,17 @@ This email was automatically sent from Waymaker CPR website
               <p>Thank you for contacting Waymaker CPR. We have received your message and will get back to you as soon as possible.</p>
               <p><strong>Your Message:</strong></p>
               <p style="background-color: white; padding: 15px; border-left: 4px solid #2F4858;">${message}</p>
+              
+              ${calendarLink ? `<p><strong>Upcoming Tour:</strong><br><a href="${calendarLink}" class="btn" target="_blank">Add to Google Calendar</a></p>` : ''}
             </div>
             <div class="footer">
               <p>&copy; Waymaker CPR</p>
             </div>
           </div>
         </body>
-      </html>
-    ` : `
+      </html>`;
+    } else {
+      userHtmlContent = `
       <!DOCTYPE html>
       <html>
         <head>
@@ -155,6 +205,7 @@ This email was automatically sent from Waymaker CPR website
             .header { background-color: #2F4858; color: white; padding: 20px; text-align: center; }
             .content { background-color: #f9f9f9; padding: 30px; border-radius: 5px; margin-top: 20px; }
             .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 12px; }
+            .btn { display: inline-block; background-color: #ea580c; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 15px; }
           </style>
         </head>
         <body>
@@ -167,14 +218,16 @@ This email was automatically sent from Waymaker CPR website
               <p>感謝您聯繫 Waymaker CPR。我們已收到您的訊息，將盡快回覆您。</p>
               <p><strong>您的訊息：</strong></p>
               <p style="background-color: white; padding: 15px; border-left: 4px solid #2F4858;">${message}</p>
+
+              ${calendarLink ? `<p><strong>即將到來的參觀：</strong><br><a href="${calendarLink}" class="btn" target="_blank">加入 Google 行事曆</a></p>` : ''}
             </div>
             <div class="footer">
               <p>&copy; Waymaker CPR</p>
             </div>
           </div>
         </body>
-      </html>
-    `;
+      </html>`;
+    }
 
     const userTextContent = locale === "en"
       ? `Dear ${name},\n\nThank you for contacting Waymaker CPR. We have received your message.\n\nYour Message:\n${message}\n\nWe will get back to you shortly.`
