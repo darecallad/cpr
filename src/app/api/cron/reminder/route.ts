@@ -46,17 +46,17 @@ export async function GET() {
         const sender = getSender(emailType);
 
         const subject = locale === "en" 
-          ? `Reminder: Upcoming CPR Course Tomorrow - ${courseType}`
-          : `課程提醒：明日 CPR 課程 - ${courseType}`;
+          ? `Reminder: Upcoming Event Tomorrow - ${courseType}`
+          : `提醒：明日活動 - ${courseType}`;
 
         const htmlContent = locale === "en" ? `
           <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-            <h2 style="color: #2F4858;">Course Reminder</h2>
+            <h2 style="color: #2F4858;">Event Reminder</h2>
             <p>Dear ${fullName},</p>
-            <p>This is a friendly reminder that your CPR course is scheduled for tomorrow.</p>
+            <p>This is a friendly reminder that your event is scheduled for tomorrow.</p>
             
             <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
-              <p><strong>Course:</strong> ${courseType}</p>
+              <p><strong>Event:</strong> ${courseType}</p>
               <p><strong>Date:</strong> ${preferredDate.replace("T", " ")}</p>
               <p><strong>Location:</strong> ${organization || "Waymaker CPR"}</p>
             </div>
@@ -66,12 +66,12 @@ export async function GET() {
           </div>
         ` : `
           <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-            <h2 style="color: #2F4858;">課程提醒</h2>
+            <h2 style="color: #2F4858;">活動提醒</h2>
             <p>親愛的 ${fullName} 您好，</p>
-            <p>溫馨提醒您，您的 CPR 課程將於明日舉行。</p>
+            <p>溫馨提醒您，您的預約活動將於明日舉行。</p>
             
             <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
-              <p><strong>課程：</strong> ${courseType}</p>
+              <p><strong>活動：</strong> ${courseType}</p>
               <p><strong>時間：</strong> ${preferredDate.replace("T", " ")}</p>
               <p><strong>地點：</strong> ${organization || "Waymaker CPR"}</p>
             </div>

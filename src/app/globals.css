@@ -175,13 +175,6 @@
   body {
     overflow-x: hidden;
   }
-  
-  /* Smooth scrolling */
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
-  }
 }
 
 /* Mobile-friendly focus states */

@@ -52,7 +52,7 @@ export function Header() {
       ]
     },
     { path: "/booking", label: labels.booking },
-    { path: "/partners", label: labels.partners },
+    { path: "/daycare", label: labels.partners },
     { path: "/contact", label: labels.contact },
   ];
 

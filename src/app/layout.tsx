@@ -3,8 +3,6 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/theme-provider"; 
 import { LanguageProvider } from "@/context/LanguageContext";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { generateStructuredData } from "@/lib/structured-data";
 
@@ -94,7 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const structuredData = generateStructuredData();
   
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"
@@ -105,9 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <GoogleAnalytics />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <LanguageProvider>    
-            <Header />
-            <main>{children}</main>
-            <Footer />
+            {children}
           </LanguageProvider>
         </ThemeProvider>
       </body>
