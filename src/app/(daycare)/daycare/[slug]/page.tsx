@@ -3,7 +3,7 @@
 import { use } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, ShieldCheck, User, Phone, Mail, ImageIcon, ArrowLeft } from "lucide-react";
+import { MapPin, ShieldCheck, User, Phone, Mail, ImageIcon, ArrowLeft, Globe, Star } from "lucide-react";
 import { partners } from "@/data/partners";
 import { useLanguage } from "@/context/LanguageContext";
 import { DaycareLogo } from "@/components/DaycareLogo";
@@ -11,6 +11,7 @@ import { DaycareLogo } from "@/components/DaycareLogo";
 export default function PartnerDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const { locale } = useLanguage();
+  // @ts-ignore - bookingUrl and website are optional new fields
   const partner = partners.find((p) => p.slug === slug);
 
   if (!partner) {
@@ -29,6 +30,10 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
       about: "About Us",
       aboutText: "We provide a safe, nurturing environment for your child to learn and grow. Our facility is fully licensed and our staff is CPR/First Aid certified.",
       back: "Back to All Daycares",
+      website: "Website",
+      reviews: "Reviews",
+      leaveReview: "Leave a Review",
+      reviewEncouragement: "Encourage parents to leave comments so that good schools can be seen by more people.",
     },
     zh: {
       license: "執照號碼 #",
@@ -41,6 +46,10 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
       location: "位置",
       aboutText: "我們提供一個安全、充滿愛心的環境，讓您的孩子學習和成長。我們的設施擁有完整執照，且工作人員皆具備 CPR/急救認證。",
       back: "返回所有幼兒園",
+      website: "網站",
+      reviews: "評論",
+      leaveReview: "撰寫評論",
+      reviewEncouragement: "鼓勵家長留言，讓好學校被更多人看見。",
     },
   };
 
@@ -73,9 +82,15 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
           </h1>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-50 text-green-700 text-sm font-medium">
+            <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium ${
+              // @ts-ignore
+              partner.type === 'Center' 
+                ? 'bg-blue-50 text-blue-700 border border-blue-100' 
+                : 'bg-green-50 text-green-700 border border-green-100'
+            }`}>
               <ShieldCheck className="w-4 h-4" />
-              Licensed
+              {/* @ts-ignore */}
+              {partner.type === 'Center' ? 'Childcare Center' : 'Licensed Daycare'}
             </span>
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-sm font-medium">
               {t.license} {partner.license}
@@ -89,7 +104,7 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
             <div className="lg:col-span-2 space-y-12">
               <section>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.about}</h2>
-                <p className="text-gray-600 leading-relaxed text-lg">
+                <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
                   {description}
                 </p>
               </section>
@@ -98,14 +113,26 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
               <section>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.gallery}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[1, 2].map((i) => (
-                    <div key={i} className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200">
-                      <div className="text-center text-gray-400">
-                        <ImageIcon className="w-10 h-10 mx-auto mb-2 opacity-50" />
-                        <span className="text-sm">Photo Coming Soon</span>
+                  {partner.images && partner.images.length > 0 && !partner.images[0].includes("placeholder") ? (
+                    partner.images.map((image, i) => (
+                      <div key={i} className="aspect-video bg-gray-100 rounded-xl overflow-hidden border border-gray-200 relative group">
+                        <img 
+                          src={image} 
+                          alt={`${partner.name} - Photo ${i + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    [1, 2].map((i) => (
+                      <div key={i} className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200">
+                        <div className="text-center text-gray-400">
+                          <ImageIcon className="w-10 h-10 mx-auto mb-2 opacity-50" />
+                          <span className="text-sm">Photo Coming Soon</span>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               </section>
 
@@ -136,6 +163,26 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
                       <div>
                         <p className="font-medium text-gray-900">Email</p>
                         <p className="text-gray-600">{partner.email}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* @ts-ignore */}
+                  {partner.website && (
+                    <div className="flex items-start gap-4">
+                      <Globe className="w-5 h-5 text-orange-600 mt-1" />
+                      <div>
+                        <p className="font-medium text-gray-900">{t.website}</p>
+                        <a 
+                          // @ts-ignore
+                          href={partner.website}
+                          target="_blank"
+                          rel="noopener noreferrer" 
+                          className="text-orange-600 hover:underline break-all"
+                        >
+                          {/* @ts-ignore */}
+                          {partner.website}
+                        </a>
                       </div>
                     </div>
                   )}
@@ -178,7 +225,7 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 space-y-6">
               <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sticky top-24">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {t.bookTour}
@@ -186,14 +233,51 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
                 <p className="text-gray-500 mb-6 text-sm">
                   Interested in this daycare? Contact us to schedule a visit.
                 </p>
-                <Link 
-                  href="/daycare/booking"
-                  className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
-                >
-                  <Phone className="w-5 h-5" />
-                  Contact Now
-                </Link>
+                {/* @ts-ignore */}
+                {partner.bookingUrl ? (
+                  <a 
+                    // @ts-ignore
+                    href={partner.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
+                  >
+                    <Globe className="w-5 h-5" />
+                    Visit Website to Book
+                  </a>
+                ) : (
+                  <Link 
+                    href="/daycare/booking"
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
+                  >
+                    <Phone className="w-5 h-5" />
+                    Contact Now
+                  </Link>
+                )}
               </div>
+
+              {/* @ts-ignore */}
+              {partner.googleReviewUrl && (
+                <div className="bg-blue-50 rounded-2xl shadow-sm border border-blue-100 p-6">
+                  <h3 className="text-xl font-bold text-blue-900 mb-2 flex items-center gap-2">
+                    <Star className="w-5 h-5 fill-blue-600 text-blue-600" />
+                    {t.reviews}
+                  </h3>
+                  <p className="text-blue-800/80 mb-6 text-sm leading-relaxed">
+                    {t.reviewEncouragement}
+                  </p>
+                  <a 
+                    // @ts-ignore
+                    href={partner.googleReviewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-white hover:bg-blue-50 text-blue-600 border-2 border-blue-200 hover:border-blue-300 font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2"
+                  >
+                    <Star className="w-4 h-4" />
+                    {t.leaveReview}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

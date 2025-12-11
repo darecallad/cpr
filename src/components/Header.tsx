@@ -48,7 +48,7 @@ export function Header() {
       label: labels.services,
       children: [
         { path: "/courses", label: labels.cpr },
-        { path: "/daycare", label: labels.daycare },
+        { path: "/consulting", label: labels.daycare },
       ]
     },
     { path: "/booking", label: labels.booking },

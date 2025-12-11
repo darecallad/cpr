@@ -45,8 +45,12 @@ export default function DaycareLandingPage() {
             {/* Logo Area - Hero Style */}
             <div className="relative h-48 bg-gray-50 p-6 flex items-center justify-center border-b border-gray-100 group-hover:bg-orange-50/30 transition-colors">
               <div className="absolute top-4 right-4 z-10">
-                <span className="text-xs font-bold px-3 py-1 bg-white/90 text-green-700 rounded-full shadow-sm border border-green-100 backdrop-blur-sm">
-                  Licensed
+                <span className={`text-xs font-bold px-3 py-1 rounded-full shadow-sm border backdrop-blur-sm ${
+                  partner.type === 'Center' 
+                    ? 'bg-blue-50 text-blue-700 border-blue-100' 
+                    : 'bg-white/90 text-green-700 border-green-100'
+                }`}>
+                  {partner.type === 'Center' ? 'Childcare Center' : 'Licensed Daycare'}
                 </span>
               </div>
               <DaycareLogo 
