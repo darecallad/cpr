@@ -15,6 +15,22 @@ export async function GET() {
 
     console.log(`Checking reminders for: ${dateString}`);
 
+    // Cleanup: Delete expired bookings (yesterday)
+    // San Jose is UTC-8 (Standard) or UTC-7 (Daylight). 
+    // If this runs at 12:00 AM PST, "yesterday" is the day before.
+    // We can just delete the key for "yesterday".
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    const yesterdayString = yesterday.toISOString().split("T")[0];
+    const cleanupKey = `cpr:schedule:${yesterdayString}`;
+    
+    try {
+      await redis.del(cleanupKey);
+      console.log(`Cleaned up expired bookings for: ${yesterdayString}`);
+    } catch (cleanupError) {
+      console.error("Cleanup error:", cleanupError);
+    }
+
     // 2. Fetch bookings for tomorrow from Redis
     // Key format: cpr:schedule:{YYYY-MM-DD}
     const key = `cpr:schedule:${dateString}`;

@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Determine target email
-    const isDaycare = category === "Daycare";
+    const isDaycare = category === "Waymaker Daycare";
     const targetEmail = isDaycare ? "daycare@waymakerbiz.com" : "info@waymakerbiz.com";
     const emailType = isDaycare ? "daycare" : "waymaker";
     const bookingId = crypto.randomUUID();

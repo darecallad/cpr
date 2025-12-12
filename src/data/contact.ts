@@ -6,6 +6,10 @@ type ContactDetail = {
   href?: string;
   helper?: string;
   inlineNote?: string;
+  items?: Array<{
+    value: string;
+    href: string;
+  }>;
 };
 
 type ContactFormCopy = {
@@ -69,6 +73,10 @@ export const contactCopy: Record<Locale, ContactCopy> = {
         label: "Email",
         value: "info@waymakerbiz.com",
         href: "mailto:info@waymakerbiz.com",
+        items: [
+          { value: "info@waymakerbiz.com", href: "mailto:info@waymakerbiz.com" },
+          { value: "daycare@waymakerbiz.com", href: "mailto:daycare@waymakerbiz.com" },
+        ],
       },
       phone: {
         label: "Phone",
@@ -108,7 +116,7 @@ export const contactCopy: Record<Locale, ContactCopy> = {
       },
       categories: [
         { value: "Waymaker CPR", label: "Waymaker CPR" },
-        { value: "Daycare", label: "Daycare" },
+        { value: "Waymaker Daycare", label: "Waymaker Daycare" },
       ],
       submit: "Send message",
       success: {
@@ -134,6 +142,10 @@ export const contactCopy: Record<Locale, ContactCopy> = {
         label: "電子郵件",
         value: "info@waymakerbiz.com",
         href: "mailto:info@waymakerbiz.com",
+        items: [
+          { value: "info@waymakerbiz.com", href: "mailto:info@waymakerbiz.com" },
+          { value: "daycare@waymakerbiz.com", href: "mailto:daycare@waymakerbiz.com" },
+        ],
       },
       phone: {
         label: "電話",
@@ -172,7 +184,7 @@ export const contactCopy: Record<Locale, ContactCopy> = {
       },
       categories: [
         { value: "Waymaker CPR", label: "Waymaker CPR" },
-        { value: "Daycare", label: "Daycare" },
+        { value: "Waymaker Daycare", label: "Waymaker Daycare" },
       ],
       submit: "送出訊息",
       success: {

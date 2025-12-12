@@ -29,13 +29,38 @@ export async function POST(request: NextRequest) {
     }
 
     // Determine target email
+    // Always send to info@waymakerbiz.com as primary
+    const targetEmail = "info@waymakerbiz.com";
     const isDaycare = organization && organization !== "Waymaker CPR";
-    const targetEmail = isDaycare ? "daycare@waymakerbiz.com" : "info@waymakerbiz.com";
+    // If it's daycare, we might want to CC daycare@waymakerbiz.com or handle it in the mail options
+    
     const bookingId = crypto.randomUUID();
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.waymakerbiz.com";
     const cancellationLink = preferredDate && preferredDate.includes("T") 
       ? `${baseUrl}/booking/cancel?id=${bookingId}&date=${preferredDate.split("T")[0]}`
       : "";
+
+    // Check for Daycare Consultation limit (1 per slot)
+    if (courseType === "Daycare Consultation" && preferredDate && preferredDate.includes("T")) {
+      const dateOnly = preferredDate.split("T")[0];
+      const key = `cpr:schedule:${dateOnly}`;
+      const existingBookings = await redis.lrange(key, 0, -1);
+      
+      for (const rawBooking of existingBookings) {
+        try {
+          const booking = JSON.parse(rawBooking);
+          if (booking.courseType === "Daycare Consultation") {
+             // Assuming 1 per day for Daycare Consultation
+             return NextResponse.json(
+               { error: "This slot is already booked." },
+               { status: 409 }
+             );
+          }
+        } catch (e) {
+          // ignore parse error
+        }
+      }
+    }
 
     // Generate Calendar Link
     let calendarLink = "";
@@ -222,6 +247,7 @@ This email was automatically sent from Waymaker CPR website
     const mailOptions = {
       from: `"Waymaker CPR Booking" <${sender}>`,
       to: targetEmail,
+      cc: isDaycare ? "daycare@waymakerbiz.com" : undefined,
       replyTo: email, // 可以直接回覆給客戶
       subject: `🚨 新課程預約 / New Booking - ${fullName}`,
       text: textContent,

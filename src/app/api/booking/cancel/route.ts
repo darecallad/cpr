@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     // Send cancellation email to Admin
     const isDaycare = bookingToRemove.organization && bookingToRemove.organization !== "Waymaker CPR";
     const emailType = isDaycare ? "daycare" : "waymaker";
-    const targetEmail = isDaycare ? "daycare@waymakerbiz.com" : "info@waymakerbiz.com";
+    const targetEmail = "info@waymakerbiz.com";
     const transporter = getTransporter(emailType);
     const sender = getSender(emailType);
 
@@ -73,6 +73,7 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: `"Waymaker System" <${sender}>`,
       to: targetEmail,
+      cc: isDaycare ? "daycare@waymakerbiz.com" : undefined,
       subject: adminSubject,
       text: adminContent,
     });

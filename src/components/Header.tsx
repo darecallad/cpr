@@ -22,7 +22,7 @@ export function Header() {
       cpr: "CPR Training",
       daycare: "Daycare Consulting",
       booking: "Booking",
-      partners: "Partner Daycare",
+      partners: "Waymaker Daycares",
       contact: "Contact",
     },
     zh: {
@@ -31,7 +31,7 @@ export function Header() {
       cpr: "CPR 課程",
       daycare: "托育創業諮詢",
       booking: "預約報名",
-      partners: "合作幼兒園",
+      partners: "Waymaker Daycares",
       contact: "聯絡我們",
     },
   } as const;
@@ -52,7 +52,7 @@ export function Header() {
       ]
     },
     { path: "/booking", label: labels.booking },
-    { path: "/daycare", label: labels.partners },
+    { path: "https://daycare.waymakerbiz.com/", label: labels.partners },
     { path: "/contact", label: labels.contact },
   ];
 

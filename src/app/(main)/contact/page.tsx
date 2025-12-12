@@ -155,6 +155,7 @@ export default function ContactPage() {
         label: copy.details.email.label,
         value: copy.details.email.value,
         href: copy.details.email.href,
+        items: copy.details.email.items,
         color: "text-blue-600",
         bg: "bg-blue-100",
       },
@@ -232,7 +233,19 @@ export default function ContactPage() {
                           <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
                             {item.label}
                           </p>
-                          {item.href ? (
+                          {item.items ? (
+                            <div className="flex flex-col gap-1">
+                              {item.items.map((subItem, idx) => (
+                                <a 
+                                  key={idx}
+                                  href={subItem.href}
+                                  className="block text-[#0F3B4C] font-medium hover:text-[#FF8A5B] transition-colors whitespace-pre-line text-base"
+                                >
+                                  {subItem.value}
+                                </a>
+                              ))}
+                            </div>
+                          ) : item.href ? (
                             <a 
                               href={item.href}
                               target={item.isAddress ? "_blank" : undefined}
