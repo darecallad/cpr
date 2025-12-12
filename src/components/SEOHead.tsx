@@ -52,7 +52,7 @@ export function SEOHead({ page }: SEOHeadProps) {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Waymaker CPR",
-      "image": "https://waymakercpr.com/logo.svg",
+      "image": "https://cpr.waymakerbiz.com/logo.svg",
       "telephone": "(408) 590-3617",
       "email": "info@waymakerbiz.com",
       "address": {
@@ -68,7 +68,7 @@ export function SEOHead({ page }: SEOHeadProps) {
         "latitude": 37.386051,
         "longitude": -121.883873
       },
-      "url": "https://waymakercpr.com",
+      "url": "https://cpr.waymakerbiz.com",
       "priceRange": "$$"
     };
 

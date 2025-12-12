@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     const targetEmail = isDaycare ? "daycare@waymakerbiz.com" : "info@waymakerbiz.com";
     const emailType = isDaycare ? "daycare" : "waymaker";
     const bookingId = crypto.randomUUID();
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.waymakerbiz.com";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://cpr.waymakerbiz.com";
     const cancellationLink = preferredDate 
       ? `${baseUrl}/booking/cancel?id=${bookingId}&date=${preferredDate}`
       : "";

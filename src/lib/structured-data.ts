@@ -4,12 +4,12 @@ export function generateStructuredData() {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://waymakercpr.com/#organization",
+        "@id": "https://cpr.waymakerbiz.com/#organization",
         name: "Waymaker CPR Training",
         alternateName: "Waymaker 心肺復甦術培訓",
         description:
           "Professional EMSA-certified CPR and First Aid training in San Jose, CA. Bilingual instruction in English and Traditional Chinese.",
-        url: "https://waymakercpr.com",
+        url: "https://cpr.waymakerbiz.com",
         telephone: "",
         email: "info@waymakerbiz.com",
         address: {
@@ -44,12 +44,12 @@ export function generateStructuredData() {
       },
       {
         "@type": "Course",
-        "@id": "https://waymakercpr.com/courses#pediatric-cpr",
+        "@id": "https://cpr.waymakerbiz.com/courses#pediatric-cpr",
         name: "EMSA Pediatric CPR & First Aid",
         description:
           "Comprehensive EMSA-approved pediatric CPR and first aid certification course. Required for childcare providers in California.",
         provider: {
-          "@id": "https://waymakercpr.com/#organization",
+          "@id": "https://cpr.waymakerbiz.com/#organization",
         },
         hasCourseInstance: {
           "@type": "CourseInstance",
@@ -69,12 +69,12 @@ export function generateStructuredData() {
       },
       {
         "@type": "Course",
-        "@id": "https://waymakercpr.com/courses#adult-cpr",
+        "@id": "https://cpr.waymakerbiz.com/courses#adult-cpr",
         name: "Adult CPR & First Aid Certification",
         description:
           "Professional adult CPR and first aid training for workplace safety and community preparedness.",
         provider: {
-          "@id": "https://waymakercpr.com/#organization",
+          "@id": "https://cpr.waymakerbiz.com/#organization",
         },
         hasCourseInstance: {
           "@type": "CourseInstance",
@@ -85,21 +85,21 @@ export function generateStructuredData() {
       },
       {
         "@type": "WebSite",
-        "@id": "https://waymakercpr.com/#website",
-        url: "https://waymakercpr.com",
+        "@id": "https://cpr.waymakerbiz.com/#website",
+        url: "https://cpr.waymakerbiz.com",
         name: "Waymaker CPR Training",
         publisher: {
-          "@id": "https://waymakercpr.com/#organization",
+          "@id": "https://cpr.waymakerbiz.com/#organization",
         },
         inLanguage: ["en-US", "zh-TW"],
       },
       {
         "@type": "Service",
-        "@id": "https://waymakercpr.com/#daycare-consulting",
+        "@id": "https://cpr.waymakerbiz.com/#daycare-consulting",
         name: "Daycare Setup Consulting",
         description: "Expert guidance on licensing, facility setup, and management for starting your own daycare.",
         provider: {
-          "@id": "https://waymakercpr.com/#organization",
+          "@id": "https://cpr.waymakerbiz.com/#organization",
         },
         areaServed: {
           "@type": "City",

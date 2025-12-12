@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     // If it's daycare, we might want to CC daycare@waymakerbiz.com or handle it in the mail options
     
     const bookingId = crypto.randomUUID();
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.waymakerbiz.com";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://cpr.waymakerbiz.com";
     const cancellationLink = preferredDate && preferredDate.includes("T") 
       ? `${baseUrl}/booking/cancel?id=${bookingId}&date=${preferredDate.split("T")[0]}`
       : "";

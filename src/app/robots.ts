@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://waymakercpr.com/sitemap.xml",
+    sitemap: "https://cpr.waymakerbiz.com/sitemap.xml",
   };
 }

@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://waymakercpr.com"),
+  metadataBase: new URL("https://cpr.waymakerbiz.com"),
   title: {
     default: "Waymaker CPR Training | EMSA Certified CPR & First Aid - San Jose, CA",
     template: "%s | Waymaker CPR Training",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     alternateLocale: ["zh_TW"],
-    url: "https://waymakercpr.com",
+    url: "https://cpr.waymakerbiz.com",
     siteName: "Waymaker CPR Training",
     title: "Waymaker CPR Training | EMSA Certified CPR & First Aid",
     description:
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "HPJApzRqyvJbh2G3VxZmmnRoWnKuFXLkImvKxGK8z-c",
+    google: "wqsmfv5CDzDhVmznMsZq5qhD-w-oSxBYQO3U4pMEazo",
   },
   icons: {
     icon: "/favicon.svg",
